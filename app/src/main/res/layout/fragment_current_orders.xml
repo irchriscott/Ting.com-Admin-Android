@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FEFEFE"
+    tools:context=".fragments.base.CurrentOrders">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Current Orders"
+        android:textAllCaps="true"
+        android:fontFamily="@font/poppins_thin"
+        android:textSize="18sp"
+        android:textColor="@color/colorGray"
+        tools:ignore="HardcodedText" />
+
+</FrameLayout>

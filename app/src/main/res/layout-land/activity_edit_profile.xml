@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.6">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorPrimary"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"
+            style="@style/AppTheme.ActionBarStyle"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="24dp"
+                    android:background="@drawable/border_bottom">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/admin_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/default_user"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:id="@+id/admin_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Christian Scott"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorGray"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:id="@+id/admin_username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="chriscott"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_mail_gray_24dp"
+                                    android:tint="@color/colorLightGray" />
+
+                                <TextView
+                                    android:id="@+id/admin_admin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:textSize="13sp"
+                                    android:text="irchristianscott@gmail.com"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/colorLightGray"
+                                    tools:ignore="HardcodedText" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About"
+                        android:textSize="18sp"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_thin"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="24dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Names"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_name_else"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Username"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_username_else"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Email"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Phone Number"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Badge Number"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_badge_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="User Role"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_role"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Created Date"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/admin_created_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <Button
+                        android:id="@+id/button_edit_admin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Edit Profile"
+                        android:paddingStart="60dp"
+                        android:paddingEnd="60dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/background_time_green"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/current_orders_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        class="com.codepipes.tingadmin.fragments.base.CurrentOrders"
+        tools:layout="@layout/fragment_current_orders" />
+
+
+</LinearLayout>

@@ -1,3 +1,88 @@
 <resources>
-    <string name="app_name">tingadmin</string>
+    <string name="app_name" translatable="false">Ting.com</string>
+
+    <!-- LOG IN -->
+    <string name="login" translatable="false">Login</string>
+    <string name="login_email" translatable="false">Email Address</string>
+    <string name="login_password" translatable="false">Password</string>
+    <string name="login_sign_in_with_google" translatable="false">Sign In With google</string>
+    <string name="login_signup" translatable="false">Signup Now</string>
+    <string name="login_forgot_password" translatable="false">Forgot Password ?</string>
+
+    <!-- SIGN UP -->
+    <string name="signup_next" translatable="false">Next</string>
+    <string name="signup_prev" translatable="false">Prev</string>
+    <string name="signup_id" translatable="false">Identity</string>
+    <string name="signup_about" translatable="false">About</string>
+    <string name="signup_address" translatable="false">Address</string>
+    <string name="signup_password" translatable="false">Password</string>
+    <string name="signup_name" translatable="false">Full Name</string>
+    <string name="signup_username" translatable="false">Username</string>
+    <string name="signup_gender" translatable="false">Gender</string>
+    <string name="signup_dob" translatable="false">Date Of Birth</string>
+    <string name="signup_address_type" translatable="false">Set Address As</string>
+    <string name="signup_use_location" translatable="false">Use This Location</string>
+    <string name="signup_other_address_type" translatable="false">Enter Address Type</string>
+    <string name="signup_other_address_type_other" translatable="false">Address Type</string>
+    <string name="signup_confirm_password" translatable="false">Confirm Password</string>
+    <string name="signup_finish" translatable="false">Finish</string>
+
+    <!-- RESET PASSWORD -->
+
+    <string name="reset_pwd_title" translatable="false">Reset Password</string>
+    <string name="reset_pwd_text" translatable="false">You will receive an email message containing a link that you will use to reset your
+        password. The link only lasts 24 hours
+    </string>
+
+    <!-- GLOBAL -->
+    <string name="global_submit" translatable="false">Submit</string>
+    <string name="global_ok" translatable="false">OK</string>
+    <string name="global_cancel" translatable="false">Cancel</string>
+    <string name="global_add" translatable="false">Add</string>
+    <string name="global_restaurants" translatable="false">Restaurants</string>
+    <string name="global_restaurant_sub" translatable="false">Discover Restaurants around and near your location</string>
+    <string name="global_show_more" translatable="false">Show More</string>
+    <string name="global_reviews" translatable="false">REVIEWS</string>
+    <string name="global_likes" translatable="false">LIKES</string>
+    <string name="global_about" translatable="false">ABOUT</string>
+    <string name="global_book" translatable="false">BOOK</string>
+    <string name="global_drawer_open">Open</string>
+    <string name="global_drawer_close">Close</string>
+
+    <!-- GOOGLE APIS KEYS -->
+    <string name="server_client_id" translatable="false">1033794072902-sumfcak8j137q01u255h912slil7v32v.apps.googleusercontent.com</string>
+
+    <!-- NAV BAR -->
+    <string name="nav_dashboard" translatable="false">Dashboard</string>
+    <string name="nav_branches" translatable="false">Branches</string>
+    <string name="nav_categories" translatable="false">Categories</string>
+    <string name="nav_menus" translatable="false">Menus</string>
+    <string name="nav_promotions" translatable="false">Promotions</string>
+    <string name="nav_administrators" translatable="false">Administrators</string>
+    <string name="nav_restaurant" translatable="false">Restaurant</string>
+    <string name="nav_tables" translatable="false">Tables</string>
+    <string name="nav_reservations" translatable="false">Reservations</string>
+    <string name="nav_placements" translatable="false">Placements</string>
+    <string name="nav_logout" translatable="false">Logout</string>
+
+    <!-- USER PROFILE -->
+    <string name="user_profile_my_menu" translatable="false">My Menu</string>
+    <string name="user_profile_profile" translatable="false">Profile</string>
+    <string name="user_profile_moments" translatable="false">Moments</string>
+    <string name="user_profile_restaurants" translatable="false">Restaurants</string>
+    <string name="user_profile_orders" translatable="false">Orders</string>
+    <string name="user_profile_booking" translatable="false">Bookings</string>
+    <string name="user_profile_others" translatable="false">OTHER</string>
+    <string name="user_profile_settings" translatable="false">Settings</string>
+    <string name="user_profile_logout" translatable="false">Logout</string>
+    <string name="user_profile_edit" translatable="false">Edit Profile</string>
+
+    <!-- GLOBAL ERRORS -->
+    <string name="error_internet" translatable="false">No Internet Connection</string>
+    <string name="restaurant_specification" translatable="false">SPECIFICATIONS</string>
+    <string name="restaurants_filter" translatable="false">Filter Restaurants</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

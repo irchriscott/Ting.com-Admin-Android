@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navigation_dashboard"
+            android:title="@string/nav_dashboard"
+            android:icon="@drawable/ic_navigation_dashboard" />
+
+        <item
+            android:id="@+id/navigation_branches"
+            android:title="@string/nav_branches"
+            android:icon="@drawable/ic_navigation_branches" />
+
+        <item
+            android:id="@+id/navigation_categories"
+            android:title="@string/nav_categories"
+            android:icon="@drawable/ic_navigation_categories" />
+
+        <item
+            android:id="@+id/navigation_menus"
+            android:title="@string/nav_menus"
+            android:icon="@drawable/ic_navigation_menus" />
+
+        <item
+            android:id="@+id/navigation_promotions"
+            android:title="@string/nav_promotions"
+            android:icon="@drawable/ic_navigation_promotions" />
+
+        <item
+            android:id="@+id/navigation_administration"
+            android:title="@string/nav_administrators"
+            android:icon="@drawable/ic_navigation_branches" />
+
+        <item
+            android:id="@+id/navigation_restaurant"
+            android:title="@string/nav_restaurant"
+            android:icon="@drawable/ic_navigation_restaurant" />
+
+        <item
+            android:id="@+id/navigation_tables"
+            android:title="@string/nav_tables"
+            android:icon="@drawable/ic_navigation_tables" />
+
+        <item
+            android:id="@+id/navigation_reservations"
+            android:title="@string/nav_reservations"
+            android:icon="@drawable/ic_navigation_reservations" />
+
+        <item
+            android:id="@+id/navigation_placements"
+            android:title="@string/nav_placements"
+            android:icon="@drawable/ic_navigation_placements" />
+
+    </group>
+
+</menu>

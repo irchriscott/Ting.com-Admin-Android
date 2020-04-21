@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "270200985391",
+    "firebase_url": "https://tingdotcom-admin.firebaseio.com",
+    "project_id": "tingdotcom-admin",
+    "storage_bucket": "tingdotcom-admin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270200985391:android:28ee4c7c94748bef36b3da",
+        "android_client_info": {
+          "package_name": "com.codepipes.tingadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270200985391-6uvmhvmdtja2nv482i4pq484fplpjsso.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codepipes.tingadmin",
+            "certificate_hash": "36fc73e49f42f12c8e2450d8b823e0c38fcc191e"
+          }
+        },
+        {
+          "client_id": "270200985391-cjr7h7bbbfanovc1qauaclri6ie2ch6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgHy63TngMzhrgJ76S2rnYz6WKTi67IVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270200985391-cjr7h7bbbfanovc1qauaclri6ie2ch6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

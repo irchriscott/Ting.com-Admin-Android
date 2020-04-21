@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navbar_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/navbar_edit_profile"
+            android:title="Edit Profile"
+            android:icon="@drawable/ic_navigation_edit"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_privileges"
+            android:title="Privileges"
+            android:icon="@drawable/ic_navigation_reservations"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_security"
+            android:title="Security"
+            android:icon="@drawable/ic_navigation_security"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_history"
+            android:title="Recent Actions"
+            android:icon="@drawable/ic_navigation_history"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_notification"
+            android:title="Notifications"
+            android:icon="@drawable/ic_navigation_notification"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_settings"
+            android:title="Settings"
+            android:icon="@drawable/ic_navigation_settings"
+            tools:ignore="HardcodedText" />
+
+        <item
+            android:id="@+id/navbar_logout"
+            android:title="Logout"
+            android:icon="@drawable/ic_navigation_logout"
+            tools:ignore="HardcodedText" />
+
+    </group>
+
+</menu>

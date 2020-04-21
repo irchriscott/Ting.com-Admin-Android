@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context=".fragments.base.SideBarFragment">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/colorPrimary"
+        android:scrollIndicators="none"
+        android:scrollbars="none"
+        android:scrollbarSize="0dp"
+        app:itemBackground="@drawable/navigation_selected_item"
+        app:itemTextAppearance="@style/NavigationViewStyle"
+        app:itemIconTint="@color/colorWhite"
+        app:itemTextColor="@color/colorWhite"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_menu"
+        tools:ignore="UnusedAttribute" />
+
+</FrameLayout>
