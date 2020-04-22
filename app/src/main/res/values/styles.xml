@@ -254,4 +254,9 @@
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
+
+    <style name="AppTheme.ScrollBarStyle">
+        <item name="android:scrollbarThumbVertical">@color/colorTransparent</item>
+        <item name="android:scrollbarThumbHorizontal">@color/colorTransparent</item>
+    </style>
 </resources>

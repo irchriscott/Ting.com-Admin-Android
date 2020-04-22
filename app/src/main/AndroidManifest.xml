@@ -16,13 +16,13 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".app.TingDotComApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".app.TingDotComApp"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,9 +37,17 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".activities.navbar.Security"
+            android:parentActivityName=".activities.base.TingDotCom"
+            android:theme="@style/AppTheme.DefaultActionBar" />
+        <activity
+            android:name=".activities.navbar.Privileges"
+            android:parentActivityName=".activities.base.TingDotCom"
+            android:theme="@style/AppTheme.DefaultActionBar" />
+        <activity
             android:name=".activities.navbar.EditProfile"
             android:parentActivityName=".activities.base.TingDotCom"
-            android:theme="@style/AppTheme.DefaultActionBar"/>
+            android:theme="@style/AppTheme.DefaultActionBar" />
         <activity
             android:name=".activities.base.LogIn"
             android:screenOrientation="portrait"

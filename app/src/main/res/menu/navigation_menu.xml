@@ -33,7 +33,7 @@
         <item
             android:id="@+id/navigation_administration"
             android:title="@string/nav_administrators"
-            android:icon="@drawable/ic_navigation_branches" />
+            android:icon="@drawable/ic_navigation_admins" />
 
         <item
             android:id="@+id/navigation_restaurant"

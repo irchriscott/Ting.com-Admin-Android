@@ -87,15 +87,15 @@
         android:paddingTop="20dp"
         android:layout_gravity="end"
         android:background="@color/colorPrimary"
-        android:scrollIndicators="none"
         android:scrollbars="none"
         android:scrollbarSize="0dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
         app:itemBackground="@drawable/navigation_selected_item"
         app:itemTextAppearance="@style/NavigationViewStyle"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/navigation_menu"
-        tools:ignore="UnusedAttribute" />
+        style="@style/AppTheme.ScrollBarStyle"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

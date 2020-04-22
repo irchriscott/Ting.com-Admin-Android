@@ -18,17 +18,6 @@ class LocalData (
 
     val gson = Gson()
 
-    private val RESTAURANTS_SHARED_PREFERENCES_KEY = "restaurants"
-    private val PROMOTIONS_SHARED_PREFERENCES_KEY = "promotions_"
-    private val FOODS_SHARED_PREFERENCES_KEY = "foods_"
-    private val DRINKS_SHARED_PREFERENCES_KEY = "drinks_"
-    private val DISHES_SHARED_PREFERENCES_KEY = "dishes_"
-
-    private val USERS_SHARED_PREFERENCES_KEY = "users"
-    private val CUISINES_SHARED_PREFERENCES_KEY = "cuisines"
-    private val FILTERS_SHARED_PREFERENCES_KEY = "filters"
-    private val PARAMS_FILTERS_SHARED_PREFERENCES_KEY = "params_filters"
-
     public fun saveRestaurants(data: String){
         this.sharedPreferencesEditor.putString(RESTAURANTS_SHARED_PREFERENCES_KEY, data)
         this.sharedPreferencesEditor.apply()
@@ -122,7 +111,7 @@ class LocalData (
 
     private fun getAllMenus() : MutableList<RestaurantMenu>{
         val menus = mutableListOf<RestaurantMenu>()
-        this.getRestaurants().forEach { it.menus.menus?.let { m -> menus.addAll(m) } }
+        this.getRestaurants().forEach { it.menus?.menus?.let { m -> menus.addAll(m) } }
         return menus
     }
 
@@ -175,5 +164,30 @@ class LocalData (
         this.sharedPreferencesEditor.putString(PARAMS_FILTERS_SHARED_PREFERENCES_KEY, data)
         this.sharedPreferencesEditor.apply()
         this.sharedPreferencesEditor.commit()
+    }
+
+    public fun savePermissions(data: String){
+        this.sharedPreferencesEditor.putString(PERMISSIONS_SHARED_PREFERENCES_KEY, data)
+        this.sharedPreferencesEditor.apply()
+        this.sharedPreferencesEditor.commit()
+    }
+
+    public fun getPermissions() : MutableList<Permission> {
+        val filtersString = this.sharedPreferences.getString(PERMISSIONS_SHARED_PREFERENCES_KEY, "[]")
+        return gson.fromJson<MutableList<Permission>>(filtersString, object : TypeToken<MutableList<Permission>>(){}.type)
+    }
+
+    companion object {
+        private const val RESTAURANTS_SHARED_PREFERENCES_KEY = "restaurants"
+        private const val PROMOTIONS_SHARED_PREFERENCES_KEY = "promotions_"
+        private const val FOODS_SHARED_PREFERENCES_KEY = "foods_"
+        private const val DRINKS_SHARED_PREFERENCES_KEY = "drinks_"
+        private const val DISHES_SHARED_PREFERENCES_KEY = "dishes_"
+
+        private const val USERS_SHARED_PREFERENCES_KEY = "users"
+        private const val CUISINES_SHARED_PREFERENCES_KEY = "cuisines"
+        private const val FILTERS_SHARED_PREFERENCES_KEY = "filters"
+        private const val PARAMS_FILTERS_SHARED_PREFERENCES_KEY = "params_filters"
+        private const val PERMISSIONS_SHARED_PREFERENCES_KEY = "permissions"
     }
 }

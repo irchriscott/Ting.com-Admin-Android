@@ -248,7 +248,7 @@ class LogIn : AppCompatActivity() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val idToken = mUtilFunctions.getToken(512)
+            val idToken = UtilsFunctions.getToken(512)
             val url = Routes.submitGoogleSignUp
 
             val client = OkHttpClient()

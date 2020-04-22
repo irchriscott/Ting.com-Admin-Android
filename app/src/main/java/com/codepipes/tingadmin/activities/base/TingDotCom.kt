@@ -2,10 +2,8 @@ package com.codepipes.tingadmin.activities.base
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,14 +12,15 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.activities.navbar.EditProfile
+import com.codepipes.tingadmin.activities.navbar.Privileges
+import com.codepipes.tingadmin.activities.navbar.Security
 import com.codepipes.tingadmin.fragments.base.DashboardFragment
 import com.codepipes.tingadmin.fragments.base.SideBarFragment
 import com.codepipes.tingadmin.fragments.sidebar.*
-import com.codepipes.tingadmin.interfaces.NavigationMenuItemListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Routes
-import com.google.android.gms.location.places.Place
+import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_ting_dot_com.*
@@ -66,43 +65,43 @@ class TingDotCom : AppCompatActivity() {
 
         when(it.itemId) {
             R.id.navigation_dashboard -> {
-                changeMainContainerFragment(0)
+                changeMainContainerFragment(0, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_branches -> {
-                changeMainContainerFragment(1)
+                changeMainContainerFragment(1, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_categories -> {
-                changeMainContainerFragment(2)
+                changeMainContainerFragment(2, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_menus -> {
-                changeMainContainerFragment(3)
+                changeMainContainerFragment(3, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_promotions -> {
-                changeMainContainerFragment(4)
+                changeMainContainerFragment(4, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_administration -> {
-                changeMainContainerFragment(5)
+                changeMainContainerFragment(5, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_restaurant -> {
-                changeMainContainerFragment(6)
+                changeMainContainerFragment(6, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_tables -> {
-                changeMainContainerFragment(7)
+                changeMainContainerFragment(7, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_reservations -> {
-                changeMainContainerFragment(8)
+                changeMainContainerFragment(8, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_placements -> {
-                changeMainContainerFragment(9)
+                changeMainContainerFragment(9, 0)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -147,9 +146,13 @@ class TingDotCom : AppCompatActivity() {
 
         updateSelectedItem(R.id.navigation_dashboard)
 
-        changeMainContainerFragment(selectedItem)
+        changeMainContainerFragment(selectedItem, 0)
         navigationView.setNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigationView.setCheckedItem(menuItemIds[selectedItem])
+
+        val navigationMenuView = navigationView.getChildAt(0) as NavigationMenuView
+        navigationMenuView.isVerticalScrollBarEnabled = false
+        navigationMenuView.isHorizontalScrollBarEnabled = false
     }
 
     @SuppressLint("RestrictedApi")
@@ -170,9 +173,9 @@ class TingDotCom : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun changeMainContainerFragment(selectedFragment: Int){
+    public fun changeMainContainerFragment(selectedFragment: Int, from: Int){
         drawer_layout.closeDrawers()
-        updateSelectedItem(menuItemIds[selectedFragment])
+        if(from == 0) { updateSelectedItem(menuItemIds[selectedFragment]) }
         selectedItem = selectedFragment
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -187,8 +190,14 @@ class TingDotCom : AppCompatActivity() {
                 startActivity(Intent(this@TingDotCom, EditProfile::class.java))
                 return true
             }
-            R.id.navbar_privileges -> {}
-            R.id.navbar_security -> {}
+            R.id.navbar_privileges -> {
+                startActivity(Intent(this@TingDotCom, Privileges::class.java))
+                return true
+            }
+            R.id.navbar_security -> {
+                startActivity(Intent(this@TingDotCom, Security::class.java))
+                return true
+            }
             R.id.navbar_history -> {}
             R.id.navbar_notification -> {}
             R.id.navbar_settings -> {}

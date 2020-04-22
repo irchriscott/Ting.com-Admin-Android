@@ -40,7 +40,9 @@
                         android:id="@+id/admin_image"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/default_user"/>
+                        android:src="@drawable/default_user"
+                        app:civ_border_width="3dp"
+                        app:civ_border_color="@color/colorVeryLightGray"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -61,6 +63,7 @@
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:textSize="18sp"
                                 android:textColor="@color/colorGray"
+                                android:includeFontPadding="false"
                                 tools:ignore="HardcodedText" />
 
                             <TextView
@@ -80,15 +83,15 @@
 
                                 <ImageView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="20dp"
                                     android:src="@drawable/ic_mail_gray_24dp"
                                     android:tint="@color/colorLightGray" />
 
                                 <TextView
-                                    android:id="@+id/admin_admin"
+                                    android:id="@+id/admin_email"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
+                                    android:layout_marginStart="4dp"
                                     android:textSize="13sp"
                                     android:text="irchristianscott@gmail.com"
                                     android:fontFamily="@font/poppins_regular"
@@ -215,7 +218,7 @@
                             tools:ignore="HardcodedText" />
 
                         <TextView
-                            android:id="@+id/admin_email"
+                            android:id="@+id/admin_email_else"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -380,7 +383,7 @@
                     <Button
                         android:id="@+id/button_edit_admin"
                         android:layout_width="wrap_content"
-                        android:layout_height="58dp"
+                        android:layout_height="50dp"
                         android:layout_marginTop="24dp"
                         android:text="Edit Profile"
                         android:paddingStart="60dp"

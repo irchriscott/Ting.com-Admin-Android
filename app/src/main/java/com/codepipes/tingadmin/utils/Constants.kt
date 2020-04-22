@@ -1,5 +1,7 @@
 package com.codepipes.tingadmin.utils
 
+import com.codepipes.tingadmin.models.BranchSpecial
+
 class Constants {
 
     public val genders      = arrayOf("Male", "Female")
@@ -28,5 +30,116 @@ class Constants {
 
         public const val CONFIRM_TITLE_KEY                    = "title"
         public const val CONFIRM_MESSAGE_KEY                  = "message"
+
+        public const val ADMIN_KEY                            = "administrator"
+
+
+        public val ADMIN_TYPE = hashMapOf<Int, String>(1 to "Administrator", 2 to "Supervisor", 3 to "Chef", 4 to "Waiter", 5 to "Accountant")
+
+        public val TABLE_LOCATION = hashMapOf<Int, String>(1 to "Inside", 2 to "Outside", 3 to "Balcony", 4 to "Rooftop")
+
+        public val CHAIR_TYPE = hashMapOf<Int, String>(1 to "Iron", 2 to "Wooden", 3 to "Plastic", 4 to "Couch", 5 to "Mixture")
+
+        public val MENU_TYPE = hashMapOf<Int, String>(1 to "Food", 2 to "Drink", 3 to "Dish")
+
+        public val FOOD_TYPE = hashMapOf<Int, String>(1 to "Appetizer", 2 to "Meal", 3 to "Desert", 4 to "Sauce")
+
+        public val DRINK_TYPE = hashMapOf<Int, String>(
+            1 to "Water", 2 to "Hot Beverage", 3 to "Beer",
+            4 to "Alcohol", 5 to "Soda", 6 to "Juice", 7 to "Smoothie",
+            8 to "Cocktail", 9 to "Wine", 10 to "Other"
+        )
+
+        public val DISH_TIME = hashMapOf<Int, String>(
+            1 to "Breakfast", 2 to "Lunch", 3 to "Dinner",
+            4 to "Supper", 5 to "Brunch", 6 to "Snack", 7 to "Other"
+        )
+
+        public val PAID_BY =  hashMapOf<Int, String>(1 to "Cash", 2 to "Mobile Money", 3 to "Credit Card")
+
+        public val CURRENCIES = hashMapOf<String, String>(
+            "USD" to "United State Dollar",
+            "UGX" to "Ugandan Shillings",
+            "GBP" to "Grand Britain Pounds"
+        )
+
+        public val PROMOTION_MENU = hashMapOf<String, String>(
+            "00" to "All Menus",
+            "01" to "Food Menus",
+            "02" to "Drink Menus",
+            "03" to "Dish Menus",
+            "04" to "Specific Menu",
+            "05" to "Specific Category"
+        )
+
+        public val PROMOTION_PERIOD = hashMapOf<Int, String>(
+            1 to "Every Day",
+            2 to "Every Monday",
+            3 to "Every Tuesday",
+            4 to "Every Wednesday",
+            5 to "Every Thursday",
+            6 to "Every Friday",
+            7 to "Every Saturday",
+            8 to "Every Weekend"
+        )
+
+        public val USER_ADDRESS_TYPE = hashMapOf<Int, String>(1 to "Home", 2 to "Work", 3 to "School", 4 to "Other")
+
+        public val USER_ADDRESS_TYPE_LIST = arrayListOf<String>("Home", "Work", "School", "Other")
+
+        public val RESTAURANT_AVAILABILITY = mutableListOf<BranchSpecial>(
+            BranchSpecial(1, "Not Available", ""),
+            BranchSpecial(2, "Opened", ""),
+            BranchSpecial(3, "Closed", "")
+        )
+        
+        public val RESTAURANT_RATINGS = mutableListOf<BranchSpecial>(
+            BranchSpecial(1, "1 Star", ""),
+            BranchSpecial(2, "2 Stars", ""),
+            BranchSpecial(3, "3 Stars", ""),
+            BranchSpecial(4, "4 Stars", ""),
+            BranchSpecial(5, "5 Stars", "")
+        )
+
+        public val RESTAURANT_SPECIALS = mutableListOf<BranchSpecial>(
+            BranchSpecial(1, "Wi-Fi","wifi"),
+            BranchSpecial(2, "Phone Booth","phone"),
+            BranchSpecial(3, "TV", "tv"),
+            BranchSpecial(4, "Parking","car"),
+            BranchSpecial(5, "Karaoke","microphone"),
+            BranchSpecial(6, "Jazz","music"),
+            BranchSpecial(7, "Bar","glass martini"),
+            BranchSpecial(8, "Guards", "shield alternate")
+        )
+
+        public val RESTAURANT_SERVICES = mutableListOf<BranchSpecial>(
+            BranchSpecial(1, "Hotel","building"),
+            BranchSpecial(2, "Spa","smile"),
+            BranchSpecial(3, "Bar","glass martini"),
+            BranchSpecial(4, "Meeting Space","bullhorn"),
+            BranchSpecial(5, "Parties","birthday cake")
+        )
+
+        public val BOOKING_PAYEMENT_MODE = hashMapOf<Int, String>(
+            1 to "Online (Credit Card)",
+            2 to "Cash (On Site)",
+            3 to "Both (Online / Cash)"
+        )
+
+        public val BOOKING_STATUSES =  hashMapOf<Int, String>(
+            1 to "Pending", 2 to "Declined", 3 to "Accepted", 4 to "Paid",
+            5 to "Completed", 6 to "Refunded", 7 to "Canceled"
+        )
+
+        public val RESTAURANT_TYPES = mutableListOf<BranchSpecial>(
+            BranchSpecial(1, "Restaurant", ""),
+            BranchSpecial(2, "Outlet", ""),
+            BranchSpecial(3, "Resto & Bar", ""),
+            BranchSpecial(4, "Bar", ""),
+            BranchSpecial(5, "Coffee Shop", ""),
+            BranchSpecial(6, "Supermarket", ""),
+            BranchSpecial(7, "Food Truck", ""),
+            BranchSpecial(8, "Bakery", "")
+        )
     }
 }

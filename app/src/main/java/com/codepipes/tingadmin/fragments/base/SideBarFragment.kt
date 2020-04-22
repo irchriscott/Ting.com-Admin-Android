@@ -1,6 +1,5 @@
 package com.codepipes.tingadmin.fragments.base
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.activities.base.TingDotCom
-import com.codepipes.tingadmin.interfaces.NavigationMenuItemListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Routes
+import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_side_bar.view.*
@@ -24,37 +23,45 @@ class SideBarFragment : Fragment () {
 
     private val mOnNavigationItemSelectedListener = NavigationView.OnNavigationItemSelectedListener {
 
-        updateItemSelected(it.itemId)
-
         when(it.itemId) {
             R.id.navigation_dashboard -> {
+                updateItemSelected(it.itemId, 0)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_branches -> {
+                updateItemSelected(it.itemId, 1)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_categories -> {
+                updateItemSelected(it.itemId, 2)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_menus -> {
+                updateItemSelected(it.itemId, 3)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_promotions -> {
+                updateItemSelected(it.itemId, 4)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_administration -> {
+                updateItemSelected(it.itemId, 5)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_restaurant -> {
+                updateItemSelected(it.itemId, 6)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_tables -> {
+                updateItemSelected(it.itemId, 7)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_reservations -> {
+                updateItemSelected(it.itemId, 8)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_placements -> {
+                updateItemSelected(it.itemId, 9)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -77,12 +84,17 @@ class SideBarFragment : Fragment () {
         view.navigation_view.setCheckedItem(activeItem ?: R.id.navigation_dashboard)
         view.navigation_view.setNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        val navigationMenuView = view.navigation_view.getChildAt(0) as NavigationMenuView
+        navigationMenuView.isVerticalScrollBarEnabled = false
+        navigationMenuView.isHorizontalScrollBarEnabled = false
+
         return view
     }
 
-    private fun updateItemSelected(itemId: Int) {
+    private fun updateItemSelected(itemId: Int, selectedFragment: Int) {
         val tingActivity = activity as TingDotCom
         tingActivity.navigationView.setCheckedItem(itemId)
+        tingActivity.changeMainContainerFragment(selectedFragment, 10)
     }
 
     companion object {

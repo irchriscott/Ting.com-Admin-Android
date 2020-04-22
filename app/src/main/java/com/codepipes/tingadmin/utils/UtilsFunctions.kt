@@ -32,15 +32,10 @@ import kotlin.math.floor
 import kotlin.math.round
 
 
-@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS",
+    "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+)
 class UtilsFunctions(private val context: Context ) {
-
-    public fun getToken(length: Int): String{
-        val chars: String = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        var result: String = ""
-        for (i in 0..length) result += chars[floor(Math.random() * chars.length).toInt()]
-        return result
-    }
 
     public fun checkLocationPermissions(): Boolean {
         return if (ContextCompat.checkSelfPermission(
@@ -90,136 +85,31 @@ class UtilsFunctions(private val context: Context ) {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
-    public fun calculateDistance(from: LatLng, to: LatLng) : Double {
-        return "%.2f".format((SphericalUtil.computeDistanceBetween(from, to) / 1000)).toDouble()
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public fun statusWorkTime(open: String, close: String): MutableMap<String, String> {
-        val today = Date()
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
-        val td = sdf.format(today)
-
-        val now = today.time
-        val openTime = SimpleDateFormat("yyyy-MM-dd hh:mm").parse("$td $open").time
-        val closeTime = SimpleDateFormat("yyyy-MM-dd hh:mm").parse("$td $close").time
-
-        val response = mutableMapOf<String, String>()
-
-        if(openTime >= now){
-            if(((openTime - now) / (1000 * 60)) < 119){
-                val r = if ((openTime - now) / (1000 * 60) >= 60 ){
-                    "${round(((openTime - now).toDouble() / (1000 * 60 * 60))).toInt()} hr"
-                } else {
-                    "${round(((openTime - now).toDouble() / (1000 * 60))).toInt() + 1} min"
-                }
-
-                response["clr"] = "orange"
-                response["msg"] = "Opening in $r"
-                response["st"] = "closed"
-                return response
-            } else {
-                response["clr"] = "red"
-                response["msg"] = "Closed"
-                response["st"] = "closed"
-                return response
-            }
-        } else if (now > openTime){
-            if(now > closeTime) {
-                response["clr"] = "red"
-                response["msg"] = "Closed"
-                response["st"] = "closed"
-                return response
-            } else {
-                if(((closeTime - now) / (1000 * 60)) < 119){
-                    val r = if ((closeTime - now) / (1000 * 60) >= 60 ){
-                        "${round(((closeTime - now).toDouble() / (1000 * 60 * 60))).toInt()} hr"
-                    } else {
-                        "${round(((closeTime - now).toDouble() / (1000 * 60))).toInt() + 1} min"
-                    }
-
-                    response["clr"] = "orange"
-                    response["msg"] = "Closing in $r"
-                    response["st"] = "opened"
-                    return response
-                } else {
-                    response["clr"] = "green"
-                    response["msg"] = "Opened"
-                    response["st"] = "opened"
-                    return response
-                }
-            }
-        } else {
-            response["clr"] = "red"
-            response["msg"] = "Closed"
-            response["st"] = "closed"
-            return response
-        }
-    }
-
-    public fun decodePoly(encoded: String): List<LatLng> {
-
-        val poly = ArrayList<LatLng>()
-        var index = 0
-        val len = encoded.length
-        var lat = 0
-        var lng = 0
-
-        while (index < len) {
-            var b: Int
-            var shift = 0
-            var result = 0
-            do {
-                b = encoded[index++].toInt() - 63
-                result = result or (b and 0x1f shl shift)
-                shift += 5
-            } while (b >= 0x20)
-            val dlat = if (result and 1 != 0) (result shr 1).inv() else result shr 1
-            lat += dlat
-
-            shift = 0
-            result = 0
-            do {
-                b = encoded[index++].toInt() - 63
-                result = result or (b and 0x1f shl shift)
-                shift += 5
-            } while (b >= 0x20)
-            val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
-            lng += dlng
-
-            val p = LatLng(lat.toDouble() / 1E5, lng.toDouble() / 1E5)
-            poly.add(p)
-        }
-
-        return poly
-    }
-
-    public fun likesMenu(likes: List<Int>, session: User) : Boolean = likes.contains(session.id)
-
-    public fun userMenuReview(reviews: List<MenuReview>, session: User) : MenuReview? {
-        return if(reviews.isNotEmpty()){
-            reviews.findLast { it.user.id == session.id }
-        } else { null }
-    }
-
-    public fun userRestaurantReview(reviews: List<RestaurantReview>, session: User) : RestaurantReview? {
-        return if(reviews.isNotEmpty()){
-            reviews.findLast { it.user?.id == session.id }
-        } else { null }
-    }
-
-    public  fun userPromotionInterest(interests: List<Int>, session: User) : Boolean = interests.contains(session.id)
-
-    @SuppressLint("SimpleDateFormat")
-    public fun timeAgo(date: String) : String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        sdf.timeZone = TimeZone.getTimeZone("GMT")
-        val time = sdf.parse(date).time
-        val now = System.currentTimeMillis() - Date().timezoneOffset
-        return DateUtils.getRelativeTimeSpanString(time , now, DateUtils.MINUTE_IN_MILLIS).toString()
-    }
-
     companion object {
+
         private const val REQUEST_FINE_LOCATION = 2
+
+        @SuppressLint("SimpleDateFormat")
+        public fun timeAgo(date: String) : String {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            sdf.timeZone = TimeZone.getTimeZone("GMT")
+            val time = sdf.parse(date).time
+            val now = System.currentTimeMillis() - Date().timezoneOffset
+            return DateUtils.getRelativeTimeSpanString(time , now, DateUtils.MINUTE_IN_MILLIS).toString()
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        public fun formatDate(date: String) : String {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val time = sdf.parse(date)
+            return SimpleDateFormat("MMMM dd, yyyy").format(time)
+        }
+
+        public fun getToken(length: Int): String{
+            val chars: String = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            var result: String = ""
+            for (i in 0..length) result += chars[floor(Math.random() * chars.length).toInt()]
+            return result
+        }
     }
 }

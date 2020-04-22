@@ -19,6 +19,7 @@ import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class TingClient (val context: Context) {
 
     private val userAuthentication = UserAuthentication(context)

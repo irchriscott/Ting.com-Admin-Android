@@ -6,8 +6,10 @@ import android.preference.PreferenceManager
 import android.util.Log
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.SocketUser
+import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.lang.Exception
 
 class UserAuthentication(
     private val contxt: Context
@@ -46,6 +48,18 @@ class UserAuthentication(
         this.sharedPreferencesEditor.remove(SESSION_SHARED_PREFERENCES_KEY).apply {
             apply()
             commit()
+        }
+    }
+
+    public fun updateSession() {
+        val session = get()
+        TingClient.getRequest(Routes.authGetSession, null, session?.token) { _, isSuccess, result ->
+            if(isSuccess) {
+                try {
+                    val admin = Gson().fromJson(result, Administrator::class.java)
+                    set(Gson().toJson(admin))
+                } catch (e: Exception) {}
+            }
         }
     }
 }

@@ -14,5 +14,14 @@ class Routes {
         const val submitGoogleSignUp: String            = "${END_POINT}adm/signup/google/"
         const val authLoginUser: String                 = "${END_POINT}adm/auth/login/"
         const val authResetPassword: String             = "${END_POINT}adm/auth/password/reset/"
+        const val authGetSession: String                = "${END_POINT}adm/auth/session/"
+
+        //GLOBALS
+        const val permissionsAll: String                = "${END_POINT}adm/g/permissions/all/"
+
+        //ADMINISTRATORS
+        const val updateAdminProfile: String            = "${END_POINT}adm/admin/profile/update/profile/"
+        const val updateAdminImage: String              = "${END_POINT}adm/admin/profile/update/image/"
+        const val updateAdminPassword: String           = "${END_POINT}adm/admin/security/update/password/"
     }
 }
