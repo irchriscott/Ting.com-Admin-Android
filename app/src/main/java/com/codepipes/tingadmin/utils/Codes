@@ -123,3 +123,52 @@ private fun addFragment(v: View) {
 
 open cmd and navigate to keystool.exe which is in programs/jre/bin
 then keytool -exportcert -alias androiddebugkey -keystore "C:\Documents and Settings\Administrator.android\debug.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary |"C:\OpenSSL\bin\openssl" base64
+
+//CELL VIEW HOLDER, setSelected
+
+if (selectionState == SelectionState.SELECTED) {
+            cellTextView.setTextColor(
+                ContextCompat.getColor(
+                    cellTextView.context,
+                    R.color.colorPrimaryDark
+                )
+            )
+        } else {
+            cellTextView.setTextColor(
+                ContextCompat.getColor(
+                    cellTextView.context,
+                    R.color.colorGray
+                )
+            )
+        }
+
+// COLUMN && ROW HEADER VIEW HOLDER setSelected
+
+val nBackgroundColorId: Int
+        val nForegroundColorId: Int
+        when (selectionState) {
+            SelectionState.SELECTED -> {
+                nBackgroundColorId = R.color.colorVeryLightGray
+                nForegroundColorId = R.color.colorPrimaryDark
+            }
+            SelectionState.UNSELECTED -> {
+                nBackgroundColorId = R.color.colorWhite
+                nForegroundColorId = R.color.colorGray
+            }
+            else -> {
+                nBackgroundColorId = R.color.colorWhite
+                nForegroundColorId = R.color.colorGray
+            }
+        }
+        columnHeaderContainer.setBackgroundColor(
+            ContextCompat.getColor(
+                columnHeaderContainer
+                    .context, nBackgroundColorId
+            )
+        )
+        columnHeaderTextView.setTextColor(
+            ContextCompat.getColor(
+                columnHeaderContainer
+                    .context, nForegroundColorId
+            )
+        )

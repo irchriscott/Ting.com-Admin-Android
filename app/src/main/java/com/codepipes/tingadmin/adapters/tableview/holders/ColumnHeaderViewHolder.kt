@@ -25,33 +25,5 @@ class ColumnHeaderViewHolder(private val view: View, val tableView: ITableView) 
 
     override fun setSelected(selectionState: SelectionState) {
         super.setSelected(selectionState)
-        val nBackgroundColorId: Int
-        val nForegroundColorId: Int
-        when (selectionState) {
-            SelectionState.SELECTED -> {
-                nBackgroundColorId = R.color.colorVeryLightGray
-                nForegroundColorId = R.color.colorPrimaryDark
-            }
-            SelectionState.UNSELECTED -> {
-                nBackgroundColorId = R.color.colorWhite
-                nForegroundColorId = R.color.colorGray
-            }
-            else -> {
-                nBackgroundColorId = R.color.colorWhite
-                nForegroundColorId = R.color.colorGray
-            }
-        }
-        columnHeaderContainer.setBackgroundColor(
-            ContextCompat.getColor(
-                columnHeaderContainer
-                    .context, nBackgroundColorId
-            )
-        )
-        columnHeaderTextView.setTextColor(
-            ContextCompat.getColor(
-                columnHeaderContainer
-                    .context, nForegroundColorId
-            )
-        )
     }
 }

@@ -13,33 +13,5 @@ class RowHeaderViewHolder(private val view: View) : AbstractViewHolder(view) {
 
     override fun setSelected(selectionState: SelectionState) {
         super.setSelected(selectionState)
-        val nBackgroundColorId: Int
-        val nForegroundColorId: Int
-        when (selectionState) {
-            SelectionState.SELECTED -> {
-                nBackgroundColorId = R.color.colorVeryLightGray
-                nForegroundColorId = R.color.colorPrimaryDark
-            }
-            SelectionState.UNSELECTED -> {
-                nBackgroundColorId = R.color.colorWhite
-                nForegroundColorId = R.color.colorGray
-            }
-            else -> {
-                nBackgroundColorId = R.color.colorWhite
-                nForegroundColorId = R.color.colorGray
-            }
-        }
-        itemView.setBackgroundColor(
-            ContextCompat.getColor(
-                itemView.context,
-                nBackgroundColorId
-            )
-        )
-        rowHeaderTextView.setTextColor(
-            ContextCompat.getColor(
-                rowHeaderTextView.context,
-                nForegroundColorId
-            )
-        )
     }
 }

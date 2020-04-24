@@ -203,6 +203,7 @@ class EditProfile : AppCompatActivity() {
 
                             override fun onFailure(call: Call, e: IOException) {
                                 runOnUiThread {
+                                    progressOverlay.dismiss()
                                     Picasso.get().load("${Routes.HOST_END_POINT}${session.image}").into(admin_image)
                                     TingToast(this@EditProfile, e.message!!, TingToastType.ERROR).showToast(Toast.LENGTH_LONG)
                                 }

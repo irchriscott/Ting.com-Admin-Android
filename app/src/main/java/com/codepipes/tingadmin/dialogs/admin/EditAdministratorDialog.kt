@@ -22,8 +22,8 @@ import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.dialog_edit_administrator.view.*
-import kotlinx.android.synthetic.main.dialog_edit_administrator.view.admin_name
+import kotlinx.android.synthetic.main.dialog_admin_edit.view.*
+import kotlinx.android.synthetic.main.dialog_admin_edit.view.admin_name
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -47,7 +47,7 @@ class EditAdministratorDialog : DialogFragment() {
     ): View? {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val view = inflater.inflate(R.layout.dialog_edit_administrator, container, false)
+        val view = inflater.inflate(R.layout.dialog_admin_edit, container, false)
 
         val administrator = Gson().fromJson(arguments?.getString(Constants.ADMIN_KEY), Administrator::class.java)
         view.dialog_title.text = "Edit Profile"

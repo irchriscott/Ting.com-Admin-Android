@@ -2,8 +2,11 @@ package com.codepipes.tingadmin.fragments.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.activities.base.TingDotCom
@@ -88,6 +91,9 @@ class SideBarFragment : Fragment () {
         navigationMenuView.isVerticalScrollBarEnabled = false
         navigationMenuView.isHorizontalScrollBarEnabled = false
 
+        updateNavigationMenu(view)
+        showIconsOnlyMenu(view)
+
         return view
     }
 
@@ -95,6 +101,31 @@ class SideBarFragment : Fragment () {
         val tingActivity = activity as TingDotCom
         tingActivity.navigationView.setCheckedItem(itemId)
         tingActivity.changeMainContainerFragment(selectedFragment, 10)
+    }
+
+
+    private fun updateNavigationMenu(view: View) {
+        view.navigation_view.menu.getItem(1).isVisible = session.permissions.contains("can_view_branch")
+        view.navigation_view.menu.getItem(2).isVisible = session.permissions.contains("can_view_category")
+        view.navigation_view.menu.getItem(3).isVisible = session.permissions.contains("can_view_menu")
+        view.navigation_view.menu.getItem(4).isVisible = session.permissions.contains("can_view_promotion")
+        view.navigation_view.menu.getItem(5).isVisible =
+            session.permissions.contains("can_view_admin") || session.permissions.contains("can_view_all_admin")
+        view.navigation_view.menu.getItem(7).isVisible = session.permissions.contains("can_view_table")
+        view.navigation_view.menu.getItem(8).isVisible = session.permissions.contains("can_view_booking")
+        view.navigation_view.menu.getItem(9).isVisible = session.permissions.contains("can_view_placements")
+    }
+
+    private fun showIconsOnlyMenu(view: View) {
+        view.navigation_view.getHeaderView(0).visibility = View.GONE
+        view.navigation_view.menu.forEach {
+            it.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+            it.title = ""
+        }
+
+        val tingDotCom = activity as TingDotCom
+        tingDotCom.mainContainerFrameLayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0.06f)
+        tingDotCom.sideBarFrameLayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0.94f)
     }
 
     companion object {
@@ -105,5 +136,5 @@ class SideBarFragment : Fragment () {
                 arguments = bundle
             }
         }
-     }
+    }
 }

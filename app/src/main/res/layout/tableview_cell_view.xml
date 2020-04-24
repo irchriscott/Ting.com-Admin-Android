@@ -4,8 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/table_view_cell_height"
-        android:background="@color/colorWhite"
+        android:layout_height="54dp"
         android:orientation="vertical">
 
 
@@ -14,13 +13,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
             android:gravity="center"
             android:textAlignment="center"
             android:maxLines="1"
             android:textColor="@color/colorGray"
-            android:textSize="@dimen/table_view_default_text_size"
+            android:textSize="13sp"
             android:fontFamily="@font/poppins_regular"
             tools:text="Cell Data"/>
 

@@ -2,9 +2,9 @@
 <RelativeLayout android:id="@+id/root"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="@dimen/table_view_row_header_width"
-        android:layout_height="@dimen/table_view_cell_height"
-        android:background="@color/colorWhite">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone">
 
     <LinearLayout
             android:id="@+id/row_header_container"
@@ -22,7 +22,7 @@
                 android:textAlignment="center"
                 android:maxLines="1"
                 android:textColor="@color/colorGray"
-                android:textSize="@dimen/table_view_default_text_size"
+                android:textSize="14sp"
                 android:fontFamily="@font/poppins_semi_bold"
                 tools:text="Row Data"/>
 

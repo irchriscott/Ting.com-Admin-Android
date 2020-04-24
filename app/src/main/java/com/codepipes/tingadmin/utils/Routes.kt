@@ -20,6 +20,7 @@ class Routes {
         const val permissionsAll: String                = "${END_POINT}adm/g/permissions/all/"
 
         //ADMINISTRATORS
+        const val administratorsAll: String             = "${END_POINT}adm/administrators/all/"
         const val updateAdminProfile: String            = "${END_POINT}adm/admin/profile/update/profile/"
         const val updateAdminImage: String              = "${END_POINT}adm/admin/profile/update/image/"
         const val updateAdminPassword: String           = "${END_POINT}adm/admin/security/update/password/"

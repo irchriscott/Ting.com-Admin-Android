@@ -1,25 +1,20 @@
 package com.codepipes.tingadmin.adapters.tableview.holders
 
-import androidx.core.content.ContextCompat
-import android.view.Gravity
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.adapters.tableview.models.CellModel
 import com.codepipes.tingadmin.tableview.adapter.recyclerview.holder.AbstractViewHolder
 
+class ActionsCellViewHolder (private val view: View) : AbstractViewHolder(view) {
 
-class CellViewHolder(private val view: View) : AbstractViewHolder(view) {
-
-    private var cellTextView: TextView = view.findViewById(R.id.cell_data)
+    private var loadDataButton: Button = view.findViewById(R.id.show_actions)
     private var cellContainer: LinearLayout = view.findViewById(R.id.cell_container)
 
-    fun setCellModel(cellModel: CellModel, columnPosition: Int) {
-        cellTextView.gravity = Gravity.CENTER_VERTICAL
-        cellTextView.text = cellModel.data
+    public fun setCellModel(cellModel: CellModel, columnPosition: Int) {
         cellContainer.layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
-        cellTextView.requestLayout()
+        loadDataButton.requestLayout()
     }
 
     override fun setSelected(selectionState: SelectionState) {

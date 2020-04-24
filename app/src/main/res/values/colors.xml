@@ -24,6 +24,7 @@
     <color name="colorGreen">#21BA45</color>
     <color name="colorRed">#DB2828</color>
     <color name="colorOrange">#F2711C</color>
+    <color name="colorBlue">#2185D0</color>
     <color name="colorWarningOrange">#FFB14A</color>
 
     <color name="titleTextColor">@color/colorWhite</color>

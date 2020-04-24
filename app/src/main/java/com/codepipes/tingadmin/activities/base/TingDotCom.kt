@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.FrameLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.androidstudy.networkmanager.Tovuti
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.activities.navbar.EditProfile
 import com.codepipes.tingadmin.activities.navbar.Privileges
@@ -22,10 +24,12 @@ import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Routes
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
+import com.livefront.bridge.Bridge
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_ting_dot_com.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
 import java.lang.Exception
+import kotlin.system.exitProcess
 
 class TingDotCom : AppCompatActivity() {
 
@@ -34,6 +38,9 @@ class TingDotCom : AppCompatActivity() {
 
     public lateinit var navigationView: NavigationView
     private var selectedItem: Int = 0
+
+    public lateinit var sideBarFrameLayout: FrameLayout
+    public lateinit var mainContainerFrameLayout: FrameLayout
 
     private val menuFragments = arrayListOf<Fragment>(
         DashboardFragment(),
@@ -124,6 +131,8 @@ class TingDotCom : AppCompatActivity() {
         session = userAuthentication.get()!!
 
         navigationView = findViewById<NavigationView>(R.id.nav_view) as NavigationView
+        sideBarFrameLayout = findViewById<FrameLayout>(R.id.sidebar_container) as FrameLayout
+        mainContainerFrameLayout = findViewById<FrameLayout>(R.id.main_container) as FrameLayout
 
         val actionBarDrawerToggle = ActionBarDrawerToggle(this@TingDotCom, drawer_layout,
             R.string.global_drawer_open,
@@ -153,6 +162,8 @@ class TingDotCom : AppCompatActivity() {
         val navigationMenuView = navigationView.getChildAt(0) as NavigationMenuView
         navigationMenuView.isVerticalScrollBarEnabled = false
         navigationMenuView.isHorizontalScrollBarEnabled = false
+
+        updateNavigationMenu()
     }
 
     @SuppressLint("RestrictedApi")
@@ -206,8 +217,33 @@ class TingDotCom : AppCompatActivity() {
         return false
     }
 
+    private fun updateNavigationMenu() {
+        navigationView.menu.getItem(1).isVisible = session.permissions.contains("can_view_branch")
+        navigationView.menu.getItem(2).isVisible = session.permissions.contains("can_view_category")
+        navigationView.menu.getItem(3).isVisible = session.permissions.contains("can_view_menu")
+        navigationView.menu.getItem(4).isVisible = session.permissions.contains("can_view_promotion")
+        navigationView.menu.getItem(5).isVisible =
+            session.permissions.contains("can_view_admin") || session.permissions.contains("can_view_all_admin")
+        navigationView.menu.getItem(7).isVisible = session.permissions.contains("can_view_table")
+        navigationView.menu.getItem(8).isVisible = session.permissions.contains("can_view_booking")
+        navigationView.menu.getItem(9).isVisible = session.permissions.contains("can_view_placements")
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(selectedItem::class.java.name, selectedItem)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateNavigationMenu()
+    }
+
+    override fun onBackPressed() {}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bridge.clear(this)
+        Tovuti.from(this).stop()
     }
 }

@@ -11,6 +11,7 @@ class Administrator (
     val phone: String,
     val image: String,
     val badgeNumber: String,
+    val isDisabled: Boolean,
     val channel: String,
     val permissions: List<String>,
     val createdAt: String,

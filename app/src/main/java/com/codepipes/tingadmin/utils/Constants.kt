@@ -33,6 +33,10 @@ class Constants {
 
         public const val ADMIN_KEY                            = "administrator"
 
+        public const val NORMAL_TABLE_VIEW_CELL               = 0
+        public const val IMAGE_TABLE_VIEW_CELL                = 1
+        public const val ACTIONS_TABLE_VIEW_CELL              = 2
+
 
         public val ADMIN_TYPE = hashMapOf<Int, String>(1 to "Administrator", 2 to "Supervisor", 3 to "Chef", 4 to "Waiter", 5 to "Accountant")
 

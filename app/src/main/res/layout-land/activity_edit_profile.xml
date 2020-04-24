@@ -391,7 +391,7 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/colorWhite"
-                        android:background="@drawable/background_time_green"
+                        android:background="@drawable/background_green"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>

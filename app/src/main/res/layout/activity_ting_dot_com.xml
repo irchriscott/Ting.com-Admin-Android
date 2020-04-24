@@ -65,6 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
+                    android:visibility="gone"
                     tools:layout="@layout/fragment_side_bar"/>
 
                 <FrameLayout
