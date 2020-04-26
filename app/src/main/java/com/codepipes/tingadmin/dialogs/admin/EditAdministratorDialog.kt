@@ -19,9 +19,11 @@ import com.codepipes.tingadmin.interfaces.SelectItemListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.ServerResponse
 import com.codepipes.tingadmin.providers.TingClient
+import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
+import com.livefront.bridge.Bridge
 import kotlinx.android.synthetic.main.dialog_admin_edit.view.*
 import kotlinx.android.synthetic.main.dialog_admin_edit.view.admin_name
 
@@ -30,7 +32,7 @@ import kotlinx.android.synthetic.main.dialog_admin_edit.view.admin_name
 class EditAdministratorDialog : DialogFragment() {
 
     private var selectedAdminType = 0
-    private lateinit var formDialogListener: FormDialogListener
+    private var formDialogListener: FormDialogListener? = null
 
     override fun getTheme(): Int = R.style.TransparentDialog
 
@@ -49,7 +51,12 @@ class EditAdministratorDialog : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = inflater.inflate(R.layout.dialog_admin_edit, container, false)
 
+        Bridge.restoreInstanceState(this, savedInstanceState)
+        savedInstanceState?.clear()
+
+        val session = UserAuthentication(context!!).get()
         val administrator = Gson().fromJson(arguments?.getString(Constants.ADMIN_KEY), Administrator::class.java)
+
         view.dialog_title.text = "Edit Profile"
         view.admin_name.setText(administrator.name)
         view.admin_username.setText(administrator.username)
@@ -76,7 +83,11 @@ class EditAdministratorDialog : DialogFragment() {
             selectDialog.show(fragmentManager!!, selectDialog.tag)
         }
 
-        view.dialog_button_cancel.setOnClickListener { formDialogListener.onCancel() }
+        view.dialog_button_cancel.setOnClickListener {
+            if(formDialogListener != null) {
+                formDialogListener?.onCancel()
+            } else { dialog?.dismiss() }
+        }
         view.dialog_button_save.setOnClickListener {
 
             val data = HashMap<String, String>()
@@ -92,14 +103,21 @@ class EditAdministratorDialog : DialogFragment() {
             val progressOverlay = ProgressOverlay()
             progressOverlay.show(fragmentManager!!, progressOverlay.tag)
 
-            TingClient.postRequest("${Routes.updateAdminProfile}${administrator.token}/", data, null, administrator.token) { _, isSuccess, result ->
+            TingClient.postRequest("${Routes.updateAdminProfile}${administrator.token}/", data, null, session?.token) { _, isSuccess, result ->
                 activity?.runOnUiThread {
                     progressOverlay.dismiss()
                     if(isSuccess) {
                         try {
                             val serverResponse = Gson().fromJson(result, ServerResponse::class.java)
                             TingToast(context!!, serverResponse.message, if(serverResponse.type == "success") { TingToastType.SUCCESS } else { TingToastType.ERROR }).showToast(Toast.LENGTH_LONG)
-                            if(serverResponse.type == "success") { formDialogListener.onSave() }
+                            if(serverResponse.type == "success") {
+                                if(formDialogListener != null) { formDialogListener?.onSave()
+                                } else {
+                                    TingToast(context!!, "State Changed. Please, Try Again", TingToastType.DEFAULT).showToast(
+                                        Toast.LENGTH_LONG)
+                                    dialog?.dismiss()
+                                }
+                            }
                         } catch (e: Exception) { TingToast(context!!, e.localizedMessage, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
                     } else { TingToast(context!!, result, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
                 }

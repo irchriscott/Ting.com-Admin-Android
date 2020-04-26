@@ -35,14 +35,22 @@ class AdministratorsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_administrators, container, false)
 
         userAuthentication = UserAuthentication(context!!)
         session = userAuthentication.get()!!
 
-        val gson = Gson()
-
         view.button_add_new_administrator.setOnClickListener {  }
+        loadAdministrators(view)
+
+        return view
+    }
+
+    @SuppressLint("DefaultLocale")
+    private fun loadAdministrators(view: View) {
+
+        val gson = Gson()
 
         TingClient.getRequest(Routes.administratorsAll, null, session.token) { _, isSuccess, result ->
 
@@ -69,9 +77,8 @@ class AdministratorsFragment : Fragment() {
                                 administrators.toMutableList(),
                                 context!!, fragmentManager!!,
                                 object : DataUpdatedListener {
-                                    override fun onDataUpdated() {  }
-                                }
-                            )
+                                    override fun onDataUpdated() { activity?.runOnUiThread { loadAdministrators(view) } }
+                                }, activity!! )
 
                     } catch (e: Exception) {
 
@@ -93,7 +100,5 @@ class AdministratorsFragment : Fragment() {
                 }
             }
         }
-
-        return view
     }
 }

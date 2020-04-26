@@ -24,5 +24,7 @@ class Routes {
         const val updateAdminProfile: String            = "${END_POINT}adm/admin/profile/update/profile/"
         const val updateAdminImage: String              = "${END_POINT}adm/admin/profile/update/image/"
         const val updateAdminPassword: String           = "${END_POINT}adm/admin/security/update/password/"
+        const val disableAdministratorToggle: String    = "${END_POINT}adm/admin/profile/disable/toggle/"
+        const val updateAdminPermissions: String        = "${END_POINT}adm/admin/permissions/update/"
     }
 }

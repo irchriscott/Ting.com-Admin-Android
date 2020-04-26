@@ -14,6 +14,7 @@ import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.codepipes.tingadmin.utils.UtilsFunctions
 import com.google.gson.Gson
+import com.livefront.bridge.Bridge
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dialog_admin_load.view.*
 
@@ -35,6 +36,9 @@ class LoadAdministratorDialog : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = inflater.inflate(R.layout.dialog_admin_load, container, false)
+
+        Bridge.restoreInstanceState(this, savedInstanceState)
+        savedInstanceState?.clear()
 
         val administrator = Gson().fromJson(arguments?.getString(Constants.ADMIN_KEY), Administrator::class.java)
         view.admin_name.text = administrator.name
