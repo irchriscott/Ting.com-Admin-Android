@@ -79,6 +79,7 @@ class AddCategoryDialog : DialogFragment() {
                         try {
                             categoryImagePath = image
                             val categoryImage = File(image)
+                            view.category_image.visibility = View.VISIBLE
                             Picasso.get().load(categoryImage).into(view.category_image)
                             imageSelectDialog.dismiss()
                         } catch (e: Exception) { TingToast(context!!, e.localizedMessage, TingToastType.DEFAULT).showToast(
