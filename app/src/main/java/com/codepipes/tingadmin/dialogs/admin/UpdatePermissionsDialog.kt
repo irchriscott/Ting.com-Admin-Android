@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -114,7 +115,7 @@ class UpdatePermissionsDialog : DialogFragment() {
             val client = clientBuilder.build()
 
             val formBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-            adminPermissions.forEach { formBuilder.addFormDataPart("permission[]", it) }
+            adminPermissions.forEach { formBuilder.addFormDataPart("permission", it) }
             formBuilder.addFormDataPart("password", layoutView.admin_password.text.toString())
 
             val form = formBuilder.build()

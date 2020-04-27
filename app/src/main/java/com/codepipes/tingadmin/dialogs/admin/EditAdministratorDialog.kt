@@ -57,7 +57,7 @@ class EditAdministratorDialog : DialogFragment() {
         val session = UserAuthentication(context!!).get()
         val administrator = Gson().fromJson(arguments?.getString(Constants.ADMIN_KEY), Administrator::class.java)
 
-        view.dialog_title.text = "Edit Profile"
+        view.dialog_title.text = "Edit Administrator Profile"
         view.admin_name.setText(administrator.name)
         view.admin_username.setText(administrator.username)
         view.admin_email.setText(administrator.email)
@@ -71,12 +71,13 @@ class EditAdministratorDialog : DialogFragment() {
         view.admin_type_select.setOnClickListener {
             val selectDialog = SelectDialog()
             val bundle = Bundle()
-            bundle.putString(Constants.CONFIRM_TITLE_KEY, "Select Admin Type")
+            bundle.putString(Constants.CONFIRM_TITLE_KEY, "Select Administrator Type")
             selectDialog.arguments = bundle
             selectDialog.setItems(Constants.ADMIN_TYPE.toSortedMap().map { it.value }, object : SelectItemListener {
                 override fun onSelectItem(position: Int) {
                     selectedAdminType = position + 1
                     view.selected_admin_type.text = Constants.ADMIN_TYPE[selectedAdminType]
+                    view.selected_admin_type.setTextColor(context?.resources?.getColor(R.color.colorGray)!!)
                     selectDialog.dismiss()
                 }
             })

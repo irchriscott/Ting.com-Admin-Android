@@ -46,12 +46,13 @@
 
             <com.codepipes.tingadmin.tableview.TableView
                 android:id="@+id/administrators_table_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:visibility="gone"
                 android:background="@drawable/background_tableview"
                 android:padding="1dp"
+                android:layout_gravity="center_horizontal"
                 app:separator_color="@color/colorVeryLightGray"
                 app:show_horizontal_separator="false"
                 app:show_vertical_separator="true"

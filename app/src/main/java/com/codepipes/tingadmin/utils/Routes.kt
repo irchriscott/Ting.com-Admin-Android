@@ -23,8 +23,18 @@ class Routes {
         const val administratorsAll: String             = "${END_POINT}adm/administrators/all/"
         const val updateAdminProfile: String            = "${END_POINT}adm/admin/profile/update/profile/"
         const val updateAdminImage: String              = "${END_POINT}adm/admin/profile/update/image/"
+        const val addNewAdmin: String                   = "${END_POINT}adm/administrators/add/"
         const val updateAdminPassword: String           = "${END_POINT}adm/admin/security/update/password/"
         const val disableAdministratorToggle: String    = "${END_POINT}adm/admin/profile/disable/toggle/"
         const val updateAdminPermissions: String        = "${END_POINT}adm/admin/permissions/update/"
+
+        //BRANCHES
+        const val branchesAll: String                   = "${END_POINT}adm/branches/all/"
+
+        //CATEGORIES
+        const val categoriesAll: String                 = "${END_POINT}adm/categories/all/"
+        const val deleteCategory: String                = "${END_POINT}adm/categories/delete/"
+        const val updateCategory: String                = "${END_POINT}adm/categories/update/"
+        const val addNewCategory: String                = "${END_POINT}adm/categories/add/new/"
     }
 }

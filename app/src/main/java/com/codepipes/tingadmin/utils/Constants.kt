@@ -32,6 +32,7 @@ class Constants {
         public const val CONFIRM_MESSAGE_KEY                  = "message"
 
         public const val ADMIN_KEY                            = "administrator"
+        public const val CATEGORY_KEY                         = "category"
 
         public const val NORMAL_TABLE_VIEW_CELL               = 0
         public const val IMAGE_TABLE_VIEW_CELL                = 1

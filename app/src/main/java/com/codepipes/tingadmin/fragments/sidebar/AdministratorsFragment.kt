@@ -10,6 +10,7 @@ import android.view.ViewGroup
 
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.adapters.admin.AdministratorTableViewAdapter
+import com.codepipes.tingadmin.dialogs.admin.AddAdministratorDialog
 import com.codepipes.tingadmin.events.AdministratorsTableViewListener
 import com.codepipes.tingadmin.interfaces.DataUpdatedListener
 import com.codepipes.tingadmin.interfaces.FormDialogListener
@@ -41,7 +42,19 @@ class AdministratorsFragment : Fragment() {
         userAuthentication = UserAuthentication(context!!)
         session = userAuthentication.get()!!
 
-        view.button_add_new_administrator.setOnClickListener {  }
+        view.button_add_new_administrator.setOnClickListener {
+            val addAdministratorDialog = AddAdministratorDialog()
+            addAdministratorDialog.setFormDialogListener(object : FormDialogListener {
+                override fun onSave() {
+                    activity?.runOnUiThread {
+                        addAdministratorDialog.dismiss()
+                        loadAdministrators(view)
+                    }
+                }
+                override fun onCancel() { addAdministratorDialog.dismiss() }
+            })
+            addAdministratorDialog.show(fragmentManager!!, addAdministratorDialog.tag)
+        }
         loadAdministrators(view)
 
         return view

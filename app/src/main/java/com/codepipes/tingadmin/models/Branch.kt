@@ -33,9 +33,7 @@ class Branch (
     val updatedAt: String,
     var fromLocation: LatLng
 ){
-    init {
-        this.dist = 0.00
-    }
+    init { this.dist = 0.00 }
 }
 
 class BranchSpecial(
@@ -125,4 +123,25 @@ class BranchTableLocations(
     val locations: List<TableLocation>,
     val tables: List<Int>
 ) {}
+
+class RestaurantBranch (
+    val id: Int,
+    val restaurant: Restaurant,
+    val name: String,
+    val country: String,
+    val town: String,
+    val region: String,
+    val road: String,
+    val address: String,
+    val latitude: Double,
+    val longitude: Double,
+    val placeId: String,
+    val email: String,
+    val phone: String,
+    val channel: String,
+    val isAvailable: Boolean,
+    val type: Int,
+    val createdAt: String,
+    val updatedAt: String
+){}
 

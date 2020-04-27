@@ -26,6 +26,9 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.floor
@@ -110,6 +113,40 @@ class UtilsFunctions(private val context: Context ) {
             var result: String = ""
             for (i in 0..length) result += chars[floor(Math.random() * chars.length).toInt()]
             return result
+        }
+
+        public fun compressFile(file: File): File? {
+            try {
+                val o = BitmapFactory.Options()
+                o.inJustDecodeBounds = true
+                o.inSampleSize = 6
+
+                var inputStream = FileInputStream(file)
+
+                BitmapFactory.decodeStream(inputStream, null, o)
+                inputStream.close()
+
+                val REQUIRED_SIZE = 75
+
+                var scale = 1
+                while (o.outWidth / scale / 2 >= REQUIRED_SIZE && o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+                    scale *= 2
+                }
+
+                val o2 = BitmapFactory.Options()
+                o2.inSampleSize = scale
+                inputStream = FileInputStream(file)
+
+                val selectedBitmap = BitmapFactory.decodeStream(inputStream, null, o2)
+                inputStream.close()
+
+                file.createNewFile()
+                val outputStream = FileOutputStream(file)
+
+                selectedBitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                return file
+
+            } catch (e: Exception) { return null }
         }
     }
 }
