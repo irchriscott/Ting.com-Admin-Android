@@ -16,8 +16,16 @@ class Routes {
         const val authResetPassword: String             = "${END_POINT}adm/auth/password/reset/"
         const val authGetSession: String                = "${END_POINT}adm/auth/session/"
 
+        //RESTAURANT
+        const val updateRestaurantProfile: String       = "${END_POINT}adm/restaurant/update/profile/"
+        const val updateRestaurantLogo: String          = "${END_POINT}adm/restaurant/update/logo/"
+        const val updateRestaurantCategories: String    = "${END_POINT}adm/restaurant/update/categories/"
+        const val updateBranchProfile: String           = "${END_POINT}adm/restaurant/update/branch/profile/"
+        const val updateRestaurantConfig: String        = "${END_POINT}adm/restaurant/update/config/"
+
         //GLOBALS
         const val permissionsAll: String                = "${END_POINT}adm/g/permissions/all/"
+        const val restaurantCategoriesAll: String       = "${END_POINT}adm/g/categories/all/"
 
         //ADMINISTRATORS
         const val administratorsAll: String             = "${END_POINT}adm/administrators/all/"

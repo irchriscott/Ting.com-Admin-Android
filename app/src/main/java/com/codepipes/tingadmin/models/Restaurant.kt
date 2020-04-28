@@ -39,7 +39,7 @@ class RestaurantConfig (
     val cancelLateBooking: Int,
     val bookWithAdvance: Boolean,
     val bookingAdvance: Double,
-    val bookingPaymentMode: String,
+    val bookingPaymentMode: Int,
     val bookingCancelationRefund: Boolean,
     val bookingCancelationRefundPercent: Int,
     val daysBeforeReservation: Int,

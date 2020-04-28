@@ -1,4 +1,4 @@
-package com.codepipes.tingadmin.dialogs.category
+package com.codepipes.tingadmin.dialogs.restaurant
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -13,28 +13,26 @@ import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.dialogs.messages.ProgressOverlay
 import com.codepipes.tingadmin.dialogs.messages.TingToast
 import com.codepipes.tingadmin.dialogs.messages.TingToastType
-import com.codepipes.tingadmin.dialogs.utils.ImageSelectorDialog
 import com.codepipes.tingadmin.interfaces.FormDialogListener
-import com.codepipes.tingadmin.interfaces.ImageSelectorListener
-import com.codepipes.tingadmin.models.FoodCategory
+import com.codepipes.tingadmin.models.BranchSpecial
 import com.codepipes.tingadmin.models.ServerResponse
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
-import com.codepipes.tingadmin.utils.UtilsFunctions
 import com.google.gson.Gson
 import com.livefront.bridge.Bridge
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.dialog_category_edit.view.*
+import kotlinx.android.synthetic.main.dialog_resto_update_branch.view.*
+import kotlinx.android.synthetic.main.row_checkbox.view.*
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import java.io.File
 import java.io.IOException
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class AddCategoryDialog : DialogFragment() {
+class UpdateBranchProfileDialog : DialogFragment() {
 
+    private val specials = mutableListOf<Int>()
+    private val services = mutableListOf<Int>()
     private var formDialogListener: FormDialogListener? = null
 
     override fun getTheme(): Int = R.style.TransparentDialog
@@ -44,8 +42,6 @@ class AddCategoryDialog : DialogFragment() {
         super.onCreate(savedInstanceState)
     }
 
-    private var categoryImagePath: String = ""
-
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,13 +50,21 @@ class AddCategoryDialog : DialogFragment() {
     ): View? {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val view = inflater.inflate(R.layout.dialog_category_edit, container, false)
+        val view = inflater.inflate(R.layout.dialog_resto_update_branch, container, false)
 
         Bridge.restoreInstanceState(this, savedInstanceState)
         savedInstanceState?.clear()
 
-        val session = UserAuthentication(context!!).get()
-        view.dialog_title.text = "Add Category"
+        val session = UserAuthentication(context!!).get()!!
+
+        view.branch_name.setText(session.branch.name)
+        view.branch_email.setText(session.branch.email)
+        view.branch_phone_number.setText(session.branch.phone)
+        services.addAll(session.branch.services.map { it.id })
+        specials.addAll(session.branch.specials.map { it.id })
+
+        Constants.RESTAURANT_SPECIALS.forEach { view.branch_specials.addView(specialServiceView(it, 0)) }
+        Constants.RESTAURANT_SERVICES.forEach { view.branch_services.addView(specialServiceView(it, 1)) }
 
         view.dialog_button_cancel.setOnClickListener {
             if(formDialogListener != null) {
@@ -68,76 +72,51 @@ class AddCategoryDialog : DialogFragment() {
             } else { dialog?.dismiss() }
         }
 
-        view.select_category_image.setOnClickListener {
-            val imageSelectDialog = ImageSelectorDialog()
-            imageSelectDialog.setMaxImages(1)
-            imageSelectDialog.setSelectorType(0)
-            imageSelectDialog.setOnImageSelectorListener(object : ImageSelectorListener {
-                override fun onMultipleImagesSelected(images: List<String>) {}
-                override fun onSingleImageSelected(image: String) {
-                    if(image != "") {
-                        try {
-                            categoryImagePath = image
-                            val categoryImage = File(image)
-                            view.category_image.visibility = View.VISIBLE
-                            Picasso.get().load(categoryImage).into(view.category_image)
-                            imageSelectDialog.dismiss()
-                        } catch (e: Exception) { TingToast(context!!, e.localizedMessage, TingToastType.DEFAULT).showToast(
-                            Toast.LENGTH_LONG) }
-                    } else { TingToast(context!!, "Image Cannot Be Null", TingToastType.DEFAULT).showToast(
-                        Toast.LENGTH_LONG) }
-                }
-                override fun onCancel() { imageSelectDialog.dismiss() }
-            })
-            imageSelectDialog.show(fragmentManager!!, imageSelectDialog.tag)
-        }
-
         view.dialog_button_save.setOnClickListener {
 
             val progressOverlay = ProgressOverlay()
             progressOverlay.show(fragmentManager!!, progressOverlay.tag)
 
-            val client = OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
+            val clientBuilder = OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
-                .build()
+                .callTimeout(60 * 5, TimeUnit.SECONDS)
 
-            val requestBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("name", view.category_name.text.toString())
-                .addFormDataPart("description", view.category_description.text.toString())
+            val client = clientBuilder.build()
 
-            if(categoryImagePath != "") {
-                try {
-                    val image = UtilsFunctions.compressFile(File(categoryImagePath))
-                    val mediaTypePng = "image/png".toMediaType()
-                    requestBodyBuilder.addFormDataPart("image", image?.name, RequestBody.create(mediaTypePng, image!!))
-                } catch (e: Exception) {}
-            }
+            val formBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
 
-            val requestBody = requestBodyBuilder.build()
+            specials.forEach { formBuilder.addFormDataPart("specials", it.toString()) }
+            services.forEach { formBuilder.addFormDataPart("services", it.toString()) }
 
-            val request = Request.Builder()
-                .header("Authorization", session!!.token)
-                .url(Routes.addNewCategory)
-                .post(requestBody)
-                .build()
+            formBuilder.addFormDataPart("name", view.branch_name.text.toString())
+            formBuilder.addFormDataPart("email", view.branch_email.text.toString())
+            formBuilder.addFormDataPart("phone", view.branch_phone_number.text.toString())
+            formBuilder.addFormDataPart("region", session.branch.region)
+            formBuilder.addFormDataPart("road", session.branch.road)
+            formBuilder.addFormDataPart("password", view.admin_password.text.toString())
+
+            val form = formBuilder.build()
+            val requestBuilder = Request.Builder().url(Routes.updateBranchProfile).post(form)
+            requestBuilder.header("Authorization", session.token)
+
+            val request = requestBuilder.build()
 
             client.newCall(request).enqueue(object : Callback {
-
                 override fun onFailure(call: Call, e: IOException) {
                     activity?.runOnUiThread {
                         progressOverlay.dismiss()
-                        TingToast(context!!, e.message!!, TingToastType.ERROR).showToast(Toast.LENGTH_LONG)
+                        TingToast(context!!, e.localizedMessage, TingToastType.ERROR).showToast(
+                            Toast.LENGTH_LONG)
                     }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    val responseBody = response.body!!.string()
+                    val dataString = response.body!!.string()
                     activity?.runOnUiThread {
                         progressOverlay.dismiss()
                         try {
-                            val serverResponse = Gson().fromJson(responseBody, ServerResponse::class.java)
+                            val serverResponse = Gson().fromJson(dataString, ServerResponse::class.java)
                             TingToast(context!!, serverResponse.message, if(serverResponse.type == "success") { TingToastType.SUCCESS } else { TingToastType.ERROR }).showToast(
                                 Toast.LENGTH_LONG)
                             if(serverResponse.type == "success") {
@@ -165,6 +144,33 @@ class AddCategoryDialog : DialogFragment() {
             val height = ViewGroup.LayoutParams.WRAP_CONTENT
             dialog?.window!!.setLayout(width, height)
         }
+    }
+
+    @SuppressLint("InflateParams", "SetTextI18n")
+    private fun specialServiceView(special: BranchSpecial, type: Int): View {
+        val view = LayoutInflater.from(context).inflate(R.layout.row_checkbox, null, false)
+        view.filter_checkbox.isChecked = when(type) {
+            0 -> specials.contains(special.id)
+            1 -> services.contains(special.id)
+            else -> false
+        }
+        view.filter_name.text = special.name
+        view.filter_checkbox.isClickable = true
+        view.filter_checkbox.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                when(type) {
+                    0 -> specials.add(special.id)
+                    1 -> services.add(special.id)
+                }
+            }
+            else {
+                when(type) {
+                    0 -> specials.remove(special.id)
+                    1 -> services.remove(special.id)
+                }
+            }
+        }
+        return view
     }
 
     public fun setFormDialogListener(listener: FormDialogListener) {
