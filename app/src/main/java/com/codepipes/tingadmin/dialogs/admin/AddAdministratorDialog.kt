@@ -82,27 +82,36 @@ class AddAdministratorDialog : DialogFragment() {
         TingClient.getRequest(Routes.branchesAll, null, session?.token) { _, isSuccess, result ->
             activity?.runOnUiThread {
                 if(isSuccess) {
-                    try { branches = Gson().fromJson<MutableList<RestaurantBranch>>(result, object : TypeToken<MutableList<RestaurantBranch>>(){}.type)
+                    try { branches.addAll(Gson().fromJson<MutableList<RestaurantBranch>>(result, object : TypeToken<MutableList<RestaurantBranch>>(){}.type))
                     } catch (e: Exception) { }
                 }
             }
         }
 
         view.admin_branch_select.setOnClickListener {
-            val selectDialog = SelectDialog()
-            val bundle = Bundle()
-            bundle.putString(Constants.CONFIRM_TITLE_KEY, "Select Administrator Branch")
-            selectDialog.arguments = bundle
-            selectDialog.setItems(branches.sortedBy { it.id }.map { it.name }, object :
-                SelectItemListener {
-                override fun onSelectItem(position: Int) {
-                    selectedBranchId = branches.sortedBy { it.id }[position].id
-                    view.selected_admin_branch.text = branches.sortedBy { it.id }[position].name
-                    view.selected_admin_branch.setTextColor(context?.resources?.getColor(R.color.colorGray)!!)
-                    selectDialog.dismiss()
+            TingClient.getRequest(Routes.branchesAll, null, session?.token) { _, isSuccess, result ->
+                activity?.runOnUiThread {
+                    if(isSuccess) {
+                        try {
+                            val branches = Gson().fromJson<MutableList<RestaurantBranch>>(result, object : TypeToken<MutableList<RestaurantBranch>>(){}.type)
+                            val selectDialog = SelectDialog()
+                            val bundle = Bundle()
+                            bundle.putString(Constants.CONFIRM_TITLE_KEY, "Select Administrator Branch")
+                            selectDialog.arguments = bundle
+                            selectDialog.setItems(branches.sortedBy { it.id }.map { it.name }, object :
+                                SelectItemListener {
+                                override fun onSelectItem(position: Int) {
+                                    selectedBranchId = branches.sortedBy { it.id }[position].id
+                                    view.selected_admin_branch.text = branches.sortedBy { it.id }[position].name
+                                    view.selected_admin_branch.setTextColor(context?.resources?.getColor(R.color.colorGray)!!)
+                                    selectDialog.dismiss()
+                                }
+                            })
+                            selectDialog.show(fragmentManager!!, selectDialog.tag)
+                        } catch (e: Exception) { }
+                    }
                 }
-            })
-            selectDialog.show(fragmentManager!!, selectDialog.tag)
+            }
         }
 
         view.dialog_button_cancel.setOnClickListener {
