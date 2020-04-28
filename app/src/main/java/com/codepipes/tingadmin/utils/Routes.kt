@@ -44,5 +44,9 @@ class Routes {
         const val deleteCategory: String                = "${END_POINT}adm/categories/delete/"
         const val updateCategory: String                = "${END_POINT}adm/categories/update/"
         const val addNewCategory: String                = "${END_POINT}adm/categories/add/new/"
+
+        //TABLES
+        const val tablesAll: String                     = "${END_POINT}adm/tables/all/"
+        const val availTableToggle: String              = "${END_POINT}adm/tables/avail/toggle/"
     }
 }

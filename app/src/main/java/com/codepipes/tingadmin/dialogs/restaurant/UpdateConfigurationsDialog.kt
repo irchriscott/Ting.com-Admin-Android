@@ -120,14 +120,14 @@ class UpdateConfigurationsDialog : DialogFragment() {
             data["tax"] = view.restaurant_tax_rate.text.toString()
             data["cancel_late_booking"] = view.restaurant_late_reservation.text.toString()
             data["waiter_see_all_orders"] = "False"
-            data["book_with_advance"] = view.restaurant_book_with_advance.text.toString()
+            data["book_with_advance"] = if(view.restaurant_book_with_advance.isChecked) { "False" } else { "True" }
             data["booking_advance"] = view.restaurant_reservation_advance.text.toString()
-            data["booking_cancelation_refund"] = view.restaurant_refund_after_cancelation.text.toString()
+            data["booking_cancelation_refund"] = if(view.restaurant_refund_after_cancelation.isChecked) { "False" } else { "True" }
             data["booking_cancelation_refund_percent"] = view.restaurant_cancelation_refund.text.toString()
             data["booking_payement_mode"] = selectedPaymentMode.toString()
             data["days_before_reservation"] = view.restaurant_days_before_booking.text.toString()
-            data["can_take_away"] = view.restaurant_can_take_away.text.toString()
-            data["user_should_pay_before"] = view.restaurant_pay_before.text.toString()
+            data["can_take_away"] = if(view.restaurant_can_take_away.isChecked) { "False" } else { "True" }
+            data["user_should_pay_before"] = if(view.restaurant_pay_before.isChecked) { "False" } else { "True" }
             data["password"] = view.admin_password.text.toString()
 
             val progressOverlay = ProgressOverlay()

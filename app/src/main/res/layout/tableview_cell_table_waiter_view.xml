@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/cell_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="54dp"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/waiter_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/waiter_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/default_user"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="9.5dp"
+            android:layout_marginBottom="9.5dp"
+            android:gravity="center"
+            app:civ_border_color="@color/colorVeryLightGray"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/waiter_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:maxLines="1"
+            android:textColor="@color/colorGray"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_regular"
+            tools:text="Cell Data" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_waiter"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:background="@drawable/background_labeled_button"
+        android:text="Add Waiter"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/colorGray"
+        android:textSize="11sp"
+        android:gravity="center"
+        tools:ignore="HardcodedText,SmallSp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorVeryLightGray" />
+
+</LinearLayout>

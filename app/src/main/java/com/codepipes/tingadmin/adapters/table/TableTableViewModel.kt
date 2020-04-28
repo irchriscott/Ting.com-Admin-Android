@@ -1,15 +1,15 @@
-package com.codepipes.tingadmin.adapters.category
+package com.codepipes.tingadmin.adapters.table
 
 import android.annotation.SuppressLint
 import com.codepipes.tingadmin.adapters.tableview.models.CellModel
 import com.codepipes.tingadmin.adapters.tableview.models.ColumnHeaderModel
 import com.codepipes.tingadmin.adapters.tableview.models.RowHeaderModel
-import com.codepipes.tingadmin.models.FoodCategory
+import com.codepipes.tingadmin.models.RestaurantTable
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.codepipes.tingadmin.utils.UtilsFunctions
 
-class CategoryTableViewModel {
+class TableTableViewModel {
 
     var columnHeaderModeList: List<ColumnHeaderModel>? = null
         private set
@@ -22,10 +22,12 @@ class CategoryTableViewModel {
 
         val list: MutableList<ColumnHeaderModel> = arrayListOf<ColumnHeaderModel>()
 
-        list.add(ColumnHeaderModel("ID"))
-        list.add(ColumnHeaderModel("Image"))
-        list.add(ColumnHeaderModel("Name"))
-        list.add(ColumnHeaderModel("Description"))
+        list.add(ColumnHeaderModel("NO."))
+        list.add(ColumnHeaderModel("Location"))
+        list.add(ColumnHeaderModel("Chair Type"))
+        list.add(ColumnHeaderModel("Max People"))
+        list.add(ColumnHeaderModel("Available"))
+        list.add(ColumnHeaderModel("Default Waiter"))
         list.add(ColumnHeaderModel("Created At"))
         list.add(ColumnHeaderModel("Actions"))
 
@@ -33,20 +35,22 @@ class CategoryTableViewModel {
     }
 
     @SuppressLint("DefaultLocale")
-    private fun createCellModelList(categories: List<FoodCategory>): List<List<CellModel>> {
+    private fun createCellModelList(tables: List<RestaurantTable>): List<List<CellModel>> {
 
         val lists: MutableList<List<CellModel>> = ArrayList()
 
-        for (i in categories.indices) {
-            val category = categories[i]
+        for (i in tables.indices) {
+            val table = tables[i]
             val list: MutableList<CellModel> = ArrayList()
 
-            list.add(CellModel("1-cat-$i", "${i + 1}"))
-            list.add(CellModel("2-cat-$i", "${Routes.HOST_END_POINT}${category.image}"))
-            list.add(CellModel("3-cat-$i", category.name))
-            list.add(CellModel("4-cat-$i", category.description))
-            list.add(CellModel("5-cat-$i", UtilsFunctions.formatDate(category.createdAt)))
-            list.add(CellModel("6-cat-$i", category.id.toString()))
+            list.add(CellModel("1-table-$i", table.number))
+            list.add(CellModel("2-table-$i", Constants.TABLE_LOCATION[table.location]!!))
+            list.add(CellModel("3-table-$i", Constants.CHAIR_TYPE[table.chairType]!!))
+            list.add(CellModel("4-table-$i", table.maxPeople.toString()))
+            list.add(CellModel("5-table-$i", if(table.isAvailable) { "YES" } else { "NO" }))
+            list.add(CellModel("6-table-$i", if(table.waiter != null) { "${table.waiter.image}::${table.waiter.name}" } else { "" }))
+            list.add(CellModel("7-table-$i", UtilsFunctions.formatDate(table.createdAt)))
+            list.add(CellModel("8-table-$i", table.id.toString()))
 
             lists.add(list)
         }
@@ -59,17 +63,17 @@ class CategoryTableViewModel {
         return list
     }
 
-    public fun generateListForTableView(categories: List<FoodCategory>) {
+    public fun generateListForTableView(tables: List<RestaurantTable>) {
         columnHeaderModeList = createColumnHeaderModelList()
-        cellModelList = createCellModelList(categories)
-        rowHeaderModelList = createRowHeaderList(categories.size)
+        cellModelList = createCellModelList(tables)
+        rowHeaderModelList = createRowHeaderList(tables.size)
     }
 
     companion object {
         public fun getCellItemViewType(column: Int): Int {
             return when (column) {
-                1 -> Constants.IMAGE_TABLE_VIEW_CELL
-                5 -> Constants.ACTIONS_TABLE_VIEW_CELL
+                5 -> Constants.WAITER_TABLE_VIEW_CELL
+                7 -> Constants.ACTIONS_TABLE_VIEW_CELL
                 else -> Constants.NORMAL_TABLE_VIEW_CELL
             }
         }

@@ -2,12 +2,12 @@ package com.codepipes.tingadmin.models
 
 class RestaurantTable (
     val id: Int,
-    val branch: Branch?,
+    val waiter: Waiter?,
     val uuid: String,
     val maxPeople: Int,
     val number: String,
-    val location: String,
-    val chairType: String,
+    val location: Int,
+    val chairType: Int,
     val description: String,
     val isAvailable: Boolean,
     val createdAt: String,

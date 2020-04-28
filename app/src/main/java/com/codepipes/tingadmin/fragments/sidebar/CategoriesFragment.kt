@@ -38,6 +38,7 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_categories, container, false)
 
         userAuthentication = UserAuthentication(context!!)
