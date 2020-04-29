@@ -42,6 +42,11 @@ class AdministratorsFragment : Fragment() {
         userAuthentication = UserAuthentication(context!!)
         session = userAuthentication.get()!!
 
+        if(!session.permissions.contains("can_add_admin")){
+            view.button_add_new_administrator.isClickable = false
+            view.button_add_new_administrator.visibility = View.GONE
+        }
+
         view.button_add_new_administrator.setOnClickListener {
             val addAdministratorDialog = AddAdministratorDialog()
             addAdministratorDialog.setFormDialogListener(object : FormDialogListener {

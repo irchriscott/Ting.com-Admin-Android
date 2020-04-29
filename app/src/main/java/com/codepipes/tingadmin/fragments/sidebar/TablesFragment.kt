@@ -10,8 +10,10 @@ import android.view.ViewGroup
 
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.adapters.table.TableTableViewAdapter
+import com.codepipes.tingadmin.dialogs.table.AddTableDialog
 import com.codepipes.tingadmin.events.TablesTableViewListener
 import com.codepipes.tingadmin.interfaces.DataUpdatedListener
+import com.codepipes.tingadmin.interfaces.FormDialogListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.RestaurantTable
 import com.codepipes.tingadmin.models.ServerResponse
@@ -39,6 +41,25 @@ class TablesFragment : Fragment() {
 
         userAuthentication = UserAuthentication(context!!)
         session = userAuthentication.get()!!
+
+        if(!session.permissions.contains("can_add_table")){
+            view.button_add_new_table.isClickable = false
+            view.button_add_new_table.visibility = View.GONE
+        }
+
+        view.button_add_new_table.setOnClickListener {
+            val addTableDialog = AddTableDialog()
+            addTableDialog.setFormDialogListener(object : FormDialogListener {
+                override fun onSave() {
+                    activity?.runOnUiThread {
+                        addTableDialog.dismiss()
+                        loadTables(view)
+                    }
+                }
+                override fun onCancel() { addTableDialog.dismiss() }
+            })
+            addTableDialog.show(fragmentManager!!, addTableDialog.tag)
+        }
 
         loadTables(view)
 

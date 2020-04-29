@@ -3,6 +3,7 @@ package com.codepipes.tingadmin.events
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -13,11 +14,13 @@ import com.codepipes.tingadmin.dialogs.messages.ConfirmDialog
 import com.codepipes.tingadmin.dialogs.messages.ProgressOverlay
 import com.codepipes.tingadmin.dialogs.messages.TingToast
 import com.codepipes.tingadmin.dialogs.messages.TingToastType
-import com.codepipes.tingadmin.interfaces.ActionSheetCallBack
-import com.codepipes.tingadmin.interfaces.ConfirmDialogListener
-import com.codepipes.tingadmin.interfaces.DataUpdatedListener
+import com.codepipes.tingadmin.dialogs.table.AssignWaiterTableDialog
+import com.codepipes.tingadmin.dialogs.table.EditTableDialog
+import com.codepipes.tingadmin.dialogs.table.TableQRCodeDialog
+import com.codepipes.tingadmin.interfaces.*
 import com.codepipes.tingadmin.models.RestaurantTable
 import com.codepipes.tingadmin.models.ServerResponse
+import com.codepipes.tingadmin.models.Waiter
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.tableview.ITableView
@@ -25,6 +28,7 @@ import com.codepipes.tingadmin.tableview.listener.ITableViewListener
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class TablesTableViewListener (
@@ -54,8 +58,37 @@ class TablesTableViewListener (
     override fun onColumnHeaderClicked(columnHeaderView: RecyclerView.ViewHolder, column: Int) {}
 
     override fun onCellClicked(cellView: RecyclerView.ViewHolder, column: Int, row: Int) {
+        val table = tables[row]
         if(column == 5) {
-
+            val progressOverlay = ProgressOverlay()
+            progressOverlay.show(fragmentManager, progressOverlay.tag)
+            TingClient.getRequest(Routes.administratorsWaiter, null, session.token) { _, isSuccess, result ->
+                activity.runOnUiThread {
+                    progressOverlay.dismiss()
+                    if(isSuccess) {
+                        try {
+                            val waiters = gson.fromJson<MutableList<Waiter>>(result, object : TypeToken<MutableList<Waiter>>(){}.type)
+                            if(table.waiter != null) {
+                                waiters.add(waiters.size, Waiter(0, "", "", "", "", "", "", "", "", false, "", ArrayList(), "", ""))
+                            }
+                            val assignWaiterTableDialog = AssignWaiterTableDialog()
+                            assignWaiterTableDialog.setWaiters(waiters, object : SelectItemListener {
+                                override fun onSelectItem(position: Int) {
+                                    assignWaiterTableDialog.dismiss()
+                                    if(position != 0) { assignWaiterToTable(position, table.id)
+                                    } else { removeWaiterToTable(table.id) }
+                                }
+                            })
+                            assignWaiterTableDialog.show(fragmentManager, assignWaiterTableDialog.tag)
+                        } catch (e: java.lang.Exception) {
+                            try {
+                                val serverResponse = gson.fromJson(result, ServerResponse::class.java)
+                                TingToast(activity, serverResponse.message, TingToastType.ERROR).showToast(Toast.LENGTH_LONG)
+                            } catch (e: java.lang.Exception) { TingToast(activity, e.localizedMessage, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+                        }
+                    } else { TingToast(activity, result, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+                }
+            }
         } else { showTableMenu(column, row) }
     }
 
@@ -87,8 +120,8 @@ class TablesTableViewListener (
             menuList.add(tablesMenu[2]!!)
         }
 
-        val categoryBundle = Bundle()
-        categoryBundle.putString(Constants.TABLE_KEY, Gson().toJson(table))
+        val tableBundle = Bundle()
+        tableBundle.putString(Constants.TABLE_KEY, Gson().toJson(table))
 
         val actionSheet = ActionSheet(context, menuList)
             .setTitle("Options")
@@ -103,10 +136,21 @@ class TablesTableViewListener (
             override fun data(data: String, position: Int) {
                 when(data) {
                     tablesMenu[0] -> {
-
+                        val tableQRCodeDialog = TableQRCodeDialog()
+                        tableQRCodeDialog.arguments = tableBundle
+                        tableQRCodeDialog.show(fragmentManager, tableQRCodeDialog.tag)
                     }
                     tablesMenu[1] -> {
-
+                        val editTableDialog = EditTableDialog()
+                        editTableDialog.arguments = tableBundle
+                        editTableDialog.setFormDialogListener(object : FormDialogListener {
+                            override fun onSave() {
+                                editTableDialog.dismiss()
+                                dataUpdatedListener.onDataUpdated()
+                            }
+                            override fun onCancel() { editTableDialog.dismiss() }
+                        })
+                        editTableDialog.show(fragmentManager, editTableDialog.tag)
                     }
                     tablesMenu[2] -> {
                         val confirmDialog = ConfirmDialog()
@@ -149,5 +193,83 @@ class TablesTableViewListener (
                 }
             }
         })
+    }
+
+    private fun assignWaiterToTable(waiter: Int, table: Int) {
+        val confirmDialog = ConfirmDialog()
+        val bundle = Bundle()
+        bundle.putString(Constants.CONFIRM_TITLE_KEY, "Assign Default Waiter To Table")
+        bundle.putString(Constants.CONFIRM_MESSAGE_KEY, "Do you really want to assign default waiter this table ?")
+        confirmDialog.arguments = bundle
+        confirmDialog.onDialogListener(object : ConfirmDialogListener {
+            override fun onAccept() {
+                confirmDialog.dismiss()
+
+                val progressOverlay = ProgressOverlay()
+                progressOverlay.show(fragmentManager, progressOverlay.tag)
+
+                TingClient.getRequest("${Routes.assignWaiterTable}$waiter/$table/", null, session.token) { _, isSuccess, result ->
+                    activity.runOnUiThread {
+                        progressOverlay.dismiss()
+                        if(isSuccess) {
+                            try {
+                                dataUpdatedListener.onDataUpdated()
+                                val serverResponse = gson.fromJson(result, ServerResponse::class.java)
+                                TingToast(context, serverResponse.message,
+                                    when (serverResponse.type) {
+                                        "success" -> { TingToastType.SUCCESS }
+                                        "info" -> { TingToastType.DEFAULT }
+                                        else -> { TingToastType.ERROR }
+                                    }
+                                ).showToast(Toast.LENGTH_LONG)
+                            } catch (e: Exception) { TingToast(context, e.localizedMessage, TingToastType.ERROR).showToast(
+                                Toast.LENGTH_LONG) }
+                        } else { TingToast(context, result, TingToastType.ERROR).showToast(
+                            Toast.LENGTH_LONG) }
+                    }
+                }
+            }
+            override fun onCancel() {confirmDialog.dismiss() }
+        })
+        confirmDialog.show(fragmentManager, confirmDialog.tag)
+    }
+
+    private fun removeWaiterToTable(table: Int) {
+        val confirmDialog = ConfirmDialog()
+        val bundle = Bundle()
+        bundle.putString(Constants.CONFIRM_TITLE_KEY, "Remove Default Waiter To Table")
+        bundle.putString(Constants.CONFIRM_MESSAGE_KEY, "Do you really want to remove default waiter this table ?")
+        confirmDialog.arguments = bundle
+        confirmDialog.onDialogListener(object : ConfirmDialogListener {
+            override fun onAccept() {
+                confirmDialog.dismiss()
+
+                val progressOverlay = ProgressOverlay()
+                progressOverlay.show(fragmentManager, progressOverlay.tag)
+
+                TingClient.getRequest("${Routes.removeWaiterTable}$table/", null, session.token) { _, isSuccess, result ->
+                    activity.runOnUiThread {
+                        progressOverlay.dismiss()
+                        if(isSuccess) {
+                            try {
+                                dataUpdatedListener.onDataUpdated()
+                                val serverResponse = gson.fromJson(result, ServerResponse::class.java)
+                                TingToast(context, serverResponse.message,
+                                    when (serverResponse.type) {
+                                        "success" -> { TingToastType.SUCCESS }
+                                        "info" -> { TingToastType.DEFAULT }
+                                        else -> { TingToastType.ERROR }
+                                    }
+                                ).showToast(Toast.LENGTH_LONG)
+                            } catch (e: Exception) { TingToast(context, e.localizedMessage, TingToastType.ERROR).showToast(
+                                Toast.LENGTH_LONG) }
+                        } else { TingToast(context, result, TingToastType.ERROR).showToast(
+                            Toast.LENGTH_LONG) }
+                    }
+                }
+            }
+            override fun onCancel() {confirmDialog.dismiss() }
+        })
+        confirmDialog.show(fragmentManager, confirmDialog.tag)
     }
 }

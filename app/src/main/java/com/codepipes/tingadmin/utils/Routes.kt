@@ -29,6 +29,7 @@ class Routes {
 
         //ADMINISTRATORS
         const val administratorsAll: String             = "${END_POINT}adm/administrators/all/"
+        const val administratorsWaiter: String          = "${END_POINT}adm/administrators/waiters/"
         const val updateAdminProfile: String            = "${END_POINT}adm/admin/profile/update/profile/"
         const val updateAdminImage: String              = "${END_POINT}adm/admin/profile/update/image/"
         const val addNewAdmin: String                   = "${END_POINT}adm/administrators/add/"
@@ -47,6 +48,10 @@ class Routes {
 
         //TABLES
         const val tablesAll: String                     = "${END_POINT}adm/tables/all/"
+        const val addNewTable: String                   = "${END_POINT}adm/tables/add/"
         const val availTableToggle: String              = "${END_POINT}adm/tables/avail/toggle/"
+        const val updateTable: String                   = "${END_POINT}adm/tables/update/"
+        const val assignWaiterTable: String             = "${END_POINT}adm/tables/waiter/assign/"
+        const val removeWaiterTable: String             = "${END_POINT}adm/tables/waiter/remove/"
     }
 }

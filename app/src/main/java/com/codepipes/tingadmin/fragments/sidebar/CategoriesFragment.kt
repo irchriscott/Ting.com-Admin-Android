@@ -44,6 +44,11 @@ class CategoriesFragment : Fragment() {
         userAuthentication = UserAuthentication(context!!)
         session = userAuthentication.get()!!
 
+        if(!session.permissions.contains("can_add_category")){
+            view.button_add_new_category.isClickable = false
+            view.button_add_new_category.visibility = View.GONE
+        }
+
         view.button_add_new_category.setOnClickListener {
             val addCategoryDialog = AddCategoryDialog()
             addCategoryDialog.setFormDialogListener(object : FormDialogListener {

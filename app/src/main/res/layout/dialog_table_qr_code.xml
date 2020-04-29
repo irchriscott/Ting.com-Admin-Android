@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTransparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_dialog_rounded">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Table's QR Code"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textSize="15sp"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="18dp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorVeryLightGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="18dp">
+
+                    <ImageView
+                        android:id="@+id/table_qr_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/default_user"
+                        android:adjustViewBounds="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="18dp">
+
+                        <Button
+                            android:id="@+id/dialog_button_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="6dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:background="@drawable/background_red"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Cancel"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="13dp"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                        <Button
+                            android:id="@+id/dialog_button_download"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="6dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Download"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
