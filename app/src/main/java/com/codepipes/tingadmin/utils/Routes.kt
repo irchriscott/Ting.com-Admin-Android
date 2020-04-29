@@ -39,6 +39,9 @@ class Routes {
 
         //BRANCHES
         const val branchesAll: String                   = "${END_POINT}adm/branches/all/"
+        const val addNewBranch: String                  = "${END_POINT}adm/branches/add/"
+        const val availBranchToggle: String             = "${END_POINT}adm/branches/avail/toggle/"
+        const val updateBranch: String                  = "${END_POINT}adm/branches/update/"
 
         //CATEGORIES
         const val categoriesAll: String                 = "${END_POINT}adm/categories/all/"

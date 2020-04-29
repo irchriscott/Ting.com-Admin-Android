@@ -79,15 +79,6 @@ class UtilsFunctions(private val context: Context ) {
         return null
     }
 
-    public fun vectorToBitmap(vectorDrawable: SVG): BitmapDescriptor {
-        MapsInitializer.initialize(context)
-        val bitmap = Bitmap.createBitmap(160, 160, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        vectorDrawable.renderToCanvas(canvas)
-
-        return BitmapDescriptorFactory.fromBitmap(bitmap)
-    }
-
     companion object {
 
         private const val REQUEST_FINE_LOCATION = 2
@@ -113,6 +104,14 @@ class UtilsFunctions(private val context: Context ) {
             var result: String = ""
             for (i in 0..length) result += chars[floor(Math.random() * chars.length).toInt()]
             return result
+        }
+
+        public fun vectorToBitmap(vectorDrawable: SVG, context: Context): BitmapDescriptor {
+            MapsInitializer.initialize(context)
+            val bitmap = Bitmap.createBitmap(160, 160, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            vectorDrawable.renderToCanvas(canvas)
+            return BitmapDescriptorFactory.fromBitmap(bitmap)
         }
 
         public fun compressFile(file: File): File? {
