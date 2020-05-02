@@ -68,7 +68,7 @@ class BranchesFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun loadBranches(view: View) {
 
         val gson = Gson()
@@ -78,28 +78,37 @@ class BranchesFragment : Fragment() {
                 view.progress_loader.visibility = View.GONE
                 if(isSuccess) {
                     try {
-                        view.branches_table_view.visibility = View.VISIBLE
-                        view.empty_data.visibility = View.GONE
 
                         val branches =
                             gson.fromJson<List<Branch>>(result, object : TypeToken<List<Branch>>(){}.type)
 
-                        val branchTableViewAdapter = BranchTableViewAdapter(context!!)
-                        view.branches_table_view.adapter = branchTableViewAdapter
-                        branchTableViewAdapter.setBranchesList(branches)
-                        view.branches_table_view.tableViewListener =
-                            BranchesTableViewListener(
-                                view.branches_table_view,
-                                branches.toMutableList(),
-                                context!!, fragmentManager!!,
-                                object : DataUpdatedListener {
-                                    override fun onDataUpdated() { activity?.runOnUiThread { loadBranches(view) } }
-                                }, activity!! )
+                        if(branches.size > 0) {
+                            view.branches_table_view.visibility = View.VISIBLE
+                            view.empty_data.visibility = View.GONE
+
+                            val branchTableViewAdapter = BranchTableViewAdapter(context!!)
+                            view.branches_table_view.adapter = branchTableViewAdapter
+                            branchTableViewAdapter.setBranchesList(branches)
+                            view.branches_table_view.tableViewListener =
+                                BranchesTableViewListener(
+                                    view.branches_table_view,
+                                    branches.toMutableList(),
+                                    context!!, fragmentManager!!,
+                                    object : DataUpdatedListener {
+                                        override fun onDataUpdated() { activity?.runOnUiThread { loadBranches(view) } }
+                                    }, activity!! )
+                        } else {
+                            view.branches_table_view.visibility = View.GONE
+                            view.empty_data.visibility = View.INVISIBLE
+
+                            view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_navigation_branches))
+                            view.empty_data.empty_text.text = "No Branch To Show"
+                        }
 
                     } catch (e: Exception) {
                         view.branches_table_view.visibility = View.GONE
                         view.empty_data.visibility = View.VISIBLE
-                        view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                        view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
                         try {
                             val serverResponse = gson.fromJson(result, ServerResponse::class.java)
                             view.empty_data.empty_text.text = serverResponse.message
@@ -108,7 +117,7 @@ class BranchesFragment : Fragment() {
                 } else {
                     view.branches_table_view.visibility = View.GONE
                     view.empty_data.visibility = View.VISIBLE
-                    view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                    view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
                     view.empty_data.empty_text.text = result.capitalize()
                 }
             }

@@ -20,7 +20,6 @@ class User (
     val restaurants: UserRestaurants?,
     val reviews: UserRestaurantReviews?,
     val addresses: UserAddresses?,
-    val urls: UserUrls,
     val createdAt: String,
     val updatedAt: String
 ){

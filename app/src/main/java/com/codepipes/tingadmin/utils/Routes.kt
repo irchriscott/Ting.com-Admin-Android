@@ -56,5 +56,11 @@ class Routes {
         const val updateTable: String                   = "${END_POINT}adm/tables/update/"
         const val assignWaiterTable: String             = "${END_POINT}adm/tables/waiter/assign/"
         const val removeWaiterTable: String             = "${END_POINT}adm/tables/waiter/remove/"
+
+        //RESERVATION
+        const val reservationsDate: String              = "${END_POINT}adm/reservations/date/"
+        const val reservationsNew: String               = "${END_POINT}adm/reservations/new/"
+        const val reservationAccept: String             = "${END_POINT}adm/reservations/accept/"
+        const val reservationDecline: String            = "${END_POINT}adm/reservations/decline/"
     }
 }

@@ -68,7 +68,7 @@ class CategoriesFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun loadCategories(view: View) {
 
         val gson = Gson()
@@ -83,30 +83,37 @@ class CategoriesFragment : Fragment() {
 
                     try {
 
-                        view.categories_table_view.visibility = View.VISIBLE
-                        view.empty_data.visibility = View.GONE
-
                         val categories =
                             gson.fromJson<List<FoodCategory>>(result, object : TypeToken<List<FoodCategory>>(){}.type)
 
-                        val categoryTableViewAdapter = CategoryTableViewAdapter(context!!)
-                        view.categories_table_view.adapter = categoryTableViewAdapter
-                        categoryTableViewAdapter.setCategoriesList(categories)
-                        view.categories_table_view.tableViewListener =
-                            CategoriesTableViewListener(
-                                view.categories_table_view,
-                                categories.toMutableList(),
-                                context!!, fragmentManager!!,
-                                object : DataUpdatedListener {
-                                    override fun onDataUpdated() { activity?.runOnUiThread { loadCategories(view) } }
-                                }, activity!! )
+                        if(categories.isNotEmpty()){
+                            view.categories_table_view.visibility = View.VISIBLE
+                            view.empty_data.visibility = View.GONE
+
+                            val categoryTableViewAdapter = CategoryTableViewAdapter(context!!)
+                            view.categories_table_view.adapter = categoryTableViewAdapter
+                            categoryTableViewAdapter.setCategoriesList(categories)
+                            view.categories_table_view.tableViewListener =
+                                CategoriesTableViewListener(
+                                    view.categories_table_view,
+                                    categories.toMutableList(),
+                                    context!!, fragmentManager!!,
+                                    object : DataUpdatedListener {
+                                        override fun onDataUpdated() { activity?.runOnUiThread { loadCategories(view) } }
+                                    }, activity!! )
+                        } else {
+                            view.categories_table_view.visibility = View.GONE
+                            view.empty_data.visibility = View.VISIBLE
+
+                            view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_navigation_categories))
+                            view.empty_data.empty_text.text = "No Category To Show"
+                        }
 
                     } catch (e: Exception) {
 
                         view.categories_table_view.visibility = View.GONE
                         view.empty_data.visibility = View.VISIBLE
-
-                        view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                        view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
 
                         try {
                             val serverResponse = gson.fromJson(result, ServerResponse::class.java)
@@ -116,7 +123,7 @@ class CategoriesFragment : Fragment() {
                 } else {
                     view.categories_table_view.visibility = View.GONE
                     view.empty_data.visibility = View.VISIBLE
-                    view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                    view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
                     view.empty_data.empty_text.text = result.capitalize()
                 }
             }

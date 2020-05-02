@@ -2,16 +2,14 @@ package com.codepipes.tingadmin.models
 
 class Booking (
     val id: Int,
-    val branch: Branch?,
+    val user: User,
     val table: RestaurantTable?,
     val token: String,
     val people: Int,
     val date: String,
     val time: String,
-    val isComplete: Boolean,
-    val isCanceled: Boolean,
-    val isAccepted: Boolean,
-    val isRefunded: Boolean,
+    val location: Int,
+    val status: Int,
     val createdAt: String,
     val updatedAt: String
 ){}

@@ -35,6 +35,7 @@ class Constants {
         public const val CATEGORY_KEY                         = "category"
         public const val TABLE_KEY                            = "table"
         public const val BRANCH_KEY                           = "branch"
+        public const val BOOKING_KEY                          = "booking"
 
         public const val NORMAL_TABLE_VIEW_CELL               = 0
         public const val IMAGE_TABLE_VIEW_CELL                = 1

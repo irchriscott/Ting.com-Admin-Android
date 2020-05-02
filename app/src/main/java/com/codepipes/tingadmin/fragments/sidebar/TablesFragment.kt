@@ -66,45 +66,47 @@ class TablesFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun loadTables(view: View) {
-
         val gson = Gson()
-
         TingClient.getRequest(Routes.tablesAll, null, session.token) { _, isSuccess, result ->
-
             activity?.runOnUiThread {
-
                 view.progress_loader.visibility = View.GONE
-
                 if(isSuccess) {
 
                     try {
 
-                        view.tables_table_view.visibility = View.VISIBLE
-                        view.empty_data.visibility = View.GONE
-
                         val tables =
                             gson.fromJson<List<RestaurantTable>>(result, object : TypeToken<List<RestaurantTable>>(){}.type)
 
-                        val tableTableViewAdapter = TableTableViewAdapter(context!!)
-                        view.tables_table_view.adapter = tableTableViewAdapter
-                        tableTableViewAdapter.setTablesList(tables)
-                        view.tables_table_view.tableViewListener =
-                            TablesTableViewListener(
-                                view.tables_table_view,
-                                tables.toMutableList(),
-                                context!!, fragmentManager!!,
-                                object : DataUpdatedListener {
-                                    override fun onDataUpdated() { activity?.runOnUiThread { loadTables(view) } }
-                                }, activity!! )
+                        if(tables.isNotEmpty()) {
+                            view.tables_table_view.visibility = View.VISIBLE
+                            view.empty_data.visibility = View.GONE
+
+                            val tableTableViewAdapter = TableTableViewAdapter(context!!)
+                            view.tables_table_view.adapter = tableTableViewAdapter
+                            tableTableViewAdapter.setTablesList(tables)
+                            view.tables_table_view.tableViewListener =
+                                TablesTableViewListener(
+                                    view.tables_table_view,
+                                    tables.toMutableList(),
+                                    context!!, fragmentManager!!,
+                                    object : DataUpdatedListener {
+                                        override fun onDataUpdated() { activity?.runOnUiThread { loadTables(view) } }
+                                    }, activity!! )
+                        } else {
+                            view.tables_table_view.visibility = View.GONE
+                            view.empty_data.visibility = View.VISIBLE
+
+                            view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_navigation_tables))
+                            view.empty_data.empty_text.text = "No Table To Show"
+                        }
 
                     } catch (e: Exception) {
 
                         view.tables_table_view.visibility = View.GONE
                         view.empty_data.visibility = View.VISIBLE
-
-                        view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                        view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
 
                         try {
                             val serverResponse = gson.fromJson(result, ServerResponse::class.java)
@@ -114,7 +116,7 @@ class TablesFragment : Fragment() {
                 } else {
                     view.tables_table_view.visibility = View.GONE
                     view.empty_data.visibility = View.VISIBLE
-                    view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                    view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
                     view.empty_data.empty_text.text = result.capitalize()
                 }
             }

@@ -93,10 +93,11 @@ class UtilsFunctions(private val context: Context ) {
         }
 
         @SuppressLint("SimpleDateFormat")
-        public fun formatDate(date: String) : String {
+        public fun formatDate(date: String, includeTime: Boolean = false) : String {
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val time = sdf.parse(date)
-            return SimpleDateFormat("MMMM dd, yyyy").format(time)
+            return if(includeTime) { SimpleDateFormat("MMMM dd, yyyy 'at' h:mm a").format(time) }
+                    else { SimpleDateFormat("MMMM dd, yyyy").format(time) }
         }
 
         public fun getToken(length: Int): String{

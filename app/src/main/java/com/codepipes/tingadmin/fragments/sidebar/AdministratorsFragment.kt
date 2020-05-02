@@ -65,7 +65,7 @@ class AdministratorsFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun loadAdministrators(view: View) {
 
         val gson = Gson()
@@ -80,30 +80,37 @@ class AdministratorsFragment : Fragment() {
 
                     try {
 
-                        view.administrators_table_view.visibility = View.VISIBLE
-                        view.empty_data.visibility = View.GONE
-
                         val administrators =
                             gson.fromJson<List<Administrator>>(result, object : TypeToken<List<Administrator>>(){}.type)
 
-                        val administratorTableViewAdapter = AdministratorTableViewAdapter(context!!)
-                        view.administrators_table_view.adapter = administratorTableViewAdapter
-                        administratorTableViewAdapter.setAdminsList(administrators)
-                        view.administrators_table_view.tableViewListener =
-                            AdministratorsTableViewListener(
-                                view.administrators_table_view,
-                                administrators.toMutableList(),
-                                context!!, fragmentManager!!,
-                                object : DataUpdatedListener {
-                                    override fun onDataUpdated() { activity?.runOnUiThread { loadAdministrators(view) } }
-                                }, activity!! )
+                        if(administrators.isNotEmpty()) {
+                            view.administrators_table_view.visibility = View.VISIBLE
+                            view.empty_data.visibility = View.GONE
+
+                            val administratorTableViewAdapter = AdministratorTableViewAdapter(context!!)
+                            view.administrators_table_view.adapter = administratorTableViewAdapter
+                            administratorTableViewAdapter.setAdminsList(administrators)
+                            view.administrators_table_view.tableViewListener =
+                                AdministratorsTableViewListener(
+                                    view.administrators_table_view,
+                                    administrators.toMutableList(),
+                                    context!!, fragmentManager!!,
+                                    object : DataUpdatedListener {
+                                        override fun onDataUpdated() { activity?.runOnUiThread { loadAdministrators(view) } }
+                                    }, activity!! )
+                        } else {
+                            view.administrators_table_view.visibility = View.GONE
+                            view.empty_data.visibility = View.VISIBLE
+
+                            view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_navigation_admins))
+                            view.empty_data.empty_text.text = "No Administrator To Show"
+                        }
 
                     } catch (e: Exception) {
 
                         view.administrators_table_view.visibility = View.GONE
                         view.empty_data.visibility = View.VISIBLE
-
-                        view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                        view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
 
                         try {
                             val serverResponse = gson.fromJson(result, ServerResponse::class.java)
@@ -113,7 +120,7 @@ class AdministratorsFragment : Fragment() {
                 } else {
                     view.administrators_table_view.visibility = View.GONE
                     view.empty_data.visibility = View.VISIBLE
-                    view.empty_data.empty_image.setImageDrawable(context?.resources?.getDrawable(R.drawable.ic_exclamation_white))
+                    view.empty_data.empty_image.setImageDrawable(resources.getDrawable(R.drawable.ic_exclamation_white))
                     view.empty_data.empty_text.text = result.capitalize()
                 }
             }
