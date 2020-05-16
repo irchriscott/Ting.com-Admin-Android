@@ -62,5 +62,33 @@ class Routes {
         const val reservationsNew: String               = "${END_POINT}adm/reservations/new/"
         const val reservationAccept: String             = "${END_POINT}adm/reservations/accept/"
         const val reservationDecline: String            = "${END_POINT}adm/reservations/decline/"
+
+        //MENU FOOD
+        const val menusFoodAll: String                  = "${END_POINT}adm/menu/food/all/"
+        const val menusFoodAddNew: String               = "${END_POINT}adm/menu/food/add/new/"
+        const val menusFoodAvailToggle: String          = "${END_POINT}adm/menu/food/avail/toggle/"
+        const val menusFoodMoveToType: String           = "${END_POINT}adm/menu/food/move/type/"
+        const val menusFoodMoveToCategory: String       = "${END_POINT}adm/menu/food/move/category/"
+        const val menusFoodMoveToCuisine: String        = "${END_POINT}adm/menu/food/move/cuisine/"
+        const val menusFoodUpdate: String               = "${END_POINT}adm/menu/food/update/"
+        const val menusFoodDelete: String               = "${END_POINT}adm/menu/food/delete/"
+
+        //MENU DRINK
+        const val menusDrinkAll: String                 = "${END_POINT}adm/menu/drink/all/"
+        const val menusDrinkAddNew: String              = "${END_POINT}adm/menu/drink/add/new/"
+        const val menusDrinkAvailToggle: String         = "${END_POINT}adm/menu/drink/avail/toggle/"
+        const val menusDrinkMoveToType: String          = "${END_POINT}adm/menu/drink/move/type/"
+        const val menusDrinkUpdate: String              = "${END_POINT}adm/menu/drink/update/"
+        const val menusDrinkDelete: String              = "${END_POINT}adm/menu/drink/delete/"
+
+        //MENU DISH
+        const val menusDishAll: String                  = "${END_POINT}adm/menu/dish/all/"
+        const val menusDishAddNew: String               = "${END_POINT}adm/menu/dish/add/new/"
+        const val menusDishAvailToggle: String          = "${END_POINT}adm/menu/dish/avail/toggle/"
+        const val menusDishMoveToType: String           = "${END_POINT}adm/menu/dish/move/type/"
+        const val menusDishMoveToCategory: String       = "${END_POINT}adm/menu/dish/move/category/"
+        const val menusDishMoveToCuisine: String        = "${END_POINT}adm/menu/dish/move/cuisine/"
+        const val menusDishUpdate: String               = "${END_POINT}adm/menu/dish/update/"
+        const val menusDishDelete: String               = "${END_POINT}adm/menu/dish/delete/"
     }
 }

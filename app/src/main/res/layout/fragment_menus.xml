@@ -3,12 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.sidebar.MenusFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/menus_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorWhite"
+        app:tabSelectedTextColor="@color/colorWhite"
+        app:tabTextColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabMode="fixed"
+        app:tabGravity="fill"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/menus_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Menus" />
+        android:layout_marginTop="38dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
 </FrameLayout>

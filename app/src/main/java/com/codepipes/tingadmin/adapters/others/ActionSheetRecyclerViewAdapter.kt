@@ -35,7 +35,7 @@ class ActionSheetRecyclerViewAdapter(var data: MutableList<String>) : RecyclerVi
         val string = data[position]
 
         if (position == data.size - 1){
-            holder.linebottom.visibility = View.GONE
+            holder.lineBottom.visibility = View.GONE
         }
 
         holder.textView.text = string
@@ -52,7 +52,7 @@ class ActionSheetRecyclerViewAdapter(var data: MutableList<String>) : RecyclerVi
     inner class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         val textView = v.findViewById(R.id.tvName) as TextView
-        val linebottom = v.findViewById(R.id.linebottom) as LinearLayout
+        val lineBottom = v.findViewById(R.id.linebottom) as LinearLayout
     }
 
     fun onClickCallBack(actionSheetOnClickListener: ActionSheetOnClickListener){

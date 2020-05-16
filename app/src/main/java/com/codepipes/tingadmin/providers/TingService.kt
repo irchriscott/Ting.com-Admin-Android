@@ -8,8 +8,21 @@ import retrofit2.http.*
 
 public interface TingService {
 
-    @GET("api/v1/usr/g/restaurants/get/{branch}/menus/top/")
-    public fun getRestaurantTopMenus(
-        @Path("branch") branch: Int
-    ) : Observable<MutableList<RestaurantMenu>>
+    @GET("api/v1/adm/menu/food/update/{food}/image/delete/{image}/")
+    public fun deleteFoodImage(
+        @Path("food") food: Int,
+        @Path("image") image: Int
+    ) : Observable<ServerResponse>
+
+    @GET("api/v1/adm/menu/drink/update/{drink}/image/delete/{image}/")
+    public fun deleteDrinkImage(
+        @Path("drink") drink: Int,
+        @Path("image") image: Int
+    ) : Observable<ServerResponse>
+
+    @GET("api/v1/adm/menu/dish/update/{dish}/image/delete/{image}/")
+    public fun deleteDishImage(
+        @Path("dish") dish: Int,
+        @Path("image") image: Int
+    ) : Observable<ServerResponse>
 }

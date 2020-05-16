@@ -177,5 +177,4 @@ class AddAdministratorDialog : DialogFragment() {
     public fun setFormDialogListener(listener: FormDialogListener) {
         this.formDialogListener = listener
     }
-
 }

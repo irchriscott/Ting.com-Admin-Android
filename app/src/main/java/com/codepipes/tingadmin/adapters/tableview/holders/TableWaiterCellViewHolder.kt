@@ -21,9 +21,10 @@ class TableWaiterCellViewHolder (private val view: View) : AbstractViewHolder(vi
     private var cellContainer: LinearLayout = view.findViewById(R.id.cell_container)
 
     @SuppressLint("SetTextI18n")
-    public fun setCellModel(cellModel: CellModel, columnPosition: Int) {
+    public fun setCellModel(cellModel: CellModel, columnPosition: Int, from: Int =  1) {
 
         cellContainer.layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
+        addWaiterButton.text = if(from == 1) { "Add Waiter" } else { "Add Drink" }
 
         if(cellModel.data != "" && cellModel.data != "NULL") {
             val data = cellModel.data.split("::")

@@ -78,8 +78,16 @@ class TingClient (val context: Context) {
         tingService = retrofit.create(TingService::class.java)
     }
 
-    public fun getRestaurantTopMenus(branch: Int) : Observable<MutableList<RestaurantMenu>> {
-        return tingService.getRestaurantTopMenus(branch)
+    public fun deleteFoodImage(food: Int, image: Int) : Observable<ServerResponse> {
+        return tingService.deleteFoodImage(food, image)
+    }
+
+    public fun deleteDrinkImage(drink: Int, image: Int) : Observable<ServerResponse> {
+        return tingService.deleteDrinkImage(drink, image)
+    }
+
+    public fun deleteDishImage(dish: Int, image: Int) : Observable<ServerResponse> {
+        return tingService.deleteDishImage(dish, image)
     }
 
     companion object {

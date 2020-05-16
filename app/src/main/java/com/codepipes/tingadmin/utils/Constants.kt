@@ -36,11 +36,14 @@ class Constants {
         public const val TABLE_KEY                            = "table"
         public const val BRANCH_KEY                           = "branch"
         public const val BOOKING_KEY                          = "booking"
+        public const val MENU_KEY                             = "menu"
 
         public const val NORMAL_TABLE_VIEW_CELL               = 0
         public const val IMAGE_TABLE_VIEW_CELL                = 1
         public const val ACTIONS_TABLE_VIEW_CELL              = 2
         public const val WAITER_TABLE_VIEW_CELL               = 3
+
+        public const val TEXT_EDITOR_CODE                     = 1123
 
 
         public val ADMIN_TYPE = hashMapOf<Int, String>(1 to "Administrator", 2 to "Supervisor", 3 to "Chef", 4 to "Waiter", 5 to "Accountant")

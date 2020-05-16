@@ -10,6 +10,7 @@ import android.widget.ImageView
 import com.codepipes.tingadmin.R
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class RoundedCornerImageView : ImageView {
 
     private var radius = 8.0f
