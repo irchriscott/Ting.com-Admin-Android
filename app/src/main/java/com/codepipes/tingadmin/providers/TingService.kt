@@ -25,4 +25,15 @@ public interface TingService {
         @Path("dish") dish: Int,
         @Path("image") image: Int
     ) : Observable<ServerResponse>
+
+    @GET("api/v1/adm/menu/dish/drink/{dish}/add/{drink}/")
+    public fun addDrinkToDish(
+        @Path("dish") dish: Int,
+        @Path("drink") drink: Int
+    ) : Observable<ServerResponse>
+
+    @GET("api/v1/adm/menu/dish/drink/{dish}/remove/")
+    public fun removeDrinkToDish(
+        @Path("dish") dish: Int
+    ) : Observable<ServerResponse>
 }

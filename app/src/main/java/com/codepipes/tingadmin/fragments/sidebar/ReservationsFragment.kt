@@ -93,7 +93,6 @@ class ReservationsFragment : Fragment() {
                 view.progress_loader_date.visibility = View.GONE
                 if(isSuccess) {
                     try {
-
                         val bookings =
                             gson.fromJson<List<Booking>>(result, object : TypeToken<List<Booking>>(){}.type)
 

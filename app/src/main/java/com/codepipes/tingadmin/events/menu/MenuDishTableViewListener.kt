@@ -3,18 +3,21 @@ package com.codepipes.tingadmin.events.menu
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.custom.ActionSheet
+import com.codepipes.tingadmin.dialogs.menu.AddDishDrinkDialog
 import com.codepipes.tingadmin.dialogs.menu.EditMenuDialog
 import com.codepipes.tingadmin.dialogs.menu.LoadMenuDialog
 import com.codepipes.tingadmin.dialogs.messages.*
 import com.codepipes.tingadmin.interfaces.*
 import com.codepipes.tingadmin.models.FoodCategory
 import com.codepipes.tingadmin.models.Menu
+import com.codepipes.tingadmin.models.MenuImages
 import com.codepipes.tingadmin.models.ServerResponse
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
@@ -24,6 +27,9 @@ import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MenuDishTableViewListener (
@@ -64,7 +70,50 @@ class MenuDishTableViewListener (
         val menuBundle = Bundle()
         menuBundle.putString(Constants.MENU_KEY, Gson().toJson(menu))
         when (column) {
-            8 -> {  }
+            8 -> {
+                val gson = Gson()
+                TingClient.getRequest(Routes.menusDrinkAll, null, session.token) { _, isSuccess, result ->
+                    activity.runOnUiThread {
+                        if (isSuccess) {
+                            try {
+                                val menus =
+                                    gson.fromJson<MutableList<Menu>>(
+                                        result,
+                                        object : TypeToken<MutableList<Menu>>() {}.type
+                                    )
+
+                                if(menu.hasDrink == true) {
+                                    menus.add(
+                                        Menu(0, null, null, "", null,
+                                            null, 0, 0, null, null,
+                                            null, "", "", false,
+                                            0.0, 0.0, "",
+                                            isCountable = false,
+                                            isAvailable = false,
+                                            quantity = 0,
+                                            hasDrink = null,
+                                            drink = null,
+                                            images = MenuImages(0, ArrayList()),
+                                            createdAt = "",
+                                            updatedAt = ""
+                                        )
+                                    )
+                                }
+                                val addDishDrinkDialog = AddDishDrinkDialog()
+                                addDishDrinkDialog.setDrinks(menus, object : SelectItemListener {
+                                    override fun onSelectItem(position: Int) {
+                                        addDishDrinkDialog.dismiss()
+                                        if(position != 0) { addDrinkToDish(menu.id, position)
+                                        } else { removeDrinkDish(menu.id) }
+                                    }
+                                })
+                                addDishDrinkDialog.show(fragmentManager, addDishDrinkDialog.tag)
+
+                            } catch (e: java.lang.Exception) { TingToast(context, e.localizedMessage, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+                        } else { TingToast(context, result, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+                    }
+                }
+            }
             9 -> { showMenu(column, row) }
             else -> {
                 val loadMenuDialog = LoadMenuDialog()
@@ -375,5 +424,87 @@ class MenuDishTableViewListener (
                 }
             }
         })
+    }
+
+    public fun addDrinkToDish(menu: Int, drink: Int) {
+        val confirmDialog = ConfirmDialog()
+        val bundle = Bundle()
+        bundle.putString(Constants.CONFIRM_TITLE_KEY, "Add Drink To Menu Dish")
+        bundle.putString(Constants.CONFIRM_MESSAGE_KEY, "Do you really want to add this drink to this menu dish ?")
+        confirmDialog.arguments = bundle
+        confirmDialog.onDialogListener(object : ConfirmDialogListener {
+            override fun onAccept() {
+                confirmDialog.dismiss()
+
+                val progressOverlay = ProgressOverlay()
+                progressOverlay.show(fragmentManager, progressOverlay.tag)
+
+                TingClient.getInstance(context)
+                    .addDrinkToDish(menu, drink)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : DisposableObserver<ServerResponse>() {
+                        override fun onComplete() { progressOverlay.dismiss() }
+                        override fun onNext(t: ServerResponse) {
+                            dataUpdatedListener.onDataUpdated()
+                            TingToast(context, t.message,
+                                when (t.type) {
+                                    "success" -> { TingToastType.SUCCESS }
+                                    "info" -> { TingToastType.DEFAULT }
+                                    else -> { TingToastType.ERROR }
+                                }
+                            ).showToast(Toast.LENGTH_LONG)
+                        }
+                        override fun onError(e: Throwable) {
+                            progressOverlay.dismiss()
+                            TingToast(context, e.localizedMessage, TingToastType.ERROR).showToast(
+                                Toast.LENGTH_LONG)
+                        }
+                    })
+            }
+            override fun onCancel() { confirmDialog.dismiss() }
+        })
+        confirmDialog.show(fragmentManager, confirmDialog.tag)
+    }
+
+    public fun removeDrinkDish(menu: Int) {
+        val confirmDialog = ConfirmDialog()
+        val bundle = Bundle()
+        bundle.putString(Constants.CONFIRM_TITLE_KEY, "Remove Drink To Menu Dish")
+        bundle.putString(Constants.CONFIRM_MESSAGE_KEY, "Do you really want to add this drink to this menu dish ?")
+        confirmDialog.arguments = bundle
+        confirmDialog.onDialogListener(object : ConfirmDialogListener {
+            override fun onAccept() {
+                confirmDialog.dismiss()
+
+                val progressOverlay = ProgressOverlay()
+                progressOverlay.show(fragmentManager, progressOverlay.tag)
+
+                TingClient.getInstance(context)
+                    .removeDrinkToDish(menu)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : DisposableObserver<ServerResponse>() {
+                        override fun onComplete() { progressOverlay.dismiss() }
+                        override fun onNext(t: ServerResponse) {
+                            dataUpdatedListener.onDataUpdated()
+                            TingToast(context, t.message,
+                                when (t.type) {
+                                    "success" -> { TingToastType.SUCCESS }
+                                    "info" -> { TingToastType.DEFAULT }
+                                    else -> { TingToastType.ERROR }
+                                }
+                            ).showToast(Toast.LENGTH_LONG)
+                        }
+                        override fun onError(e: Throwable) {
+                            progressOverlay.dismiss()
+                            TingToast(context, e.localizedMessage, TingToastType.ERROR).showToast(
+                                Toast.LENGTH_LONG)
+                        }
+                    })
+            }
+            override fun onCancel() { confirmDialog.dismiss() }
+        })
+        confirmDialog.show(fragmentManager, confirmDialog.tag)
     }
 }

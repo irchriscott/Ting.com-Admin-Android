@@ -43,7 +43,7 @@ class TingClient (val context: Context) {
                     request = request
                         .newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
-                        .header("Authorization", session.token!!)
+                        .header("Authorization", session.token)
                         .build()
                 }
             } else {
@@ -51,7 +51,7 @@ class TingClient (val context: Context) {
                     request = request
                         .newBuilder()
                         .header("Cache-Control", "public, max-age=" + 60)
-                        .header("Authorization", session.token!!)
+                        .header("Authorization", session.token)
                         .build()
                 }
             }
@@ -88,6 +88,14 @@ class TingClient (val context: Context) {
 
     public fun deleteDishImage(dish: Int, image: Int) : Observable<ServerResponse> {
         return tingService.deleteDishImage(dish, image)
+    }
+
+    public fun addDrinkToDish(dish: Int, drink: Int) : Observable<ServerResponse> {
+        return tingService.addDrinkToDish(dish, drink)
+    }
+
+    public fun removeDrinkToDish(dish: Int) : Observable<ServerResponse> {
+        return tingService.removeDrinkToDish(dish)
     }
 
     companion object {

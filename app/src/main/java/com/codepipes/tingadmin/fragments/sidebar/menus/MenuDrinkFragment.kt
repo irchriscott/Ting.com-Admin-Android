@@ -70,11 +70,8 @@ class MenuDrinkFragment : Fragment() {
         val gson = Gson()
         TingClient.getRequest(Routes.menusDrinkAll, null, session.token) { _, isSuccess, result ->
             activity?.runOnUiThread {
-
                 view.progress_loader.visibility = View.GONE
-
                 if(isSuccess) {
-
                     try {
                         val menus =
                             gson.fromJson<List<Menu>>(result, object : TypeToken<List<Menu>>(){}.type)

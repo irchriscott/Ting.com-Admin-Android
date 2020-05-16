@@ -7,6 +7,7 @@ import com.codepipes.tingadmin.adapters.tableview.models.RowHeaderModel
 import com.codepipes.tingadmin.models.Menu
 import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
+import com.codepipes.tingadmin.utils.UtilsFunctions
 import java.text.NumberFormat
 
 class MenuDrinkTableViewModel {
@@ -25,9 +26,11 @@ class MenuDrinkTableViewModel {
         list.add(ColumnHeaderModel("NO"))
         list.add(ColumnHeaderModel("Image"))
         list.add(ColumnHeaderModel("Name"))
-        list.add(ColumnHeaderModel("Price"))
+        list.add(ColumnHeaderModel("Current Price"))
+        list.add(ColumnHeaderModel("Last Price"))
         list.add(ColumnHeaderModel("Type"))
         list.add(ColumnHeaderModel("Is Available"))
+        list.add(ColumnHeaderModel("Created At"))
         list.add(ColumnHeaderModel("Actions"))
 
         return list
@@ -50,9 +53,11 @@ class MenuDrinkTableViewModel {
             list.add(CellModel("2-menu-$i", "${Routes.HOST_END_POINT}${menu.images.images[0].image}"))
             list.add(CellModel("3-menu-$i", menu.name))
             list.add(CellModel("4-menu-$i", price))
-            list.add(CellModel("5-menu-$i", Constants.DRINK_TYPE[menu.drinkType]!!))
-            list.add(CellModel("6-menu-$i", if(menu.isAvailable) { "YES" } else { "NO" }))
-            list.add(CellModel("7-menu-$i", menu.id.toString()))
+            list.add(CellModel("5-menu-$i", "${NumberFormat.getNumberInstance().format(menu.lastPrice)} ${menu.currency}".toUpperCase()))
+            list.add(CellModel("6-menu-$i", Constants.DRINK_TYPE[menu.drinkType]!!))
+            list.add(CellModel("7-menu-$i", if(menu.isAvailable) { "YES" } else { "NO" }))
+            list.add(CellModel("8-menu-$i", UtilsFunctions.formatDate(menu.createdAt)))
+            list.add(CellModel("9-menu-$i", menu.id.toString()))
 
             lists.add(list)
         }
@@ -75,7 +80,7 @@ class MenuDrinkTableViewModel {
         public fun getCellItemViewType(column: Int): Int {
             return when (column) {
                 1 -> Constants.IMAGE_TABLE_VIEW_CELL
-                6 -> Constants.ACTIONS_TABLE_VIEW_CELL
+                8 -> Constants.ACTIONS_TABLE_VIEW_CELL
                 else -> Constants.NORMAL_TABLE_VIEW_CELL
             }
         }

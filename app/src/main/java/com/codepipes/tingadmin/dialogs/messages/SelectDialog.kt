@@ -39,15 +39,6 @@ class SelectDialog : DialogFragment() {
         return view
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (dialog != null) {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.WRAP_CONTENT
-            dialog?.window!!.setLayout(width, height)
-        }
-    }
-
     public fun setItems(data: List<String>, listener: SelectItemListener) {
         items = data
         selectItemListener = listener

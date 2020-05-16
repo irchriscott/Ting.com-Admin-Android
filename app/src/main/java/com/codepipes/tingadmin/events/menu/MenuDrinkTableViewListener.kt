@@ -61,7 +61,7 @@ class MenuDrinkTableViewListener (
         val menu = menus[row]
         val menuBundle = Bundle()
         menuBundle.putString(Constants.MENU_KEY, Gson().toJson(menu))
-        if(column == 6) { showMenu(column, row) }
+        if(column == 8) { showMenu(column, row) }
         else {
             val loadMenuDialog = LoadMenuDialog()
             loadMenuDialog.arguments = menuBundle

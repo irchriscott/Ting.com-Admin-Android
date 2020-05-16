@@ -73,12 +73,9 @@ class TablesFragment : Fragment() {
             activity?.runOnUiThread {
                 view.progress_loader.visibility = View.GONE
                 if(isSuccess) {
-
                     try {
-
                         val tables =
                             gson.fromJson<List<RestaurantTable>>(result, object : TypeToken<List<RestaurantTable>>(){}.type)
-
                         if(tables.isNotEmpty()) {
                             view.tables_table_view.visibility = View.VISIBLE
                             view.empty_data.visibility = View.GONE

@@ -196,6 +196,7 @@ class EditMenuDialog : DialogFragment() {
                                             menuImageView.visibility = View.GONE
                                         }
                                         override fun onError(e: Throwable) {
+                                            progressOverlay.dismiss()
                                             TingToast(context!!, e.localizedMessage, TingToastType.ERROR).showToast(
                                                 Toast.LENGTH_LONG)
                                         }
