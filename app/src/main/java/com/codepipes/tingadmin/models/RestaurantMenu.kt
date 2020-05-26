@@ -53,6 +53,7 @@ class Menu (
     val quantity: Int,
     val hasDrink: Boolean?,
     val drink: Menu?,
+    val foods: MenuFoods?,
     val images: MenuImages,
     val createdAt: String,
     val updatedAt: String
@@ -78,12 +79,13 @@ class MenuLikes (
 
 class MenuFoods (
     val count: Int,
-    val foods: List<DishFood>?
+    val foods: List<DishFood>
 ){}
 
 class DishFood(
    val id: Int,
-   val food: Menu,
+   val food: Int,
+   val menu: Int,
    val isCountable: Boolean,
    val quantity: Int,
    val createdAt: String,

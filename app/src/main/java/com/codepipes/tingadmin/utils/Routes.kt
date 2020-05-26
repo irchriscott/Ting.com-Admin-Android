@@ -90,5 +90,6 @@ class Routes {
         const val menusDishMoveToCuisine: String        = "${END_POINT}adm/menu/dish/move/cuisine/"
         const val menusDishUpdate: String               = "${END_POINT}adm/menu/dish/update/"
         const val menusDishDelete: String               = "${END_POINT}adm/menu/dish/delete/"
+        const val menusDishFoodUpdate: String           = "${END_POINT}adm/menu/dish/food/%d/update/"
     }
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.custom.ActionSheet
 import com.codepipes.tingadmin.dialogs.menu.AddDishDrinkDialog
+import com.codepipes.tingadmin.dialogs.menu.AddDishFoodDialog
 import com.codepipes.tingadmin.dialogs.menu.EditMenuDialog
 import com.codepipes.tingadmin.dialogs.menu.LoadMenuDialog
 import com.codepipes.tingadmin.dialogs.messages.*
@@ -52,7 +53,8 @@ class MenuDishTableViewListener (
         2 to "Delete",
         3 to "Move To Type",
         4 to "Move To Category",
-        5 to "Move To Cuisine"
+        5 to "Move To Cuisine",
+        6 to "Add Menu Food"
     )
 
     override fun onCellLongPressed(cellView: RecyclerView.ViewHolder, column: Int, row: Int) {
@@ -94,6 +96,7 @@ class MenuDishTableViewListener (
                                             hasDrink = null,
                                             drink = null,
                                             images = MenuImages(0, ArrayList()),
+                                            foods = null,
                                             createdAt = "",
                                             updatedAt = ""
                                         )
@@ -159,6 +162,7 @@ class MenuDishTableViewListener (
             menuList.add(this.menuDataList[3]!!)
             menuList.add(this.menuDataList[4]!!)
             menuList.add(this.menuDataList[5]!!)
+            menuList.add(this.menuDataList[6]!!)
         }
 
         val menuBundle = Bundle()
@@ -420,6 +424,36 @@ class MenuDishTableViewListener (
                             }
                         })
                         selectDialog.show(fragmentManager, selectDialog.tag)
+                    }
+                    menuDataList[6] -> {
+                        TingClient.getRequest(Routes.menusFoodAll, null, session.token) { _, isSuccess, result ->
+                            activity.runOnUiThread {
+                                if (isSuccess) {
+                                    try {
+                                        val menus =
+                                            gson.fromJson<List<Menu>>(result, object : TypeToken<List<Menu>>(){}.type)
+                                        if(menu.foods != null) {
+                                            val addDishFoodDialog = AddDishFoodDialog()
+                                            addDishFoodDialog.arguments = menuBundle
+                                            addDishFoodDialog.setDishFoods(menu.foods.foods)
+                                            addDishFoodDialog.setFoods(menus.toMutableList())
+                                            addDishFoodDialog.setFormDialogListener(object : FormDialogListener {
+                                                override fun onSave() {
+                                                    addDishFoodDialog.dismiss()
+                                                    dataUpdatedListener.onDataUpdated()
+                                                }
+                                                override fun onCancel() { addDishFoodDialog.dismiss() }
+                                            })
+                                            addDishFoodDialog.show(fragmentManager, addDishFoodDialog.tag)
+                                        } else {
+                                            TingToast(context, "Action Not Supported", TingToastType.ERROR).showToast(
+                                                Toast.LENGTH_LONG)
+                                        }
+                                    } catch (e: Exception) {}
+                                } else { TingToast(context, result, TingToastType.ERROR).showToast(
+                                        Toast.LENGTH_LONG) }
+                            }
+                        }
                     }
                 }
             }
