@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,6 +32,19 @@
             android:textColor="@color/colorGray"
             android:fontFamily="@font/poppins_regular"
             android:textSize="12sp"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/waiter_extra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:textAlignment="textEnd"
+            android:text="Select Option"
+            android:textColor="@color/colorLightGray"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="12sp"
+            android:visibility="gone"
             tools:ignore="HardcodedText,RtlHardcoded" />
 
     </LinearLayout>

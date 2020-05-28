@@ -58,8 +58,6 @@ class AddDishFoodDialog : DialogFragment() {
         val menu = Gson().fromJson(arguments?.getString(Constants.MENU_KEY), Menu::class.java)
         val menuDishFoodAdapter = MenuDishFoodAdapter(foods, dishFoods)
 
-        Log.i("TING_DISH_FOOD", dishFoods.joinToString(", ") { "${it.food}-${it.quantity}" })
-
         view.menu_foods_recycler_view.layoutManager = LinearLayoutManager(context)
         view.menu_foods_recycler_view.adapter = menuDishFoodAdapter
 

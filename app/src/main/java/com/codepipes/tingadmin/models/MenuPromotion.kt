@@ -8,16 +8,13 @@ class MenuPromotion (
     val uuid: String,
     val uuidUrl: String,
     val promotionItem: PromotionItem,
-    val menus: PromotionMenus,
     val reduction: PromotionReduction,
     val supplement: PromotionSupplement,
-    val period: String,
+    val period: PromotionPeriod,
     val description: String,
     val posterImage: String,
     val isOn: Boolean,
     val isOnToday: Boolean,
-    val interests: PromotionInterests,
-    val urls: PromotionUrls,
     val createdAt: String,
     val updatedAt: String
 ){}
@@ -54,21 +51,11 @@ class PromotionInterest (
     val createdAt: String
 ){}
 
-class PromotionInterests (
-    val count: Int,
-    val interests: List<Int>
-){}
-
-class PromotionUrls (
-    val relative: String,
-    val interest: String,
-    val apiGet: String,
-    val apiInterest: String
-){}
-
-class PromotionMenus(
-    val count: Int,
-    val menus: List<RestaurantMenu>?
+class PromotionPeriod(
+    val isSpecial: Boolean,
+    val startDate: String?,
+    val endDate: String?,
+    val periods: List<Int>
 ){}
 
 class PromotionDataString(

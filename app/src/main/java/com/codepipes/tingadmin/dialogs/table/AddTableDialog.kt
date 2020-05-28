@@ -94,11 +94,11 @@ class AddTableDialog : DialogFragment() {
 
                 val data = HashMap<String, String>()
 
-                data["number"] = view.table_number.text.toString()
+                data["number"] = view.table_number.text.toString().toUpperCase()
                 data["max_people"] = view.table_max_people.text.toString()
                 data["location"] = selectedTableLocation.toString()
                 data["chair_type"] =  selectedChairType.toString()
-                data["description"] = view.table_description.text.toString().toUpperCase()
+                data["description"] = view.table_description.text.toString()
 
                 val progressOverlay = ProgressOverlay()
                 progressOverlay.show(fragmentManager!!, progressOverlay.tag)

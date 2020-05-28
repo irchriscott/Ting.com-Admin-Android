@@ -3,10 +3,7 @@ package com.codepipes.tingadmin.models
 class RestaurantMenu (
     val id: Int,
     val type: MenuType,
-    val urls: MenuUrls,
-    val url: String,
-    val restaurant: RestaurantAbout,
-    val menu: Menu
+    val menu: MenuAbout
 ){}
 
 class RestaurantAbout (
@@ -54,6 +51,21 @@ class Menu (
     val hasDrink: Boolean?,
     val drink: Menu?,
     val foods: MenuFoods?,
+    val images: MenuImages,
+    val createdAt: String,
+    val updatedAt: String
+){}
+
+class MenuAbout (
+    val id: Int,
+    val name: String,
+    val dishTime: Int?,
+    val foodType: Int?,
+    val drinkType: Int?,
+    val price: Double,
+    val currency: String,
+    val isAvailable: Boolean,
+    val quantity: Int,
     val images: MenuImages,
     val createdAt: String,
     val updatedAt: String

@@ -1,5 +1,6 @@
 package com.codepipes.tingadmin.utils
 
+import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.models.BranchSpecial
 
 class Constants {
@@ -37,11 +38,13 @@ class Constants {
         public const val BRANCH_KEY                           = "branch"
         public const val BOOKING_KEY                          = "booking"
         public const val MENU_KEY                             = "menu"
+        public const val PROMOTION_KEY                        = "promotion"
 
         public const val NORMAL_TABLE_VIEW_CELL               = 0
         public const val IMAGE_TABLE_VIEW_CELL                = 1
         public const val ACTIONS_TABLE_VIEW_CELL              = 2
         public const val WAITER_TABLE_VIEW_CELL               = 3
+        public const val PROMOTION_TABLE_VIEW_CELL            = 4
 
         public const val TEXT_EDITOR_CODE                     = 1123
 
@@ -152,6 +155,11 @@ class Constants {
             BranchSpecial(6, "Supermarket", ""),
             BranchSpecial(7, "Food Truck", ""),
             BranchSpecial(8, "Bakery", "")
+        )
+
+        public val SELECT_COLORS = mutableMapOf<Boolean, Int>(
+            true to R.color.colorGray,
+            false to R.color.colorLightGray
         )
     }
 }

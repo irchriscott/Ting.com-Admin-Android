@@ -70,19 +70,12 @@ class CategoriesFragment : Fragment() {
 
     @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun loadCategories(view: View) {
-
         val gson = Gson()
-
         TingClient.getRequest(Routes.categoriesAll, null, session.token) { _, isSuccess, result ->
-
             activity?.runOnUiThread {
-
                 view.progress_loader.visibility = View.GONE
-
                 if(isSuccess) {
-
                     try {
-
                         val categories =
                             gson.fromJson<List<FoodCategory>>(result, object : TypeToken<List<FoodCategory>>(){}.type)
 

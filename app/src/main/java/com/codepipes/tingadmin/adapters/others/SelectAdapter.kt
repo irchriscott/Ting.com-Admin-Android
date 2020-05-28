@@ -10,7 +10,7 @@ import com.codepipes.tingadmin.interfaces.SelectItemListener
 import kotlinx.android.synthetic.main.row_select.view.*
 
 
-class SelectAdapter (private val items: List<String>, private val selectItemListener: SelectItemListener) : RecyclerView.Adapter<SelectViewHolder>() {
+class SelectAdapter (private val items: List<String>, private val selectItemListener: SelectItemListener?) : RecyclerView.Adapter<SelectViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): SelectViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,7 +24,7 @@ class SelectAdapter (private val items: List<String>, private val selectItemList
     override fun onBindViewHolder(holder: SelectViewHolder, position: Int) {
         holder.view.select_text.text = items[position]
         if(position == items.size - 1) { holder.view.select_separator.visibility = View.GONE }
-        holder.view.setOnClickListener { selectItemListener.onSelectItem(position) }
+        holder.view.setOnClickListener { selectItemListener?.onSelectItem(position) }
     }
 }
 

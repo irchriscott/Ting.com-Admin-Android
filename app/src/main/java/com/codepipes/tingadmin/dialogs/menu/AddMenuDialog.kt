@@ -97,6 +97,7 @@ class AddMenuDialog : DialogFragment() {
                         override fun onSelectItem(position: Int) {
                             selectedFoodType = position + 1
                             view.selected_menu_food_type.text = Constants.FOOD_TYPE[selectedFoodType!!]
+                            view.selected_menu_food_type.setTextColor(resources.getColor(R.color.colorGray))
                             selectDialog.dismiss()
                         }
                     })
@@ -114,6 +115,7 @@ class AddMenuDialog : DialogFragment() {
                         override fun onSelectItem(position: Int) {
                             selectedDrinkType = position + 1
                             view.selected_menu_drink_type.text = Constants.DRINK_TYPE[selectedDrinkType!!]
+                            view.selected_menu_drink_type.setTextColor(resources.getColor(R.color.colorGray))
                             selectDialog.dismiss()
                         }
                     })
@@ -133,6 +135,7 @@ class AddMenuDialog : DialogFragment() {
                         override fun onSelectItem(position: Int) {
                             selectedDishType = position + 1
                             view.selected_menu_dish_type.text = Constants.DISH_TIME[selectedDishType!!]
+                            view.selected_menu_dish_type.setTextColor(resources.getColor(R.color.colorGray))
                             selectDialog.dismiss()
                         }
                     })
@@ -347,6 +350,8 @@ class AddMenuDialog : DialogFragment() {
                                 selectedCategory = category.id
                                 view.selected_menu_food_category.text = category.name
                                 view.selected_menu_dish_category.text = category.name
+                                view.selected_menu_food_category.setTextColor(resources.getColor(R.color.colorGray))
+                                view.selected_menu_dish_category.setTextColor(resources.getColor(R.color.colorGray))
                                 selectDialog.dismiss()
                             }
                         })
@@ -370,6 +375,8 @@ class AddMenuDialog : DialogFragment() {
                 selectedCuisine = cuisine.id
                 view.selected_menu_food_cuisine.text = cuisine.name
                 view.selected_menu_dish_cuisine.text = cuisine.name
+                view.selected_menu_food_cuisine.setTextColor(resources.getColor(R.color.colorGray))
+                view.selected_menu_dish_cuisine.setTextColor(resources.getColor(R.color.colorGray))
                 selectDialog.dismiss()
             }
         })

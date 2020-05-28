@@ -63,6 +63,9 @@ class Routes {
         const val reservationAccept: String             = "${END_POINT}adm/reservations/accept/"
         const val reservationDecline: String            = "${END_POINT}adm/reservations/decline/"
 
+        // MENU ALL
+        const val menusAll: String                      = "${END_POINT}adm/menus/all/"
+
         //MENU FOOD
         const val menusFoodAll: String                  = "${END_POINT}adm/menu/food/all/"
         const val menusFoodAddNew: String               = "${END_POINT}adm/menu/food/add/new/"
@@ -91,5 +94,12 @@ class Routes {
         const val menusDishUpdate: String               = "${END_POINT}adm/menu/dish/update/"
         const val menusDishDelete: String               = "${END_POINT}adm/menu/dish/delete/"
         const val menusDishFoodUpdate: String           = "${END_POINT}adm/menu/dish/food/%d/update/"
+
+        //PROMOTIONS
+        const val promotionsAll: String                 = "${END_POINT}adm/promotions/all/"
+        const val promotionAdd: String                  = "${END_POINT}adm/promotions/add/"
+        const val promotionUpdate: String               = "${END_POINT}adm/promotions/update/%d/"
+        const val promotionDelete: String               = "${END_POINT}adm/promotions/delete/%d/"
+        const val promotionAvailToggle: String          = "${END_POINT}adm/promotions/avail/toggle/%d/"
     }
 }
