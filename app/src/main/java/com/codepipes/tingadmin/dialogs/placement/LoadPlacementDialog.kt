@@ -128,6 +128,51 @@ class LoadPlacementDialog : DialogFragment() {
             } else { TingToast(context!!, "You don't have the permission", TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
         }
 
+        view.place_mark_bill_paid.setOnClickListener {
+            if (session.permissions.contains("can_done_placement")) {
+                val confirmDialog = ConfirmDialog()
+                val bundle = Bundle()
+                bundle.putString(Constants.CONFIRM_TITLE_KEY, "Mark Bill As Paid")
+                bundle.putString(Constants.CONFIRM_MESSAGE_KEY, "Do you really want to mark this bill as paid ?")
+                confirmDialog.arguments = bundle
+                confirmDialog.onDialogListener(object : ConfirmDialogListener {
+                    override fun onAccept() {
+
+                        confirmDialog.dismiss()
+
+                        val progressOverlay = ProgressOverlay()
+                        progressOverlay.show(fragmentManager!!, progressOverlay.tag)
+
+                        TingClient.getRequest(Routes.placementMarkBillPaid.format(placement.id), null, session.token) { _, isSuccess, result ->
+                            activity?.runOnUiThread {
+                                progressOverlay.dismiss()
+                                if(isSuccess) {
+                                    try {
+                                        val serverResponse = gson.fromJson(result, ServerResponse::class.java)
+                                        TingToast(context!!, serverResponse.message,
+                                            when (serverResponse.type) {
+                                                "success" -> { TingToastType.SUCCESS }
+                                                "info" -> { TingToastType.DEFAULT }
+                                                else -> { TingToastType.ERROR }
+                                            }
+                                        ).showToast(Toast.LENGTH_LONG)
+                                        if(dataUpdatedListener != null) {
+                                            dataUpdatedListener?.onDataUpdated()
+                                        } else { dialog?.dismiss() }
+                                    } catch (e: Exception) { TingToast(context!!, e.localizedMessage, TingToastType.ERROR).showToast(
+                                        Toast.LENGTH_LONG) }
+                                } else { TingToast(context!!, result, TingToastType.ERROR).showToast(
+                                    Toast.LENGTH_LONG) }
+                            }
+                        }
+                    }
+                    override fun onCancel() {confirmDialog.dismiss() }
+                })
+                confirmDialog.show(fragmentManager!!, confirmDialog.tag)
+
+            } else { TingToast(context!!, "You don't have the permission", TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+        }
+
         return view
     }
 
@@ -188,6 +233,8 @@ class LoadPlacementDialog : DialogFragment() {
                     object : DataUpdatedListener {
                         override fun onDataUpdated() { activity?.runOnUiThread { loadPlacement(placement, view) } }
                     }, activity!! )
+
+            if(placement.bill?.isPaid== true) { view.place_add_extra.visibility = View.GONE }
 
             view.place_add_extra.setOnClickListener {
                 val addBillExtraDialog = AddBillExtraDialog()

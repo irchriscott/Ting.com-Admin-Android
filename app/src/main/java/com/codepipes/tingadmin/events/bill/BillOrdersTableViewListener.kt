@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.custom.ActionSheet
 import com.codepipes.tingadmin.dialogs.bill.DeclineBillOrderDialog
+import com.codepipes.tingadmin.dialogs.bill.LoadBillOrderDialog
 import com.codepipes.tingadmin.dialogs.messages.ConfirmDialog
 import com.codepipes.tingadmin.dialogs.messages.ProgressOverlay
 import com.codepipes.tingadmin.dialogs.messages.TingToast
@@ -130,6 +131,15 @@ class BillOrdersTableViewListener (
         } else {
             val orderBundle = Bundle()
             orderBundle.putString(Constants.ORDER_KEY, gson.toJson(order))
+            val loadBillOrderDialog = LoadBillOrderDialog()
+            loadBillOrderDialog.arguments = orderBundle
+            loadBillOrderDialog.setDataUpdatedListener(object : DataUpdatedListener {
+                override fun onDataUpdated() {
+                    loadBillOrderDialog.dismiss()
+                    dataUpdatedListener.onDataUpdated()
+                }
+            })
+            loadBillOrderDialog.show(fragmentManager, loadBillOrderDialog.tag)
         }
     }
 

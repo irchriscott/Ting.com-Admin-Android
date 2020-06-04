@@ -40,6 +40,7 @@ class Constants {
         public const val PROMOTION_KEY                        = "promotion"
         public const val PLACEMENT_KEY                        = "placement"
         public const val ORDER_KEY                            = "order"
+        public const val TYPE_KEY                             = "type"
 
         public const val NORMAL_TABLE_VIEW_CELL               = 0
         public const val IMAGE_TABLE_VIEW_CELL                = 1

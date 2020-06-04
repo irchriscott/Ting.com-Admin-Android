@@ -107,6 +107,7 @@ class Routes {
         const val placementGet: String                  = "${END_POINT}adm/placements/%s/get/"
         const val placementEnd: String                  = "${END_POINT}adm/placements/%s/done/"
         const val placementAssignWaiter: String         = "${END_POINT}adm/placements/%s/assign/waiter/%d/"
+        const val placementMarkBillPaid: String         = "$${END_POINT}adm/placements/%d/bill/mark/paid/"
         const val ordersPlacementGet: String            = "${END_POINT}adm/orders/placement/%s/all/"
         const val ordersAccept: String                  = "${END_POINT}adm/orders/%d/accept/"
         const val ordersDecline: String                 = "${END_POINT}adm/orders/%d/decline/"
