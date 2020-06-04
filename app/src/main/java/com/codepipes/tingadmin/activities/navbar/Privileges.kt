@@ -14,6 +14,7 @@ import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.Permission
 import com.codepipes.tingadmin.providers.LocalData
+import com.codepipes.tingadmin.providers.PubnubNotification
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Routes
@@ -66,6 +67,8 @@ class Privileges : AppCompatActivity() {
                 ), PorterDuff.Mode.SRC_ATOP)
             supportActionBar!!.setHomeAsUpIndicator(upArrow)
         } catch (e: java.lang.Exception) {}
+
+        PubnubNotification.getInstance(this@Privileges, main_container).initialize()
 
         localData = LocalData(this@Privileges)
 

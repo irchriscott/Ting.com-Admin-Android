@@ -26,6 +26,7 @@ import com.codepipes.tingadmin.interfaces.ConfirmDialogListener
 import com.codepipes.tingadmin.interfaces.FormDialogListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.ServerResponse
+import com.codepipes.tingadmin.providers.PubnubNotification
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Constants
@@ -81,6 +82,8 @@ class EditProfile : AppCompatActivity() {
 
         userAuthentication = UserAuthentication(this@EditProfile)
         session = userAuthentication.get()!!
+
+        PubnubNotification.getInstance(this@EditProfile, main_container).initialize()
 
         admin_name.text = session.name
         admin_username.text = session.username.toLowerCase()

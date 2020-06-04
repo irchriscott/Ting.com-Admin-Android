@@ -9,22 +9,16 @@ class User (
     val username: String,
     val email: String,
     val image: String,
-    private val pin: String,
-    val pinImg: String?,
     val phone: String,
     val dob: String?,
     val gender: String?,
     val country: String,
     val town: String,
     val channel: String,
-    val restaurants: UserRestaurants?,
-    val reviews: UserRestaurantReviews?,
-    val addresses: UserAddresses?,
     val createdAt: String,
     val updatedAt: String
 ){
     public fun imageURL(): String = "${Routes.UPLOAD_END_POINT}${this.image}"
-    public fun pinURL(): String = "${Routes.HOST_END_POINT}${this.pin}"
 }
 
 class Address (

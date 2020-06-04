@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTransparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorBlack"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp">
+
+        <com.codepipes.tingadmin.custom.RoundedCornerImageView
+            android:id="@+id/noty_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_user"
+            app:imageRadius="4.0" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:id="@+id/noty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:text="Title of notification"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/noty_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This Will be the message of the notification. I have no Idea how long it is going to be though, let's just try to make it long, ver long"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

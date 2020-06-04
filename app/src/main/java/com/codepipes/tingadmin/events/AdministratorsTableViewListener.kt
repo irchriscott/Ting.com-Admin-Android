@@ -70,10 +70,12 @@ class AdministratorsTableViewListener (
 
         val adminBundle = Bundle()
         adminBundle.putString(Constants.ADMIN_KEY, gson.toJson(administrator))
+        adminBundle.putInt("type", 0)
 
         if(column == 6) { showAdministratorMenu(column, row)
         } else {
             val loadAdministratorDialog = LoadAdministratorDialog()
+            loadAdministratorDialog.setType(0)
             loadAdministratorDialog.arguments = adminBundle
             loadAdministratorDialog.show(fragmentManager, loadAdministratorDialog.tag)
         }
@@ -109,6 +111,8 @@ class AdministratorsTableViewListener (
 
         val adminBundle = Bundle()
         adminBundle.putString(Constants.ADMIN_KEY, gson.toJson(administrator))
+        adminBundle.putInt("type", 0)
+
         val actionSheet = ActionSheet(context, menuList)
             .setTitle("Options")
             .setColorData(context.resources.getColor(R.color.colorGray))
@@ -123,6 +127,7 @@ class AdministratorsTableViewListener (
                 when(data) {
                     administratorMenu[0] -> {
                         val loadAdministratorDialog = LoadAdministratorDialog()
+                        loadAdministratorDialog.setType(0)
                         loadAdministratorDialog.arguments = adminBundle
                         loadAdministratorDialog.show(fragmentManager, loadAdministratorDialog.tag)
                     }

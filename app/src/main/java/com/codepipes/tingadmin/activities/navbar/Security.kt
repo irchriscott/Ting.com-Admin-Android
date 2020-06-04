@@ -14,6 +14,7 @@ import com.codepipes.tingadmin.dialogs.messages.TingToast
 import com.codepipes.tingadmin.dialogs.messages.TingToastType
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.ServerResponse
+import com.codepipes.tingadmin.providers.PubnubNotification
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
 import com.codepipes.tingadmin.utils.Routes
@@ -55,6 +56,8 @@ class Security : AppCompatActivity() {
                 ), PorterDuff.Mode.SRC_ATOP)
             supportActionBar!!.setHomeAsUpIndicator(upArrow)
         } catch (e: java.lang.Exception) {}
+
+        PubnubNotification.getInstance(this@Security, main_container).initialize()
 
         userAuthentication = UserAuthentication(this@Security)
         session = userAuthentication.get()!!

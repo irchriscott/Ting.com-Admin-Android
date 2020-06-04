@@ -16,11 +16,15 @@ import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.activities.navbar.EditProfile
 import com.codepipes.tingadmin.activities.navbar.Privileges
 import com.codepipes.tingadmin.activities.navbar.Security
+import com.codepipes.tingadmin.custom.Noty
 import com.codepipes.tingadmin.fragments.base.DashboardFragment
 import com.codepipes.tingadmin.fragments.base.SideBarFragment
 import com.codepipes.tingadmin.fragments.sidebar.*
 import com.codepipes.tingadmin.models.Administrator
+import com.codepipes.tingadmin.providers.PubnubNotification
 import com.codepipes.tingadmin.providers.UserAuthentication
+import com.codepipes.tingadmin.services.PubnubService
+import com.codepipes.tingadmin.services.PushNotificationService
 import com.codepipes.tingadmin.utils.Routes
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
@@ -127,6 +131,8 @@ class TingDotCom : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
+        PubnubNotification.getInstance(this@TingDotCom, coordinator_layout).initialize()
+
         userAuthentication = UserAuthentication(this@TingDotCom)
         session = userAuthentication.get()!!
 
@@ -164,6 +170,9 @@ class TingDotCom : AppCompatActivity() {
         navigationMenuView.isHorizontalScrollBarEnabled = false
 
         updateNavigationMenu()
+
+        startService(Intent(applicationContext, PushNotificationService::class.java))
+        startService(Intent(applicationContext, PubnubService::class.java))
     }
 
     @SuppressLint("RestrictedApi")
@@ -188,6 +197,7 @@ class TingDotCom : AppCompatActivity() {
         drawer_layout.closeDrawers()
         if(from == 0) { updateSelectedItem(menuItemIds[selectedFragment]) }
         selectedItem = selectedFragment
+        PubnubNotification.getInstance(this@TingDotCom, coordinator_layout).initialize()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_container, menuFragments[selectedFragment])

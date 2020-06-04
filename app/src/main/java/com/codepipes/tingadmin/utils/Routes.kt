@@ -101,5 +101,16 @@ class Routes {
         const val promotionUpdate: String               = "${END_POINT}adm/promotions/update/%d/"
         const val promotionDelete: String               = "${END_POINT}adm/promotions/delete/%d/"
         const val promotionAvailToggle: String          = "${END_POINT}adm/promotions/avail/toggle/%d/"
+
+        //PLACEMENTS & ORDERS
+        const val placementsAll: String                 = "${END_POINT}adm/placements/all/"
+        const val placementGet: String                  = "${END_POINT}adm/placements/%s/get/"
+        const val placementEnd: String                  = "${END_POINT}adm/placements/%s/done/"
+        const val placementAssignWaiter: String         = "${END_POINT}adm/placements/%s/assign/waiter/%d/"
+        const val ordersPlacementGet: String            = "${END_POINT}adm/orders/placement/%s/all/"
+        const val ordersAccept: String                  = "${END_POINT}adm/orders/%d/accept/"
+        const val ordersDecline: String                 = "${END_POINT}adm/orders/%d/decline/"
+        const val ordersAddExtra: String                = "${END_POINT}adm/orders/extras/%d/add/"
+        const val ordersDeleteExtra: String             = "${END_POINT}adm/orders/extras/%d/delete/"
     }
 }
