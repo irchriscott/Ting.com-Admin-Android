@@ -1,71 +1,61 @@
-package com.codepipes.tingadmin.fragments.base
-
+package com.codepipes.tingadmin.dialogs.bill
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.codepipes.tingadmin.R
 import com.codepipes.tingadmin.abstracts.EndlessScrollEventListener
 import com.codepipes.tingadmin.adapters.bill.orders.CurrentOrderAdapter
-import com.codepipes.tingadmin.dialogs.messages.TingToast
-import com.codepipes.tingadmin.dialogs.messages.TingToastType
 import com.codepipes.tingadmin.interfaces.DataUpdatedListener
 import com.codepipes.tingadmin.models.Administrator
 import com.codepipes.tingadmin.models.Order
 import com.codepipes.tingadmin.models.ServerResponse
 import com.codepipes.tingadmin.providers.TingClient
 import com.codepipes.tingadmin.providers.UserAuthentication
-import com.codepipes.tingadmin.utils.Constants
 import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.livefront.bridge.Bridge
-import com.pubnub.api.PNConfiguration
-import com.pubnub.api.PubNub
-import com.pubnub.api.callbacks.SubscribeCallback
-import com.pubnub.api.models.consumer.PNStatus
-import com.pubnub.api.models.consumer.pubsub.PNMessageResult
-import com.pubnub.api.models.consumer.pubsub.PNPresenceEventResult
-import com.pubnub.api.models.consumer.pubsub.PNSignalResult
-import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResult
-import com.pubnub.api.models.consumer.pubsub.objects.PNMembershipResult
-import com.pubnub.api.models.consumer.pubsub.objects.PNSpaceResult
-import com.pubnub.api.models.consumer.pubsub.objects.PNUserResult
-import kotlinx.android.synthetic.main.fragment_current_orders.view.*
+import kotlinx.android.synthetic.main.dialog_bill_current_orders.view.*
 import kotlinx.android.synthetic.main.include_empty_data.view.*
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-class CurrentOrders : Fragment() {
+class LoadCurrentOrdersDialog : DialogFragment() {
 
     private  lateinit var session: Administrator
     private val orders: MutableList<Order> = ArrayList()
 
-    private lateinit var pubnub: PubNub
     private lateinit var ordersTimer: Timer
 
-    private lateinit var subscribeCallback: SubscribeCallback
+    override fun getTheme(): Int = R.style.TransparentDialog
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        isCancelable = false
+        super.onCreate(savedInstanceState)
+    }
+
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_current_orders, container, false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val view = inflater.inflate(R.layout.dialog_bill_current_orders, container, false)
 
-        Bridge.clear(this)
+        Bridge.restoreInstanceState(this, savedInstanceState)
         savedInstanceState?.clear()
 
         ordersTimer = Timer()
@@ -76,71 +66,15 @@ class CurrentOrders : Fragment() {
         }, TIMER_PERIOD, TIMER_PERIOD)
         loadOrders(view)
 
-        val pubnubConfig = PNConfiguration()
-        pubnubConfig.subscribeKey = Constants.PUBNUB_SUBSCRIBE_KEY
-        pubnubConfig.publishKey = Constants.PUBNUB_PUBLISH_KEY
-        pubnubConfig.isSecure = true
-
-        pubnub = PubNub(pubnubConfig)
-        pubnub.subscribe().channels(listOf(session.channel, session.branch.channel)).withPresence().execute()
-
-        subscribeCallback = object : SubscribeCallback() {
-
-            override fun signal(pubnub: PubNub, pnSignalResult: PNSignalResult) {}
-
-            override fun status(pubnub: PubNub, pnStatus: PNStatus) {}
-
-            override fun user(pubnub: PubNub, pnUserResult: PNUserResult) {}
-
-            override fun messageAction(pubnub: PubNub, pnMessageActionResult: PNMessageActionResult) {}
-
-            override fun presence(pubnub: PubNub, pnPresenceEventResult: PNPresenceEventResult) {}
-
-            override fun membership(pubnub: PubNub, pnMembershipResult: PNMembershipResult) {}
-
-            override fun message(pubnub: PubNub, pnMessageResult: PNMessageResult) {
-                activity?.runOnUiThread {
-                    try {
-                        val response = if(pnMessageResult.message.isJsonObject) {
-                            pnMessageResult.message.asJsonObject
-                        } else { Gson().fromJson(pnMessageResult.message.asString, JsonObject::class.java) }
-
-                        when (response.get("type").asString) {
-                            Constants.SOCKET_REQUEST_TABLE -> loadOrders(view)
-                            Constants.SOCKET_RESPONSE_W_TABLE -> loadOrders(view)
-                            Constants.SOCKET_REQUEST_TABLE_ORDER -> loadOrders(view)
-                            Constants.SOCKET_REQUEST_W_TABLE_ORDER -> loadOrders(view)
-                            Constants.SOCKET_REQUEST_W_NOTIFY_ORDER -> loadOrders(view)
-                            Constants.SOCKET_RESPONSE_ERROR ->
-                                TingToast(
-                                    activity!!,
-                                    if (!response.get("message").isJsonNull) {
-                                        response.get("message").asString
-                                    } else { "An Error Occurred" },
-                                    TingToastType.ERROR
-                                ).showToast(Toast.LENGTH_LONG)
-
-                            else -> { }
-                        }
-                    } catch (e: Exception) {
-                        TingToast(
-                            activity!!,
-                            "An Error Occurred",
-                            TingToastType.ERROR
-                        ).showToast(Toast.LENGTH_LONG)
-                    }
-                }
-            }
-
-            override fun space(pubnub: PubNub, pnSpaceResult: PNSpaceResult) {}
-        }
-
-        pubnub.addListener(subscribeCallback)
-
         view.refresh_current_orders.setColorSchemeColors(resources.getColor(R.color.colorPrimary), resources.getColor(R.color.colorAccentMain), resources.getColor(R.color.colorPrimaryDark), resources.getColor(R.color.colorAccentMain))
         view.refresh_current_orders.setOnRefreshListener {
             view.refresh_current_orders.isRefreshing = true
             this.loadOrders(view)
+        }
+
+        view.dialog_button_close.setOnClickListener {
+            try { ordersTimer.cancel() } catch (e: Exception) {}
+            dialog?.dismiss()
         }
 
         return view
@@ -235,43 +169,17 @@ class CurrentOrders : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Bridge.clear(this)
-        try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
+    companion object {
+        private const val TIMER_PERIOD = 6000.toLong()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        Bridge.clear(this)
+    override fun onDestroy() {
+        super.onDestroy()
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Bridge.clear(this)
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Bridge.clear(this)
-        try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
-    companion object {
-        private const val TIMER_PERIOD = 6000.toLong()
     }
 }

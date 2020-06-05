@@ -33,7 +33,11 @@ class BillOrders(
 class Order (
     val id: Int,
     val menu: RestaurantMenu,
+    val user: UserData?,
+    val waiter: Waiter?,
     val token: String,
+    val billNumber: String,
+    val tableNumber: String,
     val quantity: Int,
     val price: Double,
     val currency: String,
@@ -41,12 +45,16 @@ class Order (
     val isAccepted: Boolean,
     val isDeclined: Boolean,
     val isDelivered: Boolean,
+    val people: Int,
     val reasons: String?,
     val hasPromotion: Boolean,
     val promotion: PromotionDataString?,
     val createdAt: String,
     val updatedAt: String
-) {}
+) {
+    val total: Double
+        get() = quantity * price
+}
 
 
 class OrderData (

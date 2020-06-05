@@ -25,6 +25,9 @@ import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResu
 
 class PubnubNotification (private val activity: Activity, private val viewGroup: ViewGroup) {
 
+    private lateinit var pubnub: PubNub
+    private lateinit var subscribeCallback: SubscribeCallback
+
     public fun initialize() {
 
         val userAuthentication = UserAuthentication(activity)
@@ -35,10 +38,10 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
         pubnubConfig.publishKey = Constants.PUBNUB_PUBLISH_KEY
         pubnubConfig.isSecure = true
 
-        val pubnub = PubNub(pubnubConfig)
+        pubnub = PubNub(pubnubConfig)
         pubnub.subscribe().channels(listOf(session.channel, session.branch.channel)).withPresence().execute()
 
-        pubnub.addListener(object : SubscribeCallback() {
+        subscribeCallback = object : SubscribeCallback() {
 
             override fun signal(pubnub: PubNub, pnSignalResult: PNSignalResult) {}
 
@@ -139,7 +142,7 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
                     } catch (e: Exception) {
                         TingToast(
                             activity,
-                           "An Error Occurred",
+                            "An Error Occurred",
                             TingToastType.ERROR
                         ).showToast(Toast.LENGTH_LONG)
                     }
@@ -147,8 +150,12 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
             }
 
             override fun space(pubnub: PubNub, pnSpaceResult: PNSpaceResult) {}
-        })
+        }
+
+        pubnub.addListener(subscribeCallback)
     }
+
+    public fun close() { pubnub.removeListener(subscribeCallback) }
 
     companion object {
         public fun getInstance(activity: Activity, viewGroup: ViewGroup) : PubnubNotification {

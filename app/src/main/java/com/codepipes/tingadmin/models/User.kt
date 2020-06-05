@@ -21,6 +21,15 @@ class User (
     public fun imageURL(): String = "${Routes.UPLOAD_END_POINT}${this.image}"
 }
 
+class UserData(
+    val id: Int,
+    val name: String,
+    val email: String,
+    val image: String
+) {
+    public fun imageURL(): String = "${Routes.UPLOAD_END_POINT}${this.image}"
+}
+
 class Address (
     val id: Int,
     var type: String,

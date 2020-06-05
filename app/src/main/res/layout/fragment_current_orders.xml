@@ -6,17 +6,56 @@
     android:background="#FEFEFE"
     tools:context=".fragments.base.CurrentOrders">
 
-
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_current_orders"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:text="Current Orders"
-        android:textAllCaps="true"
-        android:fontFamily="@font/poppins_thin"
-        android:textSize="18sp"
-        android:textColor="@color/colorGray"
-        tools:ignore="HardcodedText" />
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Current Orders"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/poppins_thin"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/orders_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="46dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:visibility="gone"/>
+
+                <include
+                    android:id="@+id/empty_data"
+                    android:visibility="gone"
+                    layout="@layout/include_empty_data" />
+
+                <include
+                    android:id="@+id/progress_loader"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="46dp"
+                    layout="@layout/include_progress_loader" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

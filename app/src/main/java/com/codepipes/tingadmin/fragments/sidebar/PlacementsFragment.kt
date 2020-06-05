@@ -25,6 +25,7 @@ import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import com.livefront.bridge.Bridge
 import com.pubnub.api.PNConfiguration
 import com.pubnub.api.PubNub
 import com.pubnub.api.callbacks.SubscribeCallback
@@ -46,6 +47,9 @@ class PlacementsFragment : Fragment() {
     private lateinit var userAuthentication: UserAuthentication
     private lateinit var session: Administrator
 
+    private lateinit var pubnub: PubNub
+    private lateinit var subscribeCallback: SubscribeCallback
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,10 +65,10 @@ class PlacementsFragment : Fragment() {
         pubnubConfig.publishKey = Constants.PUBNUB_PUBLISH_KEY
         pubnubConfig.isSecure = true
 
-        val pubnub = PubNub(pubnubConfig)
+        pubnub = PubNub(pubnubConfig)
         pubnub.subscribe().channels(listOf(session.channel, session.branch.channel)).withPresence().execute()
 
-        pubnub.addListener(object : SubscribeCallback() {
+        subscribeCallback = object : SubscribeCallback() {
 
             override fun signal(pubnub: PubNub, pnSignalResult: PNSignalResult) {}
 
@@ -113,7 +117,9 @@ class PlacementsFragment : Fragment() {
             }
 
             override fun space(pubnub: PubNub, pnSpaceResult: PNSpaceResult) {}
-        })
+        }
+
+        pubnub.addListener(subscribeCallback)
 
         loadPlacements(view)
 
@@ -173,5 +179,29 @@ class PlacementsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bridge.clear(this)
+        pubnub.removeListener(subscribeCallback)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Bridge.clear(this)
+        pubnub.removeListener(subscribeCallback)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Bridge.clear(this)
+        pubnub.removeListener(subscribeCallback)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Bridge.clear(this)
+        pubnub.removeListener(subscribeCallback)
     }
 }

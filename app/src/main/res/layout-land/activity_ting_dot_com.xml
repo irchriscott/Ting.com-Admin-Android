@@ -79,6 +79,17 @@
 
         </RelativeLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/current_orders"
+            android:src="@drawable/ic_navigation_reservations"
+            android:tint="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/colorPrimary"/>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

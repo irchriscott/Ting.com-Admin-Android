@@ -17,6 +17,7 @@ import com.codepipes.tingadmin.activities.navbar.EditProfile
 import com.codepipes.tingadmin.activities.navbar.Privileges
 import com.codepipes.tingadmin.activities.navbar.Security
 import com.codepipes.tingadmin.custom.Noty
+import com.codepipes.tingadmin.dialogs.bill.LoadCurrentOrdersDialog
 import com.codepipes.tingadmin.fragments.base.DashboardFragment
 import com.codepipes.tingadmin.fragments.base.SideBarFragment
 import com.codepipes.tingadmin.fragments.sidebar.*
@@ -170,6 +171,11 @@ class TingDotCom : AppCompatActivity() {
         navigationMenuView.isHorizontalScrollBarEnabled = false
 
         updateNavigationMenu()
+
+        current_orders.setOnClickListener {
+            val loadCurrentOrdersDialog = LoadCurrentOrdersDialog()
+            loadCurrentOrdersDialog.show(supportFragmentManager, loadCurrentOrdersDialog.tag)
+        }
 
         startService(Intent(applicationContext, PushNotificationService::class.java))
         startService(Intent(applicationContext, PubnubService::class.java))

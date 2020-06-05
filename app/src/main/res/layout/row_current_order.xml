@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_row"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/order_user_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/default_user"
+        app:civ_border_color="@color/colorVeryLightGray"
+        app:civ_border_width="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/order_menu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 - Chicken Grilled"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textSize="13sp"
+            android:textColor="@color/colorGray"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/order_table_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="CJ873"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:textColor="@color/colorGray"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:id="@+id/order_waiter_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/background_labeled_button"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <ImageView
+                android:id="@+id/order_waiter_image"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_user"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:id="@+id/order_waiter_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="5dp"
+                android:text="Christian Scott"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="11sp"
+                android:textColor="@color/colorGray"
+                tools:ignore="HardcodedText,SmallSp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menu_type_view">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/background_labeled_button">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_navigation_reservations"
+                    android:tint="@color/colorGray"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:id="@+id/order_bill_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="001"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText,SmallSp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/background_labeled_button">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_people_gray_24dp"
+                    android:tint="@color/colorGray"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:id="@+id/order_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="2"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText,SmallSp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/background_labeled_button"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_star_filled_gray"
+                    android:tint="@color/colorGray"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:id="@+id/order_has_promotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="YES"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11sp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText,RtlHardcoded,SmallSp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

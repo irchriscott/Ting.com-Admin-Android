@@ -35,3 +35,10 @@ class Waiter (
     val createdAt: String,
     val updatedAt: String
 ){}
+
+class WaiterData (
+    val id: Int,
+    val name: String,
+    val email: String,
+    val image: String
+){}
