@@ -239,28 +239,28 @@ class CurrentOrders : Fragment() {
         super.onDestroy()
         Bridge.clear(this)
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onDetach() {
         super.onDetach()
         Bridge.clear(this)
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         Bridge.clear(this)
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onPause() {
         super.onPause()
         Bridge.clear(this)
         try { ordersTimer.cancel() } catch (e: Exception) {}
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onResume() {

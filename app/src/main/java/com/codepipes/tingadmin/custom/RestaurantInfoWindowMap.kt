@@ -35,5 +35,4 @@ class RestaurantInfoWindowMap (val context: Context) : GoogleMap.InfoWindowAdapt
 
         return view
     }
-
 }

@@ -22,7 +22,7 @@ class ActionSheet(var context: Context, var data: MutableList<String>) {
 
     var alertDialog: AlertDialog? = null
     lateinit var title : TextView
-    private lateinit var cancle : TextView
+    private lateinit var cancelTextView : TextView
     private lateinit var myRecyclerView: RecyclerView
     private val actionSheetRecyclerViewAdapter by lazy {
         ActionSheetRecyclerViewAdapter(data)
@@ -63,7 +63,7 @@ class ActionSheet(var context: Context, var data: MutableList<String>) {
         val adb = AlertDialog.Builder(context)
         val v = LayoutInflater.from(context).inflate(R.layout.action_sheet,null)
         title = v.findViewById(R.id.tvTitle)
-        cancle = v.findViewById(R.id.tvCancelAction)
+        cancelTextView = v.findViewById(R.id.tvCancelAction)
 
         setData()
 
@@ -87,14 +87,14 @@ class ActionSheet(var context: Context, var data: MutableList<String>) {
             }
         })
 
-        cancle.setOnClickListener { alertDialog?.dismiss() }
+        cancelTextView.setOnClickListener { alertDialog?.dismiss() }
     }
 
     private fun setData() {
         title.text = ActionData.title
-        cancle.text = ActionData.titleCancel
+        cancelTextView.text = ActionData.titleCancel
         title.setTextColor(ActionData.colorTitle)
-        cancle.setTextColor(ActionData.colorCancel)
+        cancelTextView.setTextColor(ActionData.colorCancel)
         actionSheetRecyclerViewAdapter.color = ActionData.colorData
         actionSheetRecyclerViewAdapter.colorSelect = ActionData.colorSelect
     }

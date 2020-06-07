@@ -27,6 +27,11 @@ class Constants {
         public const val SOCKET_REQUEST_W_TABLE_ORDER         = "request_w_table_order"
         public const val SOCKET_REQUEST_NOTIFY_ORDER          = "request_notify_order"
         public const val SOCKET_REQUEST_W_NOTIFY_ORDER        = "request_w_notify_order"
+        public const val SOCKET_REQUEST_RECEIPT               = "request_bill_request"
+        public const val SOCKET_REQUEST_W_RECEIPT             = "request_w_bill_request"
+        public const val SOCKET_REQUEST_W_MESSAGE             = "response_w_request_message"
+        public const val SOCKET_REQUEST_PLACE_TERM            = "request_placement_terminated"
+        public const val SOCKET_REQUEST_W_PLACE_TERM          = "request_w_placement_terminated"
 
         public const val CONFIRM_TITLE_KEY                    = "title"
         public const val CONFIRM_MESSAGE_KEY                  = "message"

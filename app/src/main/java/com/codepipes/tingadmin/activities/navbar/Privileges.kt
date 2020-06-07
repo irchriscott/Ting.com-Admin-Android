@@ -34,6 +34,7 @@ class Privileges : AppCompatActivity() {
     private lateinit var localData: LocalData
 
     private var handler: Handler? = null
+    private lateinit var pubnubNotification: PubnubNotification
 
     private val runnable = Runnable {
         val permissions = localData.getPermissions()
@@ -68,7 +69,8 @@ class Privileges : AppCompatActivity() {
             supportActionBar!!.setHomeAsUpIndicator(upArrow)
         } catch (e: java.lang.Exception) {}
 
-        PubnubNotification.getInstance(this@Privileges, main_container).initialize()
+        pubnubNotification = PubnubNotification.getInstance(this@Privileges, main_container, supportFragmentManager)
+        pubnubNotification.initialize()
 
         localData = LocalData(this@Privileges)
 
@@ -164,6 +166,7 @@ class Privileges : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        pubnubNotification.close()
         super.onBackPressed()
     }
 
@@ -184,5 +187,6 @@ class Privileges : AppCompatActivity() {
         super.onDestroy()
         Bridge.clear(this)
         handler?.removeCallbacks(runnable)
+        pubnubNotification.close()
     }
 }

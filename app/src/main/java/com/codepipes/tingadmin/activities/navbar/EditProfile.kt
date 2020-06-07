@@ -52,6 +52,7 @@ class EditProfile : AppCompatActivity() {
 
     private lateinit var userAuthentication: UserAuthentication
     private lateinit var session: Administrator
+    private lateinit var pubnubNotification: PubnubNotification
 
     @SuppressLint("PrivateResource", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +84,8 @@ class EditProfile : AppCompatActivity() {
         userAuthentication = UserAuthentication(this@EditProfile)
         session = userAuthentication.get()!!
 
-        PubnubNotification.getInstance(this@EditProfile, main_container).initialize()
+        pubnubNotification = PubnubNotification.getInstance(this@EditProfile, main_container, supportFragmentManager)
+        pubnubNotification.initialize()
 
         admin_name.text = session.name
         admin_username.text = session.username.toLowerCase()
@@ -247,6 +249,7 @@ class EditProfile : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        pubnubNotification.close()
         super.onBackPressed()
     }
 
@@ -266,6 +269,7 @@ class EditProfile : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Bridge.clear(this)
+        pubnubNotification.close()
     }
 
     companion object {

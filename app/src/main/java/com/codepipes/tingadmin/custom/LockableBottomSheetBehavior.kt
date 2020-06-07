@@ -9,6 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 @Suppress("unused")
 class LockableBottomSheetBehavior<V : View> : BottomSheetBehavior<V> {
+
     constructor() : super()
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 

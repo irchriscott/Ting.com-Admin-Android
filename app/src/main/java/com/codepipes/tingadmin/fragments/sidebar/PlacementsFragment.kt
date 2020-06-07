@@ -184,24 +184,24 @@ class PlacementsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         Bridge.clear(this)
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onDetach() {
         super.onDetach()
         Bridge.clear(this)
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         Bridge.clear(this)
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 
     override fun onPause() {
         super.onPause()
         Bridge.clear(this)
-        pubnub.removeListener(subscribeCallback)
+        try { pubnub.removeListener(subscribeCallback) } catch (e: Exception){}
     }
 }

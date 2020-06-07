@@ -47,6 +47,8 @@ class TingDotCom : AppCompatActivity() {
     public lateinit var sideBarFrameLayout: FrameLayout
     public lateinit var mainContainerFrameLayout: FrameLayout
 
+    private lateinit var pubnubNotification: PubnubNotification
+
     private val menuFragments = arrayListOf<Fragment>(
         DashboardFragment(),
         BranchesFragment(),
@@ -132,8 +134,6 @@ class TingDotCom : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        PubnubNotification.getInstance(this@TingDotCom, coordinator_layout).initialize()
-
         userAuthentication = UserAuthentication(this@TingDotCom)
         session = userAuthentication.get()!!
 
@@ -147,6 +147,9 @@ class TingDotCom : AppCompatActivity() {
         )
         drawer_layout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+
+        pubnubNotification = PubnubNotification.getInstance(this@TingDotCom, coordinator_layout, supportFragmentManager)
+        pubnubNotification.initialize()
 
         restaurant_name.text = "${session.branch.restaurant?.name}, ${session.branch.name}"
         Picasso.get().load(session.branch.restaurant?.logoURL()).into(restaurant_logo)
@@ -203,7 +206,6 @@ class TingDotCom : AppCompatActivity() {
         drawer_layout.closeDrawers()
         if(from == 0) { updateSelectedItem(menuItemIds[selectedFragment]) }
         selectedItem = selectedFragment
-        PubnubNotification.getInstance(this@TingDotCom, coordinator_layout).initialize()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.main_container, menuFragments[selectedFragment])
@@ -252,6 +254,7 @@ class TingDotCom : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        pubnubNotification.initialize()
         updateNavigationMenu()
     }
 
@@ -261,5 +264,6 @@ class TingDotCom : AppCompatActivity() {
         super.onDestroy()
         Bridge.clear(this)
         Tovuti.from(this).stop()
+        pubnubNotification.close()
     }
 }

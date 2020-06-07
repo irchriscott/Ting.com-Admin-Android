@@ -2,13 +2,22 @@ package com.codepipes.tingadmin.providers
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import com.codepipes.tingadmin.custom.Noty
+import com.codepipes.tingadmin.dialogs.messages.ProgressOverlay
 import com.codepipes.tingadmin.dialogs.messages.TingToast
 import com.codepipes.tingadmin.dialogs.messages.TingToastType
+import com.codepipes.tingadmin.dialogs.placement.LoadPlacementDialog
+import com.codepipes.tingadmin.interfaces.DataUpdatedListener
+import com.codepipes.tingadmin.models.Administrator
+import com.codepipes.tingadmin.models.Placement
 import com.pubnub.api.models.consumer.PNStatus
 import com.codepipes.tingadmin.utils.Constants
+import com.codepipes.tingadmin.utils.Routes
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.pubnub.api.models.consumer.pubsub.objects.PNMembershipResult
@@ -23,15 +32,21 @@ import com.pubnub.api.PNConfiguration
 import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResult
 
 
-class PubnubNotification (private val activity: Activity, private val viewGroup: ViewGroup) {
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class PubnubNotification (
+    private val activity: Activity,
+    private val viewGroup: ViewGroup,
+    private val fragmentManager: FragmentManager
+) {
 
     private lateinit var pubnub: PubNub
     private lateinit var subscribeCallback: SubscribeCallback
+    private lateinit var session: Administrator
 
     public fun initialize() {
 
         val userAuthentication = UserAuthentication(activity)
-        val session = userAuthentication.get()!!
+        session = userAuthentication.get()!!
 
         val pubnubConfig = PNConfiguration()
         pubnubConfig.subscribeKey = Constants.PUBNUB_SUBSCRIBE_KEY
@@ -40,6 +55,8 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
 
         pubnub = PubNub(pubnubConfig)
         pubnub.subscribe().channels(listOf(session.channel, session.branch.channel)).withPresence().execute()
+
+        val progressOverlay = ProgressOverlay()
 
         subscribeCallback = object : SubscribeCallback() {
 
@@ -91,41 +108,39 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
                                     .show()
                             }
                             Constants.SOCKET_REQUEST_TABLE_ORDER -> {
-                                if(session.permissions.contains("can_receive_orders")) {
-                                    val data = response.get("data").asJsonObject
-                                    val title = "New Order On Table ${data.get("table").asString}"
-                                    val message = "${data.get("user").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} "
-                                    Noty.init(activity, data.get("user").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
-                                        .tapToDismiss(true)
-                                        .show()
-                                }
+                                if(session.permissions.contains("can_receive_orders")) { showOrderPlacedNoty(response) }
                             }
                             Constants.SOCKET_REQUEST_W_TABLE_ORDER -> {
                                 if(!session.permissions.contains("can_receive_orders") && session.type.toInt() == 4) {
-                                    val data = response.get("data").asJsonObject
-                                    val title = "New Order On Table ${data.get("table").asString}"
-                                    val message = "${data.get("user").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} "
-                                    Noty.init(activity, data.get("user").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
-                                        .tapToDismiss(true)
-                                        .show()
+                                    showOrderPlacedNoty(response)
                                 }
                             }
-                            Constants.SOCKET_REQUEST_NOTIFY_ORDER -> {
+                            Constants.SOCKET_REQUEST_NOTIFY_ORDER -> showOrderDelayedNoty(response)
+                            Constants.SOCKET_REQUEST_W_NOTIFY_ORDER -> {
+                                if(!session.permissions.contains("can_receive_orders") && session.type.toInt() == 4) {
+                                    showOrderDelayedNoty(response)
+                                }
+                            }
+                            Constants.SOCKET_REQUEST_RECEIPT -> showRequestBillNoty(response)
+                            Constants.SOCKET_REQUEST_W_RECEIPT -> {
+                                if(!session.permissions.contains("can_complete_bill") && session.type.toInt() == 4) {
+                                    showRequestBillNoty(response)
+                                }
+                            }
+                            Constants.SOCKET_REQUEST_W_MESSAGE -> {
+
                                 val data = response.get("data").asJsonObject
-                                val title = "Order Delayed On Table ${data.get("table").asString}"
-                                val message = "${response.get("sender").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} but it seems it is delaying. Please, Accept or Decline the order."
+                                val title = "Request From ${response.get("sender").asJsonObject.get("name").asString}, Table ${data.get("table").asString}"
+                                val message = if(response.has("message")) { response.get("message").asString } else { "-" }
+
                                 Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
                                     .tapToDismiss(true)
                                     .show()
                             }
-                            Constants.SOCKET_REQUEST_W_NOTIFY_ORDER -> {
-                                if(!session.permissions.contains("can_receive_orders") && session.type.toInt() == 4) {
-                                    val data = response.get("data").asJsonObject
-                                    val title = "Order Delayed On Table ${data.get("table").asString}"
-                                    val message = "${response.get("sender").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} but it seems it is delaying. Please, Accept or Decline the order."
-                                    Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
-                                        .tapToDismiss(true)
-                                        .show()
+                            Constants.SOCKET_REQUEST_PLACE_TERM -> showPlacementTerminatedNoty(response)
+                            Constants.SOCKET_REQUEST_W_PLACE_TERM -> {
+                                if(!session.permissions.contains("can_complete_bill") && session.type.toInt() == 4) {
+                                    showPlacementTerminatedNoty(response)
                                 }
                             }
                             Constants.SOCKET_RESPONSE_ERROR -> {
@@ -155,11 +170,110 @@ class PubnubNotification (private val activity: Activity, private val viewGroup:
         pubnub.addListener(subscribeCallback)
     }
 
-    public fun close() { pubnub.removeListener(subscribeCallback) }
+    private fun loadPlacement(token: String) {
+        val progressOverlay = ProgressOverlay()
+        progressOverlay.show(fragmentManager, progressOverlay.tag)
+        TingClient.getRequest(Routes.placementGet.format(token), null, session.token) { _, isSuccess, result ->
+            activity.runOnUiThread {
+                progressOverlay.dismiss()
+                if(isSuccess) {
+                    try {
+                        val placement = Gson().fromJson(result, Placement::class.java)
+                        val loadPlacementDialog = LoadPlacementDialog()
+                        val placementBundle = Bundle()
+                        placementBundle.putString(Constants.PLACEMENT_KEY, Gson().toJson(placement))
+                        loadPlacementDialog.arguments = placementBundle
+                        loadPlacementDialog.show(fragmentManager, loadPlacementDialog.tag)
+                        loadPlacementDialog.setDataUpdatedListener(object : DataUpdatedListener {
+                            override fun onDataUpdated() { loadPlacementDialog.dismiss() }
+                        })
+                    } catch (e: java.lang.Exception) { TingToast(activity, e.localizedMessage, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+                } else { TingToast(activity, result, TingToastType.ERROR).showToast(Toast.LENGTH_LONG) }
+            }
+        }
+    }
+
+    private fun showOrderPlacedNoty(response: JsonObject) {
+
+        val data = response.get("data").asJsonObject
+        val title = "New Order On Table ${data.get("table").asString}"
+        val message = "${data.get("user").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} "
+
+        Noty.init(activity, data.get("user").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
+            .tapToDismiss(true)
+            .setClickListener(object : Noty.ClickListener {
+                override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .show()
+    }
+
+    private fun showOrderDelayedNoty(response: JsonObject) {
+
+        val data = response.get("data").asJsonObject
+        val title = "Order Delayed On Table ${data.get("table").asString}"
+        val message = "${response.get("sender").asJsonObject.get("name").asString} has placed an order on table ${data.get("table").asString} but it seems it is delaying. Please, Accept or Decline the order."
+
+        Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
+            .tapToDismiss(true)
+            .setClickListener(object : Noty.ClickListener {
+                override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .show()
+    }
+
+    private fun showRequestBillNoty(response: JsonObject) {
+
+        val data = response.get("data").asJsonObject
+        val title = "Bill Requested On Table ${data.get("table").asString}"
+        val message = "${response.get("sender").asJsonObject.get("name").asString} has requested his bill for him to further finalize his placement."
+
+        Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
+            .tapToDismiss(true)
+            .setClickListener(object : Noty.ClickListener {
+                override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .show()
+    }
+
+    private fun showPlacementTerminatedNoty(response: JsonObject) {
+
+        val data = response.get("data").asJsonObject
+        val title = "Placement Terminated On Table ${data.get("table").asString}"
+        val message = "${response.get("sender").asJsonObject.get("name").asString} has terminated his placement and freed the space."
+
+        Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
+            .tapToDismiss(true)
+            .setClickListener(object : Noty.ClickListener {
+                override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .show()
+    }
+
+    public fun close() { try { pubnub.removeListener(subscribeCallback) } catch (e: Exception) {} }
 
     companion object {
-        public fun getInstance(activity: Activity, viewGroup: ViewGroup) : PubnubNotification {
-            return PubnubNotification(activity, viewGroup)
+        public fun getInstance(activity: Activity, viewGroup: ViewGroup, fragmentManager: FragmentManager) : PubnubNotification {
+            return PubnubNotification(activity, viewGroup, fragmentManager)
         }
     }
 }

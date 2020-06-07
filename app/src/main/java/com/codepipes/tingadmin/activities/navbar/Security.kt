@@ -28,6 +28,7 @@ class Security : AppCompatActivity() {
 
     private lateinit var userAuthentication: UserAuthentication
     private lateinit var session: Administrator
+    private lateinit var pubnubNotification: PubnubNotification
 
     @SuppressLint("PrivateResource", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,8 @@ class Security : AppCompatActivity() {
             supportActionBar!!.setHomeAsUpIndicator(upArrow)
         } catch (e: java.lang.Exception) {}
 
-        PubnubNotification.getInstance(this@Security, main_container).initialize()
+        pubnubNotification = PubnubNotification.getInstance(this@Security, main_container, supportFragmentManager)
+        pubnubNotification.initialize()
 
         userAuthentication = UserAuthentication(this@Security)
         session = userAuthentication.get()!!
@@ -96,6 +98,7 @@ class Security : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        pubnubNotification.close()
         super.onBackPressed()
     }
 
@@ -115,5 +118,6 @@ class Security : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Bridge.clear(this)
+        pubnubNotification.close()
     }
 }

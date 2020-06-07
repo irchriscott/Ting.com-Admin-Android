@@ -15,5 +15,4 @@ public class XAxisValueFormatter implements IAxisValueFormatter {
     public String getFormattedValue(float value, AxisBase axis) {
         return this.values[(int) value];
     }
-
 }
