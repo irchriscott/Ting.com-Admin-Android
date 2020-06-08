@@ -129,13 +129,15 @@ class PubnubNotification (
                             }
                             Constants.SOCKET_REQUEST_W_MESSAGE -> {
 
-                                val data = response.get("data").asJsonObject
-                                val title = "Request From ${response.get("sender").asJsonObject.get("name").asString}, Table ${data.get("table").asString}"
-                                val message = if(response.has("message")) { response.get("message").asString } else { "-" }
+                                if(session.permissions.contains("can_get_requests") || session.id == response.get("receiver").asJsonObject.get("id").asInt) {
+                                    val data = response.get("data").asJsonObject
+                                    val title = "Request From ${response.get("sender").asJsonObject.get("name").asString}, Table ${data.get("table").asString}"
+                                    val message = if(response.has("message")) { response.get("message").asString } else { "-" }
 
-                                Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
-                                    .tapToDismiss(true)
-                                    .show()
+                                    Noty.init(activity, response.get("sender").asJsonObject.get("image").asString, title, message, viewGroup, Noty.NotyStyle.SIMPLE)
+                                        .tapToDismiss(true)
+                                        .show()
+                                }
                             }
                             Constants.SOCKET_REQUEST_PLACE_TERM -> showPlacementTerminatedNoty(response)
                             Constants.SOCKET_REQUEST_W_PLACE_TERM -> {
@@ -209,6 +211,14 @@ class PubnubNotification (
                     }
                 }
             })
+            .setTapListener(object : Noty.TapListener {
+                override fun onTap(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
             .show()
     }
 
@@ -222,6 +232,14 @@ class PubnubNotification (
             .tapToDismiss(true)
             .setClickListener(object : Noty.ClickListener {
                 override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .setTapListener(object : Noty.TapListener {
+                override fun onTap(noty: Noty?) {
                     if(data.has("token")) {
                         val token = data.get("token").asString
                         loadPlacement(token)
@@ -247,6 +265,14 @@ class PubnubNotification (
                     }
                 }
             })
+            .setTapListener(object : Noty.TapListener {
+                override fun onTap(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
             .show()
     }
 
@@ -260,6 +286,14 @@ class PubnubNotification (
             .tapToDismiss(true)
             .setClickListener(object : Noty.ClickListener {
                 override fun onClick(noty: Noty?) {
+                    if(data.has("token")) {
+                        val token = data.get("token").asString
+                        loadPlacement(token)
+                    }
+                }
+            })
+            .setTapListener(object : Noty.TapListener {
+                override fun onTap(noty: Noty?) {
                     if(data.has("token")) {
                         val token = data.get("token").asString
                         loadPlacement(token)
