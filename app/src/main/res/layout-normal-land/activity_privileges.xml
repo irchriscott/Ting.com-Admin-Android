@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".activities.navbar.Privileges">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.6">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorPrimary"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"
+            style="@style/AppTheme.ActionBarStyle"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/border_bottom">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/admin_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/default_user"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/colorVeryLightGray"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="12dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:id="@+id/admin_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Christian Scott"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="14sp"
+                                android:textColor="@color/colorGray"
+                                android:includeFontPadding="false"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:id="@+id/admin_username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="chriscott"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="11sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="18dp"
+                                    android:src="@drawable/ic_mail_gray_24dp"
+                                    android:tint="@color/colorLightGray" />
+
+                                <TextView
+                                    android:id="@+id/admin_email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:textSize="12sp"
+                                    android:text="irchristianscott@gmail.com"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/colorLightGray"
+                                    tools:ignore="HardcodedText" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Permissions"
+                        android:textSize="15sp"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_thin"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/perms_restaurants_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Restaurant"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_restaurants"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_administrators_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Administrator"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_administrators"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_tables_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tables"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_tables"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_promotions_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Promotion"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_promotions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_bills_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bills"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_bills"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_booking_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Booking"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_booking"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/perms_categories_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Category"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_categories"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_branches_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Branch"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_branches"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_orders_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Orders"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_orders"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_menus_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Menus"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_menus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_management_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Management"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_management"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/perms_placement_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Placement"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <LinearLayout
+                                    android:id="@+id/perms_placement"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/current_orders_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        class="com.codepipes.tingadmin.fragments.base.CurrentOrders"
+        tools:layout="@layout/fragment_current_orders" />
+
+</LinearLayout>

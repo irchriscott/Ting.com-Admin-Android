@@ -84,28 +84,7 @@ class PlacementsFragment : Fragment() {
 
             override fun message(pubnub: PubNub, pnMessageResult: PNMessageResult) {
                 activity?.runOnUiThread {
-                    try {
-                        val response = if(pnMessageResult.message.isJsonObject) {
-                            pnMessageResult.message.asJsonObject
-                        } else { Gson().fromJson(pnMessageResult.message.asString, JsonObject::class.java) }
-
-                        when (response.get("type").asString) {
-                            Constants.SOCKET_REQUEST_TABLE -> loadPlacements(view)
-                            Constants.SOCKET_RESPONSE_W_TABLE -> loadPlacements(view)
-                            Constants.SOCKET_REQUEST_TABLE_ORDER -> loadPlacements(view)
-                            Constants.SOCKET_REQUEST_W_TABLE_ORDER -> loadPlacements(view)
-                            Constants.SOCKET_REQUEST_W_NOTIFY_ORDER -> loadPlacements(view)
-                            Constants.SOCKET_RESPONSE_ERROR ->
-                                TingToast(
-                                    activity!!,
-                                    if (!response.get("message").isJsonNull) {
-                                        response.get("message").asString
-                                    } else { "An Error Occurred" },
-                                    TingToastType.ERROR
-                                ).showToast(Toast.LENGTH_LONG)
-
-                            else -> { }
-                        }
+                    try { loadPlacements(view)
                     } catch (e: Exception) {
                         TingToast(
                             activity!!,

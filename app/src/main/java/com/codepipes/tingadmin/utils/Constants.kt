@@ -70,7 +70,7 @@ class Constants {
         public val DRINK_TYPE = hashMapOf<Int, String>(
             1 to "Water", 2 to "Hot Beverage", 3 to "Beer",
             4 to "Alcohol", 5 to "Soda", 6 to "Juice", 7 to "Smoothie",
-            8 to "Cocktail", 9 to "Wine", 10 to "Other"
+            8 to "Milkshake", 9 to "Ice Cream", 9 to "Cocktail", 10 to "Wine", 11 to "Other"
         )
 
         public val DISH_TIME = hashMapOf<Int, String>(
@@ -125,22 +125,22 @@ class Constants {
         )
 
         public val RESTAURANT_SPECIALS = mutableListOf<BranchSpecial>(
-            BranchSpecial(1, "Wi-Fi","wifi"),
-            BranchSpecial(2, "Phone Booth","phone"),
+            BranchSpecial(1, "Wi-Fi", "wifi"),
+            BranchSpecial(2, "Phone Booth", "phone"),
             BranchSpecial(3, "TV", "tv"),
-            BranchSpecial(4, "Parking","car"),
-            BranchSpecial(5, "Karaoke","microphone"),
-            BranchSpecial(6, "Jazz","music"),
-            BranchSpecial(7, "Bar","glass martini"),
+            BranchSpecial(4, "Parking", "car"),
+            BranchSpecial(5, "Karaoke", "microphone"),
+            BranchSpecial(6, "Jazz", "music"),
+            BranchSpecial(7, "Bar", "glass martini"),
             BranchSpecial(8, "Guards", "shield alternate")
         )
 
         public val RESTAURANT_SERVICES = mutableListOf<BranchSpecial>(
-            BranchSpecial(1, "Hotel","building"),
-            BranchSpecial(2, "Spa","smile"),
-            BranchSpecial(3, "Bar","glass martini"),
-            BranchSpecial(4, "Meeting Space","bullhorn"),
-            BranchSpecial(5, "Parties","birthday cake")
+            BranchSpecial(1, "Hotel", "building"),
+            BranchSpecial(2, "Spa", "smile"),
+            BranchSpecial(3, "Bar", "glass martini"),
+            BranchSpecial(4, "Meeting Space", "bullhorn"),
+            BranchSpecial(5, "Parties", "birthday cake")
         )
 
         public val BOOKING_PAYEMENT_MODE = hashMapOf<Int, String>(

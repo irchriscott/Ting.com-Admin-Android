@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTransparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_dialog_rounded">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Promotion"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textSize="15sp"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="18dp"
+                    android:textColor="@color/colorGray"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorVeryLightGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Enter Promotion Occasion/Event :"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/promotion_occasion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorGray"
+                        android:background="@drawable/border_row"
+                        android:inputType="text"
+                        android:hint="Promotion Occasion/Event"
+                        android:importantForAutofill="no"
+                        android:scrollbars="vertical"
+                        android:textColorHint="@color/colorLightGray"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:text="Enter Promotion Description :"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_row"
+                        android:padding="1dp"
+                        android:layout_marginTop="4dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/promotion_description_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true">
+
+                            <RelativeLayout
+                                android:id="@+id/promotion_description_view_child"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <jp.wasabeef.richeditor.RichEditor
+                                    android:id="@+id/promotion_description"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="12sp"
+                                    android:padding="8dp" />
+
+                            </RelativeLayout>
+
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorVeryLightGray"
+                                android:scrollbars="none"
+                                android:layout_alignParentBottom="true"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/promotion_description_view_child"
+                                app:layout_constraintBottom_toBottomOf="parent">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageButton
+                                        android:id="@+id/action_undo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_undo"
+                                        tools:ignore="ContentDescription,TooDeepLayout" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_redo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_redo"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_bold"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_italic"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_italic"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_subscript"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_subscript"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_superscript"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_superscript"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_strikethrough"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_strikethrough"
+                                        tools:ignore="ContentDescription,TooManyViews" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_underline"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_underline"
+                                        tools:ignore="ContentDescription" />
+
+
+                                    <ImageButton
+                                        android:id="@+id/action_indent"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_indent"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_outdent"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_outdent"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_align_left"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_justify_left"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_align_center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_justify_center"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_align_right"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_justify_right"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_insert_bullets"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_bullets"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_insert_numbers"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_numbers"
+                                        tools:ignore="ContentDescription" />
+
+                                    <ImageButton
+                                        android:id="@+id/action_insert_link"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:background="@color/colorTransparent"
+                                        android:src="@drawable/ic_insert_link"
+                                        tools:ignore="ContentDescription" />
+
+                                </LinearLayout>
+
+                            </HorizontalScrollView>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/promotion_on_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:text="Select Promotion On :"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorGray"
+                            tools:ignore="HardcodedText" />
+
+                        <RelativeLayout
+                            android:id="@+id/promotion_on_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:background="@drawable/border_row">
+
+                            <TextView
+                                android:id="@+id/selected_promotion_on"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Promotion On"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                android:layout_alignParentEnd="true"
+                                tools:ignore="ContentDescription" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/promotion_specific_menu_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:text="Enter Promotion Specific Menu :"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorLightGray"
+                            tools:ignore="HardcodedText" />
+
+                        <RelativeLayout
+                            android:id="@+id/promotion_specific_menu_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:background="@drawable/border_row">
+
+                            <TextView
+                                android:id="@+id/selected_promotion_specific_menu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Promotion Specific Menu"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                android:layout_alignParentEnd="true"
+                                tools:ignore="ContentDescription" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/promotion_specific_category_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:text="Enter Promotion Specific Category :"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorLightGray"
+                            tools:ignore="HardcodedText" />
+
+                        <RelativeLayout
+                            android:id="@+id/promotion_specific_category_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:background="@drawable/border_row">
+
+                            <TextView
+                                android:id="@+id/selected_promotion_specific_category"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Promotion Specific Category"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                android:layout_alignParentEnd="true"
+                                tools:ignore="ContentDescription" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <CheckBox
+                            android:id="@+id/is_promotion_special"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/CheckBoxStyle"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Is Promotion Special"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/promotion_special_time_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:text="Select Promotion Special Time :"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorGray"
+                            tools:ignore="HardcodedText" />
+
+                        <RelativeLayout
+                            android:id="@+id/promotion_special_time_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:background="@drawable/border_row">
+
+                            <TextView
+                                android:id="@+id/selected_promotion_special_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Promotion Special Time"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                android:layout_alignParentEnd="true"
+                                tools:ignore="ContentDescription" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:layout_marginEnd="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_start_date_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="Enter Promotion Start Date :"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <EditText
+                                android:id="@+id/promotion_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                android:background="@drawable/border_row"
+                                android:inputType="none"
+                                android:hint="Promotion Start Date"
+                                android:importantForAutofill="no"
+                                android:scrollbars="vertical"
+                                android:focusable="false"
+                                android:textColorHint="@color/colorLightGray"
+                                tools:ignore="HardcodedText,TextFields" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:layout_marginStart="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_end_date_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="Enter Promotion End Date :"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <EditText
+                                android:id="@+id/promotion_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                android:background="@drawable/border_row"
+                                android:inputType="none"
+                                android:hint="Promotion End Date"
+                                android:importantForAutofill="no"
+                                android:scrollbars="vertical"
+                                android:focusable="false"
+                                android:textColorHint="@color/colorLightGray"
+                                tools:ignore="HardcodedText,TextFields" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <CheckBox
+                            android:id="@+id/promotion_has_reduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/CheckBoxStyle"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Promotion Has Reduction"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginStart="4dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_reduction_amount_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="Enter Promotion Reduction Amount :"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <EditText
+                                android:id="@+id/promotion_reduction_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                android:background="@drawable/border_row"
+                                android:inputType="number"
+                                android:hint="Promotion Reduction Amount"
+                                android:importantForAutofill="no"
+                                android:scrollbars="vertical"
+                                android:textColorHint="@color/colorLightGray"
+                                tools:ignore="HardcodedText,TextFields" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:layout_marginStart="4dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_reduction_type_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="In"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <RelativeLayout
+                                android:id="@+id/promotion_reduction_type_select"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:background="@drawable/border_row">
+
+                                <TextView
+                                    android:id="@+id/selected_promotion_reduction_type"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select Type"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorLightGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                    android:layout_alignParentEnd="true"
+                                    tools:ignore="ContentDescription" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <CheckBox
+                            android:id="@+id/promotion_has_supplement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/CheckBoxStyle"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Promotion Has Supplement"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/promotion_minimum_quantity_supplement_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:text="Enter Minimum Quantity For Supplement"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorLightGray"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/promotion_minimum_quantity_supplement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorLightGray"
+                        android:background="@drawable/border_row"
+                        android:inputType="number"
+                        android:hint="Minimum Quantity For Supplement"
+                        android:importantForAutofill="no"
+                        android:scrollbars="vertical"
+                        android:textColorHint="@color/colorLightGray"
+                        tools:ignore="HardcodedText" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        tools:ignore="TooManyViews">
+
+                        <CheckBox
+                            android:id="@+id/is_supplement_promoted_menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:theme="@style/CheckBoxStyle"/>
+
+                        <TextView
+                            android:id="@+id/is_supplement_promoted_menu_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Is Supplement The Promoted Menu"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginStart="4dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_supplement_menu_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="Select Supplement Menu"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <RelativeLayout
+                                android:id="@+id/promotion_supplement_menu_select"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:background="@drawable/border_row">
+
+                                <TextView
+                                    android:id="@+id/selected_promotion_supplement_menu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select Supplement Menu"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorLightGray"
+                                    tools:ignore="HardcodedText" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+                                    android:layout_alignParentEnd="true"
+                                    tools:ignore="ContentDescription" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:layout_marginStart="4dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/promotion_supplement_quantity_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:text="Enter Supplement Quantity :"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                            <EditText
+                                android:id="@+id/promotion_supplement_quantity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorLightGray"
+                                android:background="@drawable/border_row"
+                                android:inputType="number"
+                                android:hint="Supplement Quantity"
+                                android:importantForAutofill="no"
+                                android:scrollbars="vertical"
+                                android:textColorHint="@color/colorLightGray"
+                                tools:ignore="HardcodedText,TextFields" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/promotion_add_poster_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:background="@drawable/border_row">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Add Promotion Poster"
+                            android:textAllCaps="true"
+                            android:padding="6dp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorGray"
+                            tools:ignore="HardcodedText" />
+
+                    </RelativeLayout>
+
+                    <com.codepipes.tingadmin.custom.RoundedCornerImageView
+                        android:id="@+id/promotion_poster_image"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/default_user"
+                        android:adjustViewBounds="true"
+                        android:visibility="gone"
+                        app:imageRadius="4.0"/>
+
+                    <LinearLayout
+                        android:id="@+id/promotion_for_all_branches_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone">
+
+                        <CheckBox
+                            android:id="@+id/promotion_for_all_branches"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/CheckBoxStyle"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="Add For All Branches"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <Button
+                            android:id="@+id/dialog_button_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="6dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:background="@drawable/background_red"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Cancel"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="13dp"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                        <Button
+                            android:id="@+id/dialog_button_save"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="6dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Save"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
