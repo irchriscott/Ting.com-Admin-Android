@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.sidebar.RestaurantFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:background="@drawable/border_bottom">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/restaurant_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/default_user"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="@color/colorVeryLightGray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="24dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:id="@+id/restaurant_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Christian Scott"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorGray"
+                            android:includeFontPadding="false"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_motto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="chriscott"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="13sp"
+                            android:textColor="@color/colorLightGray"
+                            tools:ignore="HardcodedText" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_navigation_restaurant"
+                                android:tint="@color/colorLightGray" />
+
+                            <TextView
+                                android:id="@+id/restaurant_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:textSize="13sp"
+                                android:text="irchristianscott@gmail.com"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/colorLightGray"
+                                tools:ignore="HardcodedText" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About"
+                        android:textSize="18sp"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_thin"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Restaurant"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_name_else"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Branch"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/branch_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Email"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/branch_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Phone Number"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/branch_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Motto"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_motto_else"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Address"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/branch_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Working Hours"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_working_hours"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/button_edit_restaurant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="12dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Edit Restaurant"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                        <Button
+                            android:id="@+id/button_edit_branch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="12dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Edit Branch"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Configuration"
+                        android:textSize="18sp"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_thin"
+                        android:textColor="@color/colorGray"
+                        tools:ignore="HardcodedText" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Currency"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_currency"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="VAT"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_vat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Late Reservation Time"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_late_reservation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Make Reservation With Advance"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_reservation_with_advance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Reservation Advance"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_reservation_advance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Refund After Cancelation"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_refund_after_cancelation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Booking Payment Mode"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_booking_payment_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Days Before Booking"
+                            tools:ignore="HardcodedText,TooManyViews" />
+
+                        <TextView
+                            android:id="@+id/restaurant_days_before_booking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Can Take Away"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_can_take_away"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/colorGray"
+                            android:text="Pay Before Receiving Order"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/restaurant_pay_before"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/colorGray"
+                            android:text="Cafe Java"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorVeryLightGray" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/button_edit_config"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="12dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Edit Config"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                        <Button
+                            android:id="@+id/button_edit_categories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="12dp"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Edit Categories"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:background="@drawable/background_green"
+                            tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

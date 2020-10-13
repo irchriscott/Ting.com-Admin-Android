@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:padding="16dp"
+    tools:context=".fragments.sidebar.PlacementsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_placements"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/poppins_thin"
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText,RelativeOverlap" />
+
+            </RelativeLayout>
+
+            <com.codepipes.tingadmin.tableview.TableView
+                android:id="@+id/placements_table_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:background="@drawable/background_tableview"
+                android:padding="1dp"
+                android:layout_gravity="center_horizontal"
+                app:separator_color="@color/colorVeryLightGray"
+                app:show_horizontal_separator="false"
+                app:show_vertical_separator="true"
+                app:selected_color="@color/colorShadeGray"
+                app:row_header_width="0dp"/>
+
+            <include
+                android:id="@+id/empty_data"
+                android:visibility="gone"
+                layout="@layout/include_empty_data" />
+
+            <include
+                android:id="@+id/progress_loader"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                layout="@layout/include_progress_loader" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
