@@ -262,5 +262,7 @@
 
     <style name="AppTheme.TabBarTextAppearance">
         <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">13sp</item>
     </style>
 </resources>

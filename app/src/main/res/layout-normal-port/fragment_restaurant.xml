@@ -401,7 +401,7 @@
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Edit Restaurant"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
@@ -415,7 +415,7 @@
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Edit Branch"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
@@ -850,7 +850,7 @@
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Edit Config"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
@@ -864,7 +864,7 @@
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Edit Categories"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
