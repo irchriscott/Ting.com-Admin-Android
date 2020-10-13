@@ -33,7 +33,7 @@
                 <Button
                     android:id="@+id/button_add_new_menu_food"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="30dp"
                     android:layout_alignParentEnd="true"

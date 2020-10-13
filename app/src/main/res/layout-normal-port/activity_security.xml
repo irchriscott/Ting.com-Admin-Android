@@ -74,7 +74,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="chriscott"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 tools:ignore="HardcodedText" />
 
@@ -219,13 +219,12 @@
                         android:id="@+id/submit_password_update"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:paddingStart="30dp"
                         android:paddingEnd="30dp"
                         android:textColor="@color/colorWhite"
                         android:text="Submit"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         android:fontFamily="@font/poppins_bold"
                         android:background="@drawable/background_green"
                         tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />

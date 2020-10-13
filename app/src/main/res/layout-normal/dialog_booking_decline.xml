@@ -70,7 +70,7 @@
                         android:paddingRight="12dp"
                         android:gravity="top|start"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="@color/colorGray"
                         android:background="@drawable/border_row"
                         android:inputType="textMultiLine"
@@ -90,7 +90,7 @@
                         <Button
                             android:id="@+id/dialog_button_cancel"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="6dp"
                             android:paddingStart="30dp"
                             android:paddingEnd="30dp"
@@ -98,19 +98,19 @@
                             android:fontFamily="@font/poppins_bold"
                             android:text="Cancel"
                             android:textColor="@color/colorWhite"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
 
                         <Button
                             android:id="@+id/dialog_button_save"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="35dp"
                             android:layout_marginStart="6dp"
                             android:paddingStart="30dp"
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Save"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />

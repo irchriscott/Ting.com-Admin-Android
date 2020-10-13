@@ -92,7 +92,7 @@ class AddBranchDialog : DialogFragment(), OnMapReadyCallback {
 
         val session = UserAuthentication(context!!).get()
 
-        layoutView.dialog_title.text = "Edit Branch"
+        layoutView.dialog_title.text = "Add Branch"
 
         val mapFragment = fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)

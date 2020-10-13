@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="40dp"
+        android:padding="20dp"
+        android:background="@drawable/background_dialog_rounded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textSize="15sp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/colorGray"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+
+        <TableLayout
+            android:id="@+id/choices"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_title"
+            android:layout_marginTop="24dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/open_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/camera_button"
+                        android:layout_gravity="center"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/open_camera"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/colorGray"
+                        android:textAlignment="center"
+                        android:text="Camera"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_regular"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/open_gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/gallery_button"
+                        android:layout_gravity="center"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/open_gallery"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/colorGray"
+                        android:textAlignment="center"
+                        android:text="Gallery"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_regular"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/choices"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow android:layout_width="match_parent"
+                tools:ignore="UselessParent">
+
+                <Button
+                    android:id="@+id/dialog_cancel"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="CANCEL"
+                    android:textSize="15dp"
+                    android:background="@drawable/background_red"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    style="@style/Widget.AppCompat.ButtonBar"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                <Button
+                    android:id="@+id/dialog_confirm"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="OK"
+                    android:textSize="15dp"
+                    android:background="@drawable/background_blue"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    style="@style/Widget.AppCompat.ButtonBar"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

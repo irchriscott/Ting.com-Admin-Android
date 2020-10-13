@@ -474,7 +474,7 @@
                         <Button
                             android:id="@+id/dialog_button_close"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="6dp"
                             android:layout_alignParentEnd="true"
                             android:paddingStart="30dp"
@@ -483,7 +483,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:text="Close"
                             android:textColor="@color/colorWhite"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
 
                     </RelativeLayout>

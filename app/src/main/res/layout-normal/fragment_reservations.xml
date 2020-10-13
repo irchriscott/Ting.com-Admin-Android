@@ -45,7 +45,7 @@
                         android:paddingRight="12dp"
                         android:layout_alignParentEnd="true"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="@color/colorGray"
                         android:background="@drawable/border_row"
                         android:inputType="none"

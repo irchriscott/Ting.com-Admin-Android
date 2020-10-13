@@ -70,7 +70,7 @@
                         android:paddingLeft="12dp"
                         android:paddingRight="12dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="@color/colorGray"
                         android:background="@drawable/border_row"
                         android:inputType="text"
@@ -118,7 +118,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="@color/colorGray"
-                                    android:textSize="11sp"
+                                    android:textSize="12sp"
                                     android:padding="8dp" />
 
                             </RelativeLayout>
@@ -373,7 +373,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Promotion On"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 tools:ignore="HardcodedText" />
 
@@ -421,7 +421,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Promotion Specific Menu"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 tools:ignore="HardcodedText" />
 
@@ -469,7 +469,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Promotion Specific Category"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 tools:ignore="HardcodedText" />
 
@@ -541,7 +541,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Promotion Special Time"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 tools:ignore="HardcodedText" />
 
@@ -589,7 +589,7 @@
                                 android:paddingLeft="12dp"
                                 android:paddingRight="12dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 android:background="@drawable/border_row"
                                 android:inputType="none"
@@ -630,7 +630,7 @@
                                 android:paddingLeft="12dp"
                                 android:paddingRight="12dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 android:background="@drawable/border_row"
                                 android:inputType="none"
@@ -704,7 +704,7 @@
                                 android:paddingLeft="12dp"
                                 android:paddingRight="12dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 android:background="@drawable/border_row"
                                 android:inputType="number"
@@ -751,7 +751,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Select Type"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:textSize="11sp"
+                                    android:textSize="12sp"
                                     android:textColor="@color/colorLightGray"
                                     tools:ignore="HardcodedText" />
 
@@ -813,7 +813,7 @@
                         android:paddingLeft="12dp"
                         android:paddingRight="12dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="@color/colorLightGray"
                         android:background="@drawable/border_row"
                         android:inputType="number"
@@ -892,7 +892,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Select Supplement Menu"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:textSize="11sp"
+                                    android:textSize="12sp"
                                     android:textColor="@color/colorLightGray"
                                     tools:ignore="HardcodedText" />
 
@@ -935,7 +935,7 @@
                                 android:paddingLeft="12dp"
                                 android:paddingRight="12dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="11sp"
+                                android:textSize="12sp"
                                 android:textColor="@color/colorLightGray"
                                 android:background="@drawable/border_row"
                                 android:inputType="number"
@@ -968,7 +968,7 @@
                             android:textAllCaps="true"
                             android:padding="6dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:textColor="@color/colorGray"
                             tools:ignore="HardcodedText" />
 
@@ -1020,7 +1020,7 @@
                         <Button
                             android:id="@+id/dialog_button_cancel"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="6dp"
                             android:paddingStart="30dp"
                             android:paddingEnd="30dp"
@@ -1028,19 +1028,19 @@
                             android:fontFamily="@font/poppins_bold"
                             android:text="Cancel"
                             android:textColor="@color/colorWhite"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />
 
                         <Button
                             android:id="@+id/dialog_button_save"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="35dp"
                             android:layout_marginStart="6dp"
                             android:paddingStart="30dp"
                             android:paddingEnd="30dp"
                             android:textColor="@color/colorWhite"
                             android:text="Save"
-                            android:textSize="13dp"
+                            android:textSize="12dp"
                             android:fontFamily="@font/poppins_bold"
                             android:background="@drawable/background_green"
                             tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SpUsage" />

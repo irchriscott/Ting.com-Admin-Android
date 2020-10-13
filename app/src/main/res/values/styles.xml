@@ -259,4 +259,8 @@
         <item name="android:scrollbarThumbVertical">@color/colorTransparent</item>
         <item name="android:scrollbarThumbHorizontal">@color/colorTransparent</item>
     </style>
+
+    <style name="AppTheme.TabBarTextAppearance">
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
 </resources>

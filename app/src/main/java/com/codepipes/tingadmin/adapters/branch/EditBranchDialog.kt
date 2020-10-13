@@ -83,7 +83,7 @@ class EditBranchDialog : DialogFragment(), OnMapReadyCallback {
 
         val session = UserAuthentication(context!!).get()
 
-        layoutView.dialog_title.text = "Add Branch"
+        layoutView.dialog_title.text = "Edit Branch"
 
         branch = Gson().fromJson(arguments?.getString(Constants.BRANCH_KEY), Branch::class.java)
         val mapFragment = fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
